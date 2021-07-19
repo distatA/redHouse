@@ -1,0 +1,113 @@
+/* pages/myDow/myDow.wxss */
+.topSearch{background: #fff;padding: 25rpx 40rpx;}
+.search{width: 570rpx;height: 54rpx;line-height: 54rpx;background: #f2f2f2;border-radius: 54rpx;padding-left: 100rpx;position: relative;}
+.search .topInput{font-size: 30rpx;height:30px;line-height: 30px;}
+.searchPic{position: absolute;left: 40rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+.title{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+   color:#000;
+  margin:20px 0 24px 20px;
+}
+.allGoods{
+  padding: 0 10px;
+  /* background: #F2F2F2; */
+  border-bottom:1px solid #F2F2F2;
+}
+.allGoods .goodList{
+  display: flex;
+  margin: 18rpx 0;
+  padding-right:  5px;
+  border-radius:5px;
+  background: #fff;
+}
+.ins{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top:10px;
+}
+.goodPic{
+  width:145px;
+  height:145px;
+  background: #abcdef;
+}
+.allGoods .goodPic image{
+  width: 145px;
+  height: 145px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  }
+.allGoods .info{margin-left: 40rpx;width: 420rpx;position: relative;padding:10px 0;box-sizing: border-box}
+.allGoods .info .title text{font-size: 28rpx;}
+.allGoods .info .title image{width: 28rpx;height: 18rpx;margin-left: 10rpx;position: relative;top: -10rpx;}
+.goodsName{
+  font-size: 15px;
+  color: rgb(0, 0, 0);
+  display: -webkit-box;
+  width:100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-weight: 500;
+  }
+.infos{
+  display: flex;
+  align-items: center;
+  margin-top:10rpx;
+}
+.infos image{
+  width:50rpx;
+  height:50rpx;
+  border-radius: 50%;
+  display: block;
+}
+.infos .nickName{
+  font-size: 24rpx;
+  color:rgb(104, 104, 104);
+  margin-left:10rpx;
+}
+.infos .nickNames{
+ width:130px;
+ overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.directLine{width: 192rpx;height: 20rpx;border-radius: 20rpx;background: #ffc3bb;margin-top: 60rpx;}
+.directInline{height: 20rpx;border-radius: 20rpx;background: linear-gradient(to right,#FF7054,#ff5053)}
+.inPeople{font-size: 20rpx;color: rgb(12, 12, 12);margin-bottom: 10rpx;margin-top: 15px;}
+
+.prices{display: inline-block;}
+.prices .fuhao{display: inline-block;font-size: 12px;}
+.newPrice{color: #ff5a43;font-size: 17px;font-weight: 500}
+.oldPrice{color: rgb(216, 216, 216);font-size: 18rpx;margin-left: 10rpx;text-decoration: line-through;}
+.buyNow{
+  width: 120rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 10rpx;font-size: 22rpx;color: #fff;
+  background: linear-gradient(to bottom,#ff604c,#ff784c);
+border: none;padding: 0;
+text-align: center;
+}
+.dbarrow{width: 14rpx;height: 12rpx;}
+
+.foot{
+  width:100px;
+  height:30px;
+  text-align: center;
+  line-height: 30px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background: linear-gradient(to right,#FE9156,#FF5050);
+ margin: 50rpx 0 10rpx 0 ;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 0rpx;
+  left: 50%;
+  transform: translate(-50%);
+}

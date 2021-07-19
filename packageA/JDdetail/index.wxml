@@ -1,0 +1,66 @@
+<view>
+    <!-- 轮播图 -->
+    <swiper indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'
+        indicator-color='#FFFFFF' indicator-active-color='#ff6666'>
+        <swiper-item wx:for="{{banner}}" wx:key="index">
+            <image src="{{JDimg+item}}" class="swiper_item" mode="scaleToFill" />
+        </swiper-item>
+    </swiper>
+    <!-- 商品详情 -->
+    <view class="productInfoBox">
+        <view class="productInfo">
+            <view class="productMoney">
+            <block wx:if="{{result.status == 1}}">
+               <text style="font-size: 17px;">¥ </text>
+                 <text style="font-size: 26px;">{{result.price}}</text>
+            </block>
+                <block wx:if="{{result.status == 0}}">
+                 <text style="font-size: 26px;">商品已下架</text>
+                </block>
+            </view>
+            <view class="buyNum">已售 {{data.qtty30}}</view>
+        </view>
+        <!-- 返利 -->
+        <view class="product_commission">
+            <view class="commonCommission">
+                <text>约返 </text>
+                <text>{{data.backMoney}}元</text><text>{{data.commisionRatioWl}}%</text>
+            </view>
+            <view class="vipCommission">
+                <text>会员约返</text>
+                <text style="margin-left: 24rpx;">{{data.vipBackMoney}}元</text>
+                <text style="margin-left: 24rpx;">{{data.vipCommisionRatioWl}}%</text>
+            </view>
+        </view>
+        <!-- 标题 -->
+        <view class="product_title">{{result.name}}</view>
+        <!-- 店铺名称 -->
+        <view class="product_merchant">{{result.shopName}}</view>
+        <!-- 返利指南 -->
+        <navigator  url="../backMoney/index" hover-class="none">
+            <view class="product_toCommission">
+                <view>返利指南</view>
+                <image class="product_toCommissionImg" src="../../img/icon/youjiantou.png" />
+            </view>
+        </navigator>
+    </view>
+    <!-- 商品详情  -->
+    <view class="product_DetailTitle">———— 商品详情 ————</view>
+    <rich-text nodes="{{richText}}"></rich-text>
+    <view style="width: 100%;height: 120rpx;"></view>
+    <!-- 底部的bar -->
+    <view class="bottomTabBar">
+        <view class="collect" bindtap="collect" data-item="{{result}}">
+            <image class="collectImg" src="{{collect ? isCollect : noCollect }}"  />
+        </view>
+        <view class="shareBox">
+            <image class="shareImg" src="../../img/icon/JDshate.png" />
+            <text class="shareFont">推荐给好友</text>
+            <button open-type="share" class="shareBtn"></button>
+        </view>
+        <view class="buyNow" bindtap="getToPageUrl">
+            <text class="buyNowFont">立即购买</text>
+            <text class="buyNowTips">约返(¥{{data.backMoney}}元)</text>
+        </view>
+    </view>
+</view>

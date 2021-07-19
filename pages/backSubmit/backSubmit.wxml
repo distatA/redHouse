@@ -1,0 +1,7 @@
+<!--pages/backSubmit/backSubmit.wxml-->
+<image src="../../img/icon/succeed.png"></image>
+<view class="title">退款申请提交成功</view>
+<view class="foot">
+  <view class="list" bindtap="record">查看记录</view>
+  <view class="list" bindtap="home">回到首页</view>
+</view>

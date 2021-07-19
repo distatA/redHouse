@@ -1,0 +1,165 @@
+/* pages/banCard/banCard.wxss */
+page{
+  background: #F2F2F2;
+  
+  overflow-x: hidden;
+}
+.tab{
+  padding:10px 20px 0 20px;
+  background: #fff;
+  height:40px;
+  white-space: nowrap;
+  width:100%;
+  box-sizing: border-box;
+}
+.tab-item{
+ display: inline-block;
+ text-align: center;
+ font-size: 14px;
+ color: #777777;
+ padding:0 5px 5px 5px;
+ margin-right:30px;
+}
+.tab-item.active{
+  color: #FF7159;
+  border-bottom: 4rpx solid #FF7159;
+  font-size: 16px;
+  font-weight: 550;
+}
+/* 卡图 */
+.list{
+  position: relative;
+  width:100%;
+  height:190px;
+  margin:4px auto;
+  padding:0 5px;
+  box-sizing: border-box;
+}
+.list image{
+  width:100%;
+  height:100%;
+  border-radius: 5px;
+  background: #abcdef;
+}
+.list .time{
+  position: absolute;
+  bottom:12px;
+  left:11px;
+  font-size:15px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:600;
+  color:rgba(255,255,255,1);
+  margin-left:10px;
+}
+/* 权益 */
+.main{
+  background: #fff;
+  padding:15px 20px;
+  margin-bottom:4px;
+}
+.main .title{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:600;
+  color:rgba(22,22,22,1);
+}
+.shopList{
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+.shop{
+  margin-top:20px;
+  position: relative;
+  /* margin-right:20px; */
+}
+.shop:nth-child(3){
+  margin-right:0;
+}
+.shop:nth-child(6){
+  margin-right:0;
+}
+.shop:nth-child(9){
+  margin-right:0;
+}
+.shop .box{
+  position: absolute;
+  top:0;
+  left:0;
+  right:0;
+  margin:0 auto;
+  width:90px;
+  height:90px;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+}
+.shop image{
+  border-radius: 50%;
+}
+.shopname{
+  text-align: center;
+  margin-top:10px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+  width:222rpx;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+.contain{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(119,119,119,1);
+  margin-top:10px;
+  line-height:20px;
+}
+.foot{
+  /* padding:15px 20px; */
+  background: #fff;
+  height:60px;
+  display: flex;
+  justify-content: space-between;
+}
+.foot .left{
+  display: flex;
+  align-items:center ;
+  padding:18px 0 20px 21px;
+  box-sizing: border-box;
+}
+.sum{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+}
+.low{
+  font-size:22px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(255,80,83,1);
+  margin-left:5px;
+  line-height:30px;
+}
+.first{
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(130,127,127,1);
+  text-decoration: line-through;
+  margin-left:8px;
+}
+.buy{
+  width: 120px;
+  height:60px;
+  /* border-radius:5px; */
+  text-align: center;
+  line-height: 60px;
+  background: linear-gradient(to right,#FF8A57,#FE5654);
+  font-size:18px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#fff;
+}

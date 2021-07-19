@@ -1,0 +1,24 @@
+<!--pages/backMoney/backMoney.wxml-->
+<view class="title">退款金额</view>
+<view class="title">¥20.8</view>
+<view class="box"></view>
+<view class="list">
+  <view class="left">第一房账户</view>
+  <view class="right"><image src=""></image><text>合肥城记</text></view>
+</view>
+<view class="list">
+  <view class="left">支付渠道</view>
+  <view class="right">微信</view>
+</view>
+<view class="box"></view>
+<van-steps
+  steps="{{ steps }}"
+  active="{{ active }}"
+  direction="vertical"
+  active-color="#FF9254"
+/>
+
+<view class="foot">
+  <image src="../../img/icon/phone1.png"></image>
+  <view>咨询第一房官方客服</view>
+</view>

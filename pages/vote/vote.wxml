@@ -1,0 +1,59 @@
+<!--pages/vote/vote.wxml-->
+<view class="list">
+  <view class="left">投票标题</view>
+  <input placeholder="最多25个字" placeholder-style="color:#9A9A9A;text-align:right" maxlength="25" bindinput="inputTitle"></input>
+</view>
+<!-- 菜单栏 -->
+<view class="tab">
+  <block wx:for="{{hrList}}" wx:key="index">
+    <view class="tab-item {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenu'>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</view> 
+<block wx:if="{{currentTab==0}}">
+<view class="list" wx:for="{{listIndex}}" wx:key="key">
+  <view class="left">选项{{index+1}}</view>
+  <input placeholder="最多20个字" placeholder-style="color:#9A9A9A;text-align:right" maxlength="20" bindinput="xuanxiang" id="{{index}}" value="{{item.value}}"></input>
+  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/4cda94f23e7d446584224f8f12b7a7d8-tmp_417be43be1a6ed045b0211df98f4b698.jpg" style="width:19px;height:18px" bindtap="del" id="{{index}}"></image>
+</view>
+<view class="list" wx:if="{{listIndex.length<6}}"><view class="add" bindtap="add">添加选项</view></view>
+<view class="list">
+  <view class="left">单选多选</view>
+  <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio">
+        <radio value="1" checked="{{radio==1?true:false}}" color="#FF9254">单选</radio>
+      </view>
+       <view class="radio">
+        <radio value="2" checked="{{radio==2?true:false}}" color="#FF9254">多选</radio>
+      </view>
+    </radio-group>
+</view>
+</block>
+<block wx:if="{{currentTab==1}}">
+  <view class="list">
+    <view class="left" style="width:140px;">
+      <image bindtap="uploadImg" src="{{imgList?imgList:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" role="img"></image>
+      <input placeholder="请输入图片标题" placeholder-style="color:#9A9A9A;text-align:left;font-weight:400" bindinput="imgTitle1"></input>
+    </view>
+    <view class="left" style="width:140px;">
+      <image bindtap="uploadImg2" src="{{imgList2?imgList2:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" role="img"></image>
+      <input placeholder="请输入图片标题" placeholder-style="color:#9A9A9A;text-align:left;font-weight:400" bindinput="imgTitle2"></input>
+    </view>
+  </view>
+</block>
+<view class="list">
+  <view class="left">投票开始时间</view>
+  <picker mode="date" value="{{userDate}}" end="2099-12-31" bindchange="bindDateChange">
+      <input class="picker" type="text" name="userDate" value="{{userDate}}"  placeholder="开始时间" disabled="true"/>
+  </picker>
+</view>
+<view class="list">
+  <view class="left">投票结束时间</view>
+  <picker mode="date" value="{{userDate2}}" end="2099-12-31" bindchange="bindDateChange2">
+      <input class="picker" type="text" name="userDate" value="{{userDate2}}"  placeholder="结束时间" disabled="true"/>
+  </picker>
+</view>
+<!-- 发起投票 -->
+<view class="foot" bindtap="submit">发起投票</view>
+

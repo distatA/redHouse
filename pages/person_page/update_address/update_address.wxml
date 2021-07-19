@@ -1,0 +1,62 @@
+<!--pages/person_page/update_address/update_address.wxml-->
+
+<form class="edit" bindsubmit="saveAddress">
+  <view class="sform">
+    <view class="li">
+      <view class="liTxt">联系人</view>
+      <input type="text" class="name liInput" placeholder="名字" value="{{name}}" name="name"></input>
+    </view>
+
+    <view class="li">
+      <view class="liTxt">手机号码</view>
+      <input type="text" class="tell liInput" placeholder="11位手机号码" value="{{tell}}" name="tell"></input>
+    </view>
+    <view class="li">
+      <view class="liTxt">选择地区</view>
+        <!-- <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+        <view class="picker">
+        
+          {{multiArray[0][multiIndex[0]].name}}
+          {{multiArray[1].length > 0 ?( multiArray[1][multiIndex[1]].name ):""}}
+          {{multiArray[2].length > 0 ?( multiArray[2][multiIndex[2]].name ):""}}
+        </view>
+        <view class="cityArrow"></view>
+      </picker> -->
+      <!-- {{region}} -->
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="picker">
+          {{region[0]}}，{{region[1]}}，{{region[2]}}
+        </view>
+        <view class="cityArrow"></view>
+      </picker>
+    </view>
+
+    <view class="li">
+      <view class="liTxt">详细地址</view>
+      <input type="text" class="tell liInput" placeholder="如街道、门牌号、小区等" value="{{area}}" name="area"></input>
+    </view>
+
+  </view>
+
+  <view class="tags">
+    <view class="tagLi">
+      <view class="liTxt">地址标签</view>
+      <view class="allTag">
+        <block  wx:for="{{tag}}" wx:key="tags" wx:for-index="tagid">
+          <view class="thistag {{ tagSelected == tagid ? 'on':'' }}" bindtap="chooseTag" data-tagid="{{tagid}}">{{item.thistag}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="tagLi setAddress"  bindtap="changeMoren">
+      <view class="liTxt tagliTxt">设为默认地址</view>
+      <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+    </view>
+  </view>
+
+  <view class="last">
+    <button class="saveBtn" form-type="submit">修改</button>
+  </view>
+  
+
+</form>

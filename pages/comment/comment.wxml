@@ -1,0 +1,19 @@
+<!--pages/comment/comment.wxml-->
+<view class="header">
+  <view class="left">
+    <image src="{{headUrl}}"></image>
+    <!-- <block wx:if="{{moren == 1 }}"><view class="name">{{anonymity}}</view></block> -->
+    <block ><view class="name">{{nickName}}</view></block>
+  </view>
+  <!-- <view class="right"  bindtap="changeMoren">
+      <view>匿名评论</view>
+      <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+  </view> -->
+</view>
+<view class="box"></view>
+<!-- 内容 -->
+<form>
+  <textarea maxlength='520' focus='{{true}}' bindinput="bindTextAreaBlur" class='text' bindblur="bindTextAreaBlur"  placeholder-class="text-pl" placeholder=" 分享新鲜事…" />
+  <view class="num">{{num}}/300</view>
+	<button class='btn-submit' form-type="submit" bindtap='submit' >发表评论</button>
+</form>

@@ -1,0 +1,23 @@
+<!--pages/cardorder/cardorder.wxml-->
+<view class="top">商品信息</view>
+<view class="shop">
+  <view class="left"><image src="{{img}}"></image></view>
+  <view class="right">
+    <view class="name"><view class="names">{{name}}</view><view class="price">¥ {{present}}</view></view>
+    <view class="num">×1</view>
+  </view>
+</view>
+<view class="heji">
+  <view>商品合计</view>
+  <view style="font-weight: 500">¥ {{present}}</view>
+</view>
+
+<!-- 购买 -->
+<view class="foot">
+  <view class="left">
+    <view class="sum">总价：</view>
+    <view class="low">¥ {{present}}</view>
+    <view class="first">¥ {{first}}</view>
+  </view>
+  <view class="buy" bindtap="cardorder">立即购买 </view>
+</view>

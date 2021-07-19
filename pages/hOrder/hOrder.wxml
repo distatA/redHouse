@@ -1,0 +1,58 @@
+<!--pages/hOrder/hOrder.wxml-->
+<!-- 搜索 -->
+<view class="topSearch">
+  <view class="search">
+    <input type="text" class="topInput" placeholder="请输入关键字搜索订单" bindinput="getInputValue" bindconfirm='searchHandle'></input>
+    <view class="searchPic" bindtap="toSearch"></view>
+  </view>
+</view>
+<!-- 导航栏 -->
+<scroll-view class="tab" scroll-x scroll-left="{{left}}" scroll-with-animation="true">
+  <block wx:for="{{menuList}}" wx:key="index">
+    <view class="tab-item {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenu' id="{{item.num}}">
+      <view class="star"></view>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</scroll-view>
+<!-- 全部 -->
+<view class="main">
+  <view class="list" wx:for="{{orderList}}">
+    <!-- 商家信息 -->
+    <view class="top" bindtap="shopHome" id="{{item.merchant_no}}">
+      <view class="left">
+        <view class="headUrl"><image src="{{item.merchant_head_url}}"></image></view>
+        <view style="margin-left:10px;">
+          <view class="shopName">
+            {{item.merchant_nick_name}} <text>></text>
+          </view>
+          <view class="code">预约编号：{{item.code}}</view>
+        </view>
+      </view>
+      <view class="right">
+        <block wx:if="{{item.status==10}}">待核销</block> 
+        <block wx:if="{{item.status==20}}">已核销</block>
+        <block wx:if="{{item.status==30}}">预约关闭</block>
+        <block wx:if="{{item.status==40}}">待评论</block>
+        <block wx:if="{{item.status==50}}">投诉</block>
+      </view>
+    </view>
+    <!-- 房产信息 -->
+    <view class="bottom" bindtap="hDetail" id="{{item.id}}">
+      <view class="houseImg"><image src="{{item.imageUrl}}"></image></view>
+      <view class="deteil">
+        <view class="huoseName">{{item.name}}</view>
+        <view class="houhui">
+          <view>{{item.codeName}}</view>
+          <view wx:if="{{item.recommend_member_no!=''&&member_no==item.recommend_member_no}}">
+            <block  wx:if="{{item.price&&item.price!=''}}"><view style="text-align:center">享</view><view>{{item.price}}元</view></block>
+          </view> 
+        </view>
+        <view class="place">{{item.address}}</view>
+      </view>
+    </view>
+    <!-- 时间 -->
+    <view class="time">预约时间：{{item.create_time}}</view>
+  </view>
+</view>
+

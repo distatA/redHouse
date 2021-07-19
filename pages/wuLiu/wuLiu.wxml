@@ -1,0 +1,20 @@
+<!--pages/wuLiu/wuLiu.wxml-->
+<view class="top">
+  <image src="{{img}}"></image>
+  <view class="right">
+    <view class="company">物流公司：{{wuLiu.name}}</view>
+    <view class="company">物流单号：{{wuLiu.send_no}} <text bindtap="copyTxt" data-text="{{wuLiu.send_no}}">复制</text> </view>
+    <!-- <view class="company">联系电话：{{wuLiu.mobile}}</view> -->
+  </view>
+</view>
+<!-- 物流详情 -->
+<!-- <view class="title">
+  <view class="box"></view>
+  <view>物流详情</view>
+</view>
+<van-steps
+  steps="{{ steps }}"
+  active="{{ active }}"
+  direction="vertical"
+  active-color="#FF9254"
+/> -->

@@ -1,0 +1,182 @@
+<!--pages/backOrder/backOrder.wxml-->
+<view class="head">
+  <block wx:if="{{result.status==20 || result.status==33}}"><image src="../../img/icon/dai.png"></image>
+  <view>
+    <view>待商家处理</view><view style="font-size:12px" wx:if="{{result.expireTime>0}}">剩余{{hour}}时{{minute}}分{{second}}秒</view>
+  </view>
+  </block>
+  <block wx:if="{{result.status==21 || result.status==24 || result.status==30 ||result.status==31}}">
+    <image src="../../img/icon/true.png"></image>
+    <view>
+      <view>商家同意，请退货</view><view class="price">退款金额： <text>¥26.8</text> </view>
+    </view>
+  </block>
+    <block wx:if="{{result.status==34 ||result.status==39 ||result.status==40}}">
+    <image src="../../img/icon/true.png"></image>
+    <view>
+      <view>退款成功</view><view class="price">退款金额： <text>¥26.8</text> </view>
+    </view>
+  </block>
+  <block wx:if="{{result.status==22 || result.status==35}}"><image src="../../img/icon/false.png"></image>
+    <view>
+      <view>商家不同意</view><view style="font-size:12px" wx:if="{{result.expireTime>0}}">剩余{{day}}天{{hour}}时{{minute}}分{{second}}秒</view>
+    </view>
+  </block>
+  <!-- 退款关闭 -->
+  <block wx:if="{{result.status==23 || result.status==32 ||result.status==36 ||result.status==41}}"><image src="../../img/icon/false.png"></image>
+  <view>退款关闭</view></block>
+  <!-- 撤销申请 -->
+  <block wx:if="{{result.status==26}}"><image src="../../img/icon/cheXiao.png"></image>
+  <view>您的申请已撤销</view></block>
+  <!-- 平台介入 -->
+  <block wx:if="{{result.status==27 ||result.status==37}}"><image src="../../img/icon/pingTai.png"></image>
+  <view>平台介入处理中</view></block>
+  <block wx:if="{{result.status==28}}"><image src="../../img/icon/false.png"></image>
+  <view>平台审核不通过，退款关闭</view></block>
+   <block wx:if="{{result.status==33}}"><image src="../../img/icon/tuiHuo.png"></image>
+  <view>已退货，待商家处理</view></block>
+  <block wx:if="{{result.status==29 || result.status==38}}"><image src="../../img/icon/true.png"></image>
+    <view>
+      <view>平台审核通过，待退款</view><view style="font-size:12px" wx:if="{{result.expireTime>0}}">剩余{{day}}天{{hour}}时{{minute}}分{{second}}秒</view>
+    </view>
+  </block>
+</view>
+<!-- 平台留言 商家留言：您的退货退款申请不通过，买家提的问题，属于个人审美问题，不属于商品质量问题，所以本店概不退货！请原谅！-->
+<block wx:if="{{result.status==22 || result.status==35}}">
+  <view class="message">商家留言：{{result.reason}}</view>
+</block>
+<block wx:if="{{result.status==21 || result.status==24 || result.status==30 ||result.status==31}}">
+  <view class="message">商家留言：{{result.reason}}</view>
+</block>
+<!-- 亲，由于已超过反馈期，故无法支持您的退货退款申请。如您还有其他问题，欢迎您与第一房官方客服联系，祝您购物愉快。 -->
+<block wx:if="{{result.status==25 || result.status==32}}">
+  <view class="message">平台留言：{{result.reason}}</view>
+</block>
+<!-- 您的退货退款申请已经通过，请按商家退货地址在7天内退回，并填写正确的退货单号，避免退款因超时关闭。 -->
+<block wx:if="{{result.status==38}}">
+  <view class="message">平台留言：{{result.reason}}</view>
+</block>
+<!-- 因您超时未处理，本次申请关闭，如果超过维权保障期将不能再次发起申请，如您有其他退款诉求，建议您及时和商家协商 -->
+<block wx:if="{{result.status==36}}">
+  <view class="message">{{result.reason}}</view>
+</block>
+<view class="new">
+  <view class="li">退货地址：{{result.address}}</view>
+  <view class="li">收件人：{{result.name}}</view>
+  <view class="li">联系电话：{{result.mobile}}</view>
+</view>
+<!-- 退款商品详情 -->
+<view class="shop">
+  <image src="{{result.imageUrl}}"></image>
+  <view class="shopName">
+    <view class="shopsName">{{result.good_name}}
+      <view style="margin-top:12px;">{{result.specification}}</view>
+    </view>
+    <view>
+     <view class="shopPrice">¥ {{result.price}}</view> 
+     <view style="text-align: right">×{{result.num}}</view>
+    </view>
+  </view>
+</view>
+<!-- 信息 -->
+<view class="list" id="{{result.merchant_no}}" bindtap="shopHome">
+  <view class="left">店铺名称</view>
+  <image src="{{result.merchant_image}}"></image><text>{{result.merchant_shop_name}}</text>
+</view>
+<view class="list">
+  <view class="left">售后类型：</view>
+  <view>{{result.refuse_type==1?'仅退款':'退货退款'}}</view>
+</view>
+<view class="list">
+  <view class="left">退款金额：</view>
+  <view>¥ {{result.price}}</view>
+</view>
+<view class="list">
+  <view class="left">退货原因：</view>
+  <view>{{arr[reasonId-1]}}</view>
+  <view class="detail" bindtap="detail">详 情</view>
+  <!-- 上拉弹窗 -->
+  <van-action-sheet show="{{ show }}" title="退货原因" bindtap="onClose">
+    <view class="list lists">
+      <view class="left">申请原因</view>
+      <view class="right">{{arr[reasonId-1]}}</view>
+    </view>
+    <view class="list lists">
+      <view class="left">申请说明</view>
+      <view class="right">{{result.refuse_detail}}</view>
+    </view>
+    <view class="list">
+      <image wx:for="{{result.images}}" src="{{item}}" class="imgs"></image>
+    </view>
+    <view class="list lists">
+      <view class="left">联系电话</view>
+      <view class="right">{{result.refuse_tel}}</view>
+    </view>
+  </van-action-sheet>
+</view>
+<!-- <view class="list">
+  <view class="left">商品名称：</view>
+  <view class="right">出口欧美 高档80支贡缎纯色埃及长绒棉全棉高档80支贡缎纯色埃及长绒棉全棉</view>
+</view> -->
+<!-- 退货单号 -->
+<block>
+<view class="list">
+  <view class="left">订单编号：</view>
+  <view>{{result.my_order_no}}</view>
+  <view class="detail" bindtap="details">详 情</view>
+  <!-- 上拉弹窗 -->
+  <van-action-sheet show="{{ shows }}" title="退货单号" bindtap="onCloses">
+    <view class="list lists">
+      <view class="left">物流公司</view>
+      <view class="right">顺丰快递</view>
+    </view>
+    <view class="list lists">
+      <view class="left">物流单号</view>
+      <view class="right">42347274902434</view>
+    </view>
+    <view class="list lists">
+      <view class="left">联系电话</view>
+      <view class="right">{{result.refuse_tel}}</view>
+    </view>
+    <view class="list lists">
+      <view class="left">备注信息</view>
+      <view class="right">{{result.refuse_detail}}</view>
+    </view>
+    <view class="list">
+      <image wx:for="{{result.goodsOrderRefuseImageList}}" src="" class="imgs"></image>
+    </view>
+  </van-action-sheet>
+</view>
+</block>
+<view class="list">
+  <view class="left">退款编号：</view>
+  <view>{{result.defense_no}}</view>
+</view>
+<view class="list">
+  <view class="left">申请时间：</view>
+  <view>{{result.create_time}}</view>
+</view>
+<!-- 填写内容 -->
+<!-- <view class="tips">填写退货单号</view>
+<view class="list">
+  <view class="left">物流公司：</view>
+   <picker bindchange="bindPickerChange" value="{{index}}"  range="{{arr}}">
+    <view class="picker" >
+      {{identity}}<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> >
+    </view>
+   </picker>
+</view>
+<view class="list">
+  <view class="left">申请时间：</view>
+   <input placeholder='请填写物流单号' bindinput='getnameValue' value='{{userName}}' ></input>
+</view> -->
+<view class="foot">
+  <image src="../../img/icon/phone1.png" bindtap="calling"></image>
+  <view>咨询第一房官方客服</view>
+</view>
+<!-- foot -->
+<view class="orderBtns">
+  <view class="btn1 orderbtn" bindtap="backout" wx:if="{{isView}}">撤销申请</view>
+  <view class="btn2 orderbtn" bindtap="pingTai" wx:if="{{isViews}}">平台介入</view>
+  <view class="btn2 orderbtn" bindtap="backNews" wx:if="{{result.status==24 || result.status==30 || result.status==31}}">退货信息</view>
+</view>

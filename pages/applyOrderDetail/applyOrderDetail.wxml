@@ -1,0 +1,63 @@
+<!--pages/applyOrderDetail/applyOrderDetail.wxml-->
+<view class="head">
+  <view class="title">退款商品</view>
+  <view class="shop">
+    <image src="{{img}}"></image>
+    <view class="right">
+      <view class="top">
+        <view class="shopName">{{name}}</view>
+        <view class="price">
+          <view>¥ {{price}}</view>
+          <view class="num">×{{nums}}</view>
+        </view>
+      </view>
+      <view class="size">{{specification}}</view>
+    </view>
+  </view>
+</view>
+<view class="box"></view>
+<!-- 申请列表 -->
+<view class="list">
+  <view class="left">申请类型</view>
+  <view class="right"> {{(status==20 || status==70) ?'退款（无需退货）': '退货退款'}}</view>
+</view>
+<view class="list">
+  <view class="left">申请原因</view>
+  <view class="right">   
+  <picker bindchange="bindPickerChange" value="{{index}}"  range="{{arr}}">
+    <view class="picker">
+     {{arr[index]}}<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> >
+    </view>
+   </picker>
+  </view>
+</view>
+<view class="list">
+  <view class="left">退款金额</view>
+  <view class="right">¥{{total_money}}</view>
+</view>
+<!-- 申请说明 -->
+<view class="main">
+  <view class="explain">申请说明</view>
+  <textarea maxlength='520' focus='{{true}}' bindinput="bindTextAreaBlur"  bindblur="bindTextAreaBlur"  placeholder-class="text-pl" placeholder=" 必填，请您详细填写申请说明" />
+  <view class="nums">{{num}}/50</view>
+</view>
+<!-- 图片 -->
+<view class="li">
+  <view class="img" bindtap="uploadImg">
+    <image src="{{imgList?imgList:'../../img/icon/img.png'}}"></image>
+  </view>
+  <view class="img" bindtap="uploadImg2">
+    <image src="{{imgList2?imgList2:'../../img/icon/img.png'}}"></image>
+  </view>
+  <view class="img" bindtap="uploadImg3">
+    <image src="{{imgList3?imgList3:'../../img/icon/img.png'}}"></image>
+  </view>
+</view>
+<!-- <view class="list">
+  <view class="left">联系方式</view>
+</view> -->
+<view class="list">
+  <view class="left">联系电话：</view>
+  <view class="right"> <input placeholder='请输入手机号' bindinput='getPhone' value="{{phone}}"></input></view>
+</view>
+<view class="tijiao" bindtap="tijiao">提交申请</view>

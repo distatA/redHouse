@@ -1,0 +1,295 @@
+<!--pages/home_page/orders/orders.wxml-->
+<view class="myOrder">
+  <!-- 核销弹窗 catchtap="heXiao" -->
+  <van-popup show="{{ show }}">
+    <view class="main">
+      <view class="boxTop">
+        <view>核销</view>
+      </view>
+      <view class="clos" bindtap="onClose">
+        <image src='/img/icon/cha.png' style="width:20px;height:20px;display:block"></image>
+      </view>
+      <view class="code">向商家出示核销码</view>
+      <view
+        style="width:200px;height:150px;margin:0 auto; background:url({{codeImg}}) center/100%;background-repeat:no-repeat;"
+        bindtap="brechen"></view>
+      <view class="num">{{houseCode}}</view>
+      <view class="title">商品名称：{{name}}</view>
+      <view class="title">有效时间：{{startTime}} 到 {{endTime}}</view>
+    </view>
+  </van-popup>
+  <van-dialog use-slot show="{{ takeGoods }}" show-cancel-button bind:confirm="takeGoods" bind:close="closeGoods"
+    confirm-button-color="#41bb9e">
+    <view class="takeGoods">
+      <image class="takeGoodsImg" src="{{takeGoodsDetail.imageUrl}}" />
+      <view class="takeGoodsTips">
+        确认收到货了吗?
+      </view>
+      <view class="takeGoodsFont">
+        为保障您的售后权益,请收到货确认无误后,在确认收货!
+      </view>
+
+    </view>
+
+
+  </van-dialog>
+  <!-- 搜索 -->
+  <view class="topSearch">
+    <view class="search">
+      <input type="text" class="topInput" placeholder="请输入关键字搜索订单" bindinput="getInputValue"
+        bindconfirm='searchHandle'></input>
+      <view class="searchPic" bindtap="toSearch"></view>
+    </view>
+  </view>
+  <!-- 菜单栏 -->
+  <view class="realOrders">
+    <view class="tabSlide">
+      <scroll-view class="tab" scroll-x scroll-left="{{left}}" scroll-with-animation="true">
+        <block wx:for="{{menuList}}" wx:key="index">
+          <view class="tab-item {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenu'
+            id="{{item.num}}">
+            <view class="star"></view>
+            <text>{{item.name}}</text>
+          </view>
+        </block>
+      </scroll-view>
+      <!-- 全部 -->
+      <block wx:if="{{currentTab != 7}}">
+        <block wx:if="{{reWaitPay.length==0}}">
+          <view class="wu">
+            <image src="/img/icon/orderWu.png"></image>
+            <view>暂无数据</view>
+          </view>
+        </block>
+        <view class="allOrders" wx:for="{{reWaitPay}}" wx:key="order" wx:for-index="orderkey">
+          <block wx:for="{{item.shopOrderVoList}}" wx:key="shop" wx:for-index="shopkey">
+            <view class="thisOrder">
+              <view class="orderTop" bindtap="shopHome" id="{{item.merchant_no}}"
+                data-goods="{{item.goods_refuse_status}}" data-money="{{item.money_refuse_status}}">
+                <view class="person">
+                  <view class="avar">
+                    <image src="{{item.shopImage}}"></image>
+                  </view>
+                  <view class="nickName {{item.shop_name.length>10?'nickNames':''}}">{{item.shop_name}}</view>
+                  <!-- <view class="redLevel">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"></image>
+            </view> -->
+                </view>
+                <view class="state" wx:if="{{item.goodsOrderProductList[0].status==10}}">等待付款</view>
+                <view class="state"
+                  wx:if="{{item.goodsOrderProductList[0].type!=2&&item.goodsOrderProductList[0].status==100}}">退款成功
+                </view>
+                <block wx:if="{{item.goodsOrderProductList[0].type==2}}">
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==20 && item.goodsOrderProductList[0].money_refuse_status==100 && item.goodsOrderProductList[0].goods_refuse_status==100}}">
+                    待发货</view>
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].money_refuse_status==6 || item.goodsOrderProductList[0].goods_refuse_status==26}}">
+                    申请已撤销</view>
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==20 && (item.goodsOrderProductList[0].money_refuse_status==2 ||item.goodsOrderProductList[0].money_refuse_status==9||item.goodsOrderProductList[0].money_refuse_status==10|| item.goodsOrderProductList[0].goods_refuse_status==34|| item.goodsOrderProductList[0].goods_refuse_status==39 || item.goodsOrderProductList[0].goods_refuse_status==40)}}">
+                    退款成功</view>
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==20 && (item.goodsOrderProductList[0].money_refuse_status==1 ||item.goodsOrderProductList[0].goods_refuse_status==20)}}">
+                    待商家处理</view>
+                  <view class="state"
+                    wx:if="{{ item.goodsOrderProductList[0].goods_refuse_status==21 ||item.goodsOrderProductList[0].goods_refuse_status==24||item.goodsOrderProductList[0].goods_refuse_status==30 ||item.goodsOrderProductList[0].goods_refuse_status==31}}">
+                    商家同意，请退货</view>
+                  <view class="state"
+                    wx:if="{{ item.goodsOrderProductList[0].money_refuse_status==7 ||item.goodsOrderProductList[0].goods_refuse_status==27 ||item.goodsOrderProductList[0].goods_refuse_status==37}}">
+                    平台介入中</view>
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==40 && item.goodsOrderProductList[0].money_refuse_status==100 &&item.goodsOrderProductList[0].goods_refuse_status==100}}">
+                    卖家已发货</view>
+                  <!-- <view class="state" wx:if="{{item.goodsOrderProductList[0].status==40 && (item.goodsOrderProductList[0].money_refuse_status!=100 ||item.goodsOrderProductList[0].goods_refuse_status!=100)}}">退款申请中</view> -->
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==45&& item.goodsOrderProductList[0].money_refuse_status==100 && item.goodsOrderProductList[0].goods_refuse_status==100}}">
+                    已收货</view>
+                  <view class="state"
+                    wx:if="{{item.goodsOrderProductList[0].status==45&& (item.goodsOrderProductList[0].money_refuse_status==100 && item.goodsOrderProductList[0].goods_refuse_status==20)}}">
+                    待商家处理</view>
+                </block>
+                <view class="state" wx:if="{{item.goodsOrderProductList[0].status==50}}">交易成功</view>
+                <view class="state" wx:if="{{item.goodsOrderProductList[0].status==60}}">交易关闭</view>
+                <view class="state"
+                  wx:if="{{item.goodsOrderProductList[0].status==20 && item.goodsOrderProductList[0].money_refuse_status==100 &&item.goodsOrderProductList[0].goods_refuse_status==100 &&(item.goodsOrderProductList[0].type==1 || item.goodsOrderProductList[0].type==3 || item.goodsOrderProductList[0].type==4)}}">
+                  待核销</view>
+                <view class="state"
+                  wx:if="{{item.goodsOrderProductList[0].status==20 && (item.goodsOrderProductList[0].money_refuse_status!=100 || item.goodsOrderProductList[0].goods_refuse_status!=100) &&(item.goodsOrderProductList[0].type==1 || item.goodsOrderProductList[0].type==3|| item.goodsOrderProductList[0].type==4)}}">
+                  退款申请中</view>
+              </view>
+              <!-- <view class="orderNum">订单编号：{{item.goodsOrderProductList[0].order_no}}</view> -->
+              <view class="menuUl">
+                <view class="menuLi" wx:for="{{item.goodsOrderProductList}}" wx:key="good" wx:for-index="goodkey"
+                  bindtap="orderDetail" id="{{item.my_order_no}}" data-status="{{item.status}}"
+                  data-time="{{item.expireTime}}" data-refuse="{{item.goods_refuse_status}}" data-type="{{item.type}}"
+                  data-spu="{{item.spu_no}}">
+                  <view class="menuImg">
+                    <image src="{{item.imageUrl}}"></image>
+                  </view>
+                  <view class="menuTxt">
+                    <view class="menuTxtTop">
+                      <view class="intro">{{item.good_name}}</view>
+                      <view class="priceAndNum">
+                        <view class="price">￥ {{item.price}}</view>
+                        <view class="buyNum">
+                          <view class="multiply">+</view> {{item.num}}
+                        </view>
+
+                      </view>
+                    </view>
+                    <view class="menuTxtTop" wx:if="{{item.type==2}}">
+                      <view class="intro">运费</view>
+                      <view style="font-size: 12px">￥ {{item.send_money}}</view>
+                    </view>
+                    <view class="spec">{{item.specification}}</view>
+                    <!-- 待发货 -->
+                    <view class="orderBtns">
+                      <view class="btn2 orderbtn"
+                        wx:if="{{item.status==20 && item.money_refuse_status==100 &&  item.goods_refuse_status==100}}"
+                        catchtap="backOrder" id="{{item.my_order_no}}" data-name="{{item.good_name}}"
+                        data-img="{{item.imageUrl}}" data-specification="{{item.specification}}" data-num="{{item.num}}"
+                        data-price="{{item.price}}" data-sku="{{item.sku_no}}" data-spu="{{item.spu_no}}"
+                        data-status="{{item.status}}" data-merchantno="{{item.merchant_no}}"
+                        data-image="{{item.shopImage}}" data-shopname="{{item.shop_name}}" data-type="{{item.type}} "
+                        data-totalmoney="{{item.total_money}}">申请退款</view>
+
+                    </view>
+                    <!-- 待收货 -->
+                    <view class="orderBtns" wx:if="{{(item.status==40 ||item.status==45) && item.type==2}}">
+                      <view class="btn2 orderbtn" catchtap="backOrder" id="{{item.my_order_no}}"
+                        data-name="{{item.good_name}}" data-img="{{item.imageUrl}}"
+                        data-specification="{{item.specification}}" data-num="{{item.num}}" data-price="{{item.price}}"
+                        data-sku="{{item.sku_no}}" data-spu="{{item.spu_no}}" data-status="{{item.status}}"
+                        wx:if="{{item.goods_refuse_status==100 || item.goods_refuse_status==4 || item.goods_refuse_status==11}}"
+                        data-merchantno="{{item.merchant_no}}" data-image="{{item.shopImage}}"
+                        data-shopname="{{item.shop_name}}" data-type="{{item.type}}"
+                        data-totalmoney="{{item.total_money}}">申请退款</view>
+                    </view>
+
+                  </view>
+                </view>
+              </view>
+              <view class="allMoney">
+                <view style="font-size:24rpx;">{{item.goodsOrderProductList[0].create_time}}</view>
+                <view>合计：{{item.shopmoney}}</view>
+              </view>
+              <view class="orderBtns" wx:if="{{item.goodsOrderProductList[0].status==10}}">
+                <view class="btn2 orderbtn" id="{{item.goodsOrderProductList[0].my_order_no}}"
+                  data-payment="{{item.goodsOrderProductList[0].price}}"
+                  data-status="{{item.goodsOrderProductList[0].type}}"
+                  data-time="{{item.goodsOrderProductList[0].expireTime}}"
+                  data-spu="{{item.goodsOrderProductList[0].spu_no}}" 
+                  data-type="{{item.goodsOrderProductList[0].type}}"
+                  bindtap="payNow">立即支付</view>
+                <view class="btn1 orderbtn" bindtap="closeMyOrder" id="{{item.goodsOrderProductList[0].my_order_no}}"
+                  data-type="{{item.goodsOrderProductList[0].status}}">取消订单</view>
+              </view>
+              <!-- 待核销 -->
+              <view class="orderBtns"
+                wx:if="{{item.goodsOrderProductList[0].status==20 &&(item.goodsOrderProductList[0].type==1 || item.goodsOrderProductList[0].type==3 || item.goodsOrderProductList[0].type==4)&& item.goodsOrderProductList[0].money_refuse_status==100 &&item.goodsOrderProductList[0].goods_refuse_status==100}}">
+                <view class="btn1 orderbtn">待核销
+                  <van-cell id="{{item.goodsOrderProductList[0].spu_no}}"
+                    data-id="{{item.goodsOrderProductList[0].my_order_no}}" catchtap="showPopup" />
+                </view>
+              </view>
+              <!-- 待评价 -->
+              <view class="orderBtns"
+                wx:if="{{item.goodsOrderProductList[0].status==50 || item.goodsOrderProductList[0].status==45}}">
+                <view class="btn1 orderbtn" catchtap="goodsComment" id="{{item.goodsOrderProductList[0].my_order_no}}"
+                  data-name="{{item.goodsOrderProductList[0].good_name}}"
+                  data-img="{{item.goodsOrderProductList[0].imageUrl}}"
+                  data-spu="{{item.goodsOrderProductList[0].spu_no}}"
+                  data-sku="{{item.goodsOrderProductList[0].sku_no}}" wx:if="{{item.goodsOrderProductList[0].type!=4}}">
+                  评价</view>
+              </view>
+              <!-- 待收货 -->
+              <block wx:if="{{item.goodsOrderProductList[0].type==2}}">
+                <view class="orderBtns"
+                  wx:if="{{item.goodsOrderProductList[0].status==40 && item.goodsOrderProductList[0].money_refuse_status==100 &&item.goodsOrderProductList[0].goods_refuse_status==100}}">
+                  <view class="btn2 orderbtn" bindtap="wuLiu" id="{{item.goodsOrderProductList[0].order_no}}"
+                    data-img="{{item.goodsOrderProductList[0].imageUrl}}">查看物流</view>
+                  <view class="btn1 orderbtn" bindtap="affirm" data-item="{{item.goodsOrderProductList[0]}}">确认收货</view>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+      <!-- <view class="wu" wx:if="{{reWaitPay.length==0}}">暂无订单</view>  -->
+      <!-- 退货维权 -->
+      <block wx:if="{{currentTab == 7}}">
+        <block wx:if="{{refuses.length==0}}">
+          <view class="wu">
+            <image src="/img/icon/orderWu.png"></image>
+            <view>暂无数据</view>
+          </view>
+        </block>
+        <view class="allOrders" wx:for="{{refuses}}" wx:key="order" wx:for-index="orderkey">
+          <view class="thisOrder" bindtap="backOrderStatus" id="{{item.id}}" data-type="{{item.refuse_type}}"
+            data-shopName="{{item.shop_name}}" data-shopImage="{{item.shopImage}}" data-name="{{item.good_name}}">
+
+            <view class="orderTop">
+              <view class="person">
+                <view class="avar">
+                  <image src="{{item.shopImage}}"></image>
+                </view>
+                <view class="nickName {{item.shop_name.length>10?'nickNames':''}}">{{item.shop_name}}</view>
+                <!-- <view class="redLevel">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"></image>
+      </view> -->
+              </view>
+              <!-- 退货退款申请状态 -->
+              <view class="state" wx:if="{{item.status==1 || item.status==20}}">待商家处理</view>
+              <view class="state"
+                wx:if="{{item.status==2 || item.status==5 ||item.status==9 ||item.status==10 ||item.status==34||item.status==39||item.status==40}}">
+                退款成功</view>
+              <view class="state" wx:if="{{item.status==3 || item.status==22 ||item.status==35}}">商家不同意</view>
+              <view class="state"
+                wx:if="{{item.status==4 || item.status==11 ||item.status==23 || item.status==25 ||item.status==28 ||item.status==32||item.status==36||item.status==41}}">
+                退款关闭</view>
+              <view class="state" wx:if="{{item.status==6 || item.status==26}}">您的申请已撤销</view>
+              <view class="state" wx:if="{{item.status==7 || item.status==27 ||item.status==37}}">平台介入处理中</view>
+              <view class="state" wx:if="{{item.status==8||item.status==38}}">平台审核通过，待商家退款</view>
+              <view class="state" wx:if="{{item.status==21 ||item.status==24 || item.status==30 || item.status==31}}">
+                商家同意，请退货</view>
+              <view class="state" wx:if="{{item.status==29}}">平台同意，请退货</view>
+              <view class="state" wx:if="{{item.status==33}}">已退货，待商家处理</view>
+            </view>
+            <!-- <view class="orderNum">订单编号：{{item.my_order_no}}</view> -->
+            <view class="menuUl">
+              <view class="menuLi" id="{{item.my_order_no}}" data-status="{{item.status}}">
+                <view class="menuImg">
+                  <image src="{{item.imageUrl}}"></image>
+                </view>
+                <view class="menuTxt">
+                  <view class="menuTxtTop">
+                    <view class="intro">{{item.good_name}}</view>
+                    <view class="priceAndNum">
+                      <view class="price">￥ {{item.price}}</view>
+                      <view class="buyNum">
+                        <view class="multiply">+</view> {{item.num}}
+                      </view>
+                    </view>
+
+                  </view>
+                  <view class="menuTxtTop" wx:if="{{item.type==2}}">
+                    <view class="intro">运费</view>
+                    <view style="font-size: 12px">{{item.send_money}}</view>
+                  </view>
+                  <view class="spec">{{item.specification}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="allMoney">实付：{{item.total_money}} <text>退款金额：{{item.price}}</text></view>
+            <!-- <view class="refuse">实付：</view> -->
+            <view class="orderBtns">
+              <view class="btn2 orderbtn" bindtap="refuse">查看详情</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- <view class="wu" wx:if="{{refuses.length==0}}">暂无订单</view> -->
+    </view>
+  </view>
+</view>

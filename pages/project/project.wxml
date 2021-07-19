@@ -1,0 +1,6 @@
+<!--pages/project/project.wxml-->
+<view class="list" wx:for="{{projectList}}" wx:key="key">
+  <view class="time">{{item.create_time}}</view>
+  <view class="title">{{item.project_name}}</view>
+  <view class="contain">{{item.project_dynamics}}</view>
+</view>

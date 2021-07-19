@@ -1,0 +1,47 @@
+/* pages/guanFred/guanFred.wxss */
+/* 官方红人 */
+
+.redLists{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  margin:0 20px;
+  margin-top:10px;
+}
+.redLists .left{
+  display: flex;
+  align-items: center;
+}
+.redLists .right{
+  display: flex;
+  align-items: center;
+}
+.redLists .redHeadUrl{
+  width:45px;
+  height:45px;
+  /* background: #abcdef; */
+  margin-right:10px;
+}
+.redLists .redHeadUrl image{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+.redName{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(12,12,12,1);
+}
+.redSign{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(132,132,132,1);
+  line-height:17px;
+}
+.gRed{
+  display: flex;
+  align-items: center;
+}

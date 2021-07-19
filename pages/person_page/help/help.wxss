@@ -1,0 +1,47 @@
+/* pages/home_page/help/help.wxss */
+/* .help{background: #f2f2f2;} */
+@import '../../../wxParser/index.wxss';
+.wxParser{
+  padding:0 20rpx;
+  box-sizing: border-box;
+}
+.wxParser-p {
+  /* text-indent:2em !important; */
+  /* margin: 5rpx auto;
+  font-size: 14px; */
+}
+.helpTop{background: #fff;padding: 10rpx 0;display: flex;justify-content: center;align-items: center;height: 150rpx;}
+.online{text-align: center;}
+.online .txt{font-size: 28rpx;margin-left: 15rpx;color:#FF9254}
+.msg{border-right: 2rpx solid #f2f2f2;}
+.msg>image{width: 60rpx;height: 60rpx;}
+.tell>image{width: 56rpx;height: 60rpx;}
+
+.askTitle{height: 80rpx;padding:40rpx 0 0 20rpx;background: #f2f2f2;
+}
+.askTitle>image{width: 4rpx;height: 36rpx;position: relative;top: 6rpx;}
+.askTxt{padding-left: 10rpx;height: 36rpx;font-size: 28rpx;display: inline-block;}
+.askBd{background: #fff;padding: 10rpx 40rpx;}
+.askLi{height: 80rpx;display: flex;justify-content: space-between;align-items: center;}
+.askLi~.askLi{border-top: 2rpx solid #f2f2f2;}
+.askTxt{font-size: 28rpx;}
+.arrow{width: 20rpx;height: 20rpx;border-bottom: 4rpx solid #cecece;border-right: 4rpx solid #cecece;transform: rotate(-45deg);margin-right: 10rpx;}
+
+.list{
+  padding: 0 18px;
+  margin-top: 20px;
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(102,102,102,1);
+}
+.tell{
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+

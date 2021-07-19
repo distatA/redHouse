@@ -1,0 +1,259 @@
+<!--pages/search/search.wxml-->
+<!-- 搜索 -->
+<view class="search">
+  <input type="text" class="topsearch" placeholder="请输入项目名称、品牌、区域" bindinput="getInputValue"
+    bindconfirm='searchHandle'></input>
+  <text bindtap="search">搜索</text>
+  <view class="searchPic" bindtap="toSearch"></view>
+</view>
+<!-- 菜单 -->
+<view class="menu">
+  <block wx:for="{{menuLists}}" wx:key="index">
+    <view class="tabs {{currentTabs == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenus'>
+      <text>{{item.name}}</text>
+    </view>
+  </block>
+</view>
+<!-- 京东  -->
+<view class="JDlist" wx:if="{{currentTabs === 0 }}">
+  <view class="JD_item" wx:for="{{JDlist}}" wx:key="index" bindtap="toPage" data-item="{{item}}"> 
+    <image class="JDimg" src="{{JDimg}}{{item.imageUrl}}" lazy-load />
+    <view class="JDinfo">
+      <view class="JDtitle">
+       {{item.wareName}}
+      </view>
+      <view class="JDcommision">
+        <text> 约饭</text><text>¥ {{item.backMoney}}</text><text> {{item.commisionRatioWl}}%</text>
+      </view>
+      <view class="JD_price">
+        商城价  <text class="price" >¥ {{item.price}}</text>
+      </view>
+      <view class="JD_detial">
+        <text>京东自营旗舰店</text> <text>已售 {{item.qtty30}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if="{{JDlist.length=== 0 &&currentTabs === 0  }}">
+    <view class="no">暂无搜索结果</view>
+  </block>
+<!-- 房产搜索结果列表 -->
+<block wx:if="{{currentTabs==1}}">
+  <block wx:if="{{recommendation.length>0}}">
+    <view class="allGoods" wx:for="{{recommendation}}" wx:key="index" wx:for-index="id" bindtap="buyNow"
+      data-member="{{item.member_no}}" data-spu="{{item.spu_no}}" data-id="{{item.category_choice}}"
+      data-goods_name="{{item.goods_name}}">
+      <view class="goodList">
+        <view class="goodPic">
+          <image src="{{item.spu_image}}"></image>
+        </view>
+        <view class="info">
+          <view class="goodsName">{{item.goods_name}}</view>
+          <view class="infos">
+            <view class="headImg">
+              <image src="{{item.headUrl}}"></image>
+            </view>
+            <view class="nickName">{{item.nickName}}</view>
+          </view>
+          <view class="directLine" wx:if="{{item.category_choice !=1 }}">
+            <view class="directInline"
+              style="width:{{((item.goods_stock-item.goods_rest_stock)/item.goods_stock)*100}}%"></view>
+          </view>
+          <view class="inPeople" wx:if="{{item.category_choice !=1}}">{{item.buyNum}}人已购买</view>
+          <view class="inPeople" wx:if="{{item.category_choice ==1}}"
+            style="margin-top:{{item.category_choice ==1?'20':'0'}}px">{{item.num * 107}}人已预约</view>
+          <view class="ins">
+            <view class="price" wx:if="{{item.category_choice !=1}}">
+              <view class="newPrice prices">
+                <view class="fuhao">￥</view>{{item.low_price>10000?(item.low_price/10000)+'万':item.low_price}}
+              </view>
+              <view class="oldPrice prices">
+                <view class="fuhao">￥</view>{{item.first_price>10000?(item.first_price/10000)+'万':item.first_price}}
+              </view>
+            </view>
+            <view class="price" wx:if="{{item.category_choice ==1}}">
+              <view class="newPrice prices">
+                <view class="fuhao"></view>{{item.average_price==0?'待定':'￥'+item.average_price}}
+              </view>
+            </view>
+            <view class="buyNow" wx:if="{{item.category_choice ==1}}">立即预约</view>
+            <view class="buyNow" wx:if="{{item.category_choice !=1}}">立即购买</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{recommendation.length==0}}">
+    <view class="no">暂无搜索结果</view>
+  </block>
+</block>
+<!-- 红人店铺 -->
+<block wx:if="{{currentTabs==2}}">
+  <block wx:if="{{searchRedShop.length>0}}">
+    <view class="shop" wx:for="{{searchRedShop}}">
+      <view class="top" bindtap="redShop" id="{{item.member_no}}">
+        <view class="left">
+          <image src="{{item.shoplogo}}"></image>
+          <view class="shopName">
+            <view class="name">{{item.shop_name}}</view>
+            <view class="num">商品·{{item.count}}</view>
+          </view>
+        </view>
+        <view class="right">进店</view>
+      </view>
+      <view class="shopImg">
+        <image wx:for="{{item.spuVoList}}" src="{{item.spu_image}}" bindtap="bigImg" data-id="{{item.spu_image}}">
+        </image>
+      </view>
+    </view>
+  </block>
+  <block wx:if="{{searchRedShop.length==0}}">
+    <view class="no">暂无搜索结果</view>
+  </block>
+</block>
+<!-- 红人社区 -->
+<block wx:if="{{currentTabs==3}}">
+  <block wx:if="{{searchRedCommunity.length>0}}" wx:for="{{searchRedCommunity}}">
+    <view class="main">
+      <view class="news" bindtap="redShop" id="{{item.member_no}}">
+        <view class="left">
+          <view class="headImg">
+            <image src="{{item.headUrl}}"></image>
+            <image src="../../img/icon/hong.png" style="width:12px;height:12px;position: absolute;right:0;bottom:0">
+            </image>
+          </view>
+
+          <view class="note">
+            <view class="noteName">{{item.nickName}}<image
+                src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"
+                style="width:14px;height:10px;margin-bottom:7px"></image>
+            </view>
+            <view class="describe">{{sign}}</view>
+          </view>
+        </view>
+        <view class="right">...</view>
+      </view>
+      <!-- 内容 -->
+      <!-- 笔记内容 -->
+      <block wx:if="{{item.type==1 || item.type==3}}">
+        <view>
+          <view class="titles" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}"
+            data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}"
+            data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}"
+            data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+            data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+          <view class="noteImg">
+            <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+              <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}"
+                style="width:210px;border-radius:5px;" mode="widthFix" bindtap="bigImg" id="{{item.imageUrl}}"></image>
+            </block>
+            <block wx:if="{{item.memberNoteArticleImageList.length>2}}">
+              <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}"
+                style="width:108px;height:108px;border-radius:5px;margin-bottom:6px;" bindtap="bigImg"
+                id="{{item.imageUrl}}"></image>
+            </block>
+          </view>
+          <view class="noteImg" wx:if="{{item.memberNoteArticleImageList.length==2}}"
+            style="justify-content:flex-start">
+            <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}"
+              style="width:108px;height:108px;border-radius:5px;margin-right:7px;" bindtap="bigImg"
+              id="{{item.imageUrl}}"></image>
+          </view>
+          <!-- 视频 -->
+          <block wx:if="{{item.videoUrls}}">
+            <video src="{{item.videoUrls}}" id="houseVideo" title="{{item.title}}"
+              bindfullscreenchange="fullscreenchange" mode="widthFix" style="width:100%">
+            </video>
+          </block>
+        </view>
+        <!-- 商品链接 -->
+        <block wx:if="{{item.spu_name}}" bindtap="shop" data-goods_name="{{item.spu_name}}"
+          data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}" id="{{item.spu_no}}">
+          <view class="link">
+            <view class="lefts">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"
+                style="width:26rpx;height:26rpx;"></image>
+              <text class="place">{{item.spu_name}}</text>
+            </view>
+            <view class="rights">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"
+                style="width:20rpx;height:32rpx;"></image>
+            </view>
+          </view>
+        </block>
+        <view class="bottom" style=" border-bottom:6px solid #F2F2F2;">
+          <view class="read">
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.read_num}}</view>
+            </view>
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.comment_num}}</view>
+            </view>
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.like_num}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <!-- 文章内容 -->
+      <block wx:if="{{item.type==4}}">
+        <view class="article">
+          <view class="left" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}"
+            data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}"
+            data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}"
+            data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+            data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+          <image src="{{item.memberNoteArticleImageList[0].imageUrl}}"
+            style="width:260rpx;height:160rpx;border-radius:5px;" bindtap="bigImg"
+            id="{{item.memberNoteArticleImageList[0].imageUrl}}"></image>
+        </view>
+        <!-- 商品链接 -->
+        <block wx:if="{{item.spu_name}}" bindtap="shop" data-goods_name="{{item.spu_name}}"
+          data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+          <view class="link">
+            <view class="lefts">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"
+                style="width:26rpx;height:26rpx;"></image>
+              <text class="place">{{item.spu_name}}</text>
+            </view>
+            <view class="rights">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"
+                style="width:20rpx;height:32rpx;"></image>
+            </view>
+          </view>
+        </block>
+        <view class="bottom">
+          <!-- <view class="time">{{item.create_time}}</view> -->
+          <view class="read">
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.read_num}}</view>
+            </view>
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.comment_num}}</view>
+            </view>
+            <view class="li">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"
+                style="width:16px;height:14px;margin-right:8px;"></image>
+              <view>{{item.like_num}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <!-- </block> -->
+    </view>
+  </block>
+  <block wx:if="{{searchRedShop.length==0}}">
+    <view class="no">暂无搜索结果</view>
+  </block>
+</block>

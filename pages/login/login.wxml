@@ -1,0 +1,22 @@
+
+<view class="set-con" wx:if='{{getUserInfoFail}}'>
+  <view class="content-con">
+    <view class="title">登陆授权</view>
+    <view class="remind-con"> 
+      <view class='remind-text'>您尚未登陆，请先登陆</view>
+    </view>
+    <view class='remind-text2'><text>·</text>登陆后方可查看、购买商品</view>
+    <button plain  class='btn-set' type="primary" open-type='getUserInfo' bindgetuserinfo='loginApp'>点击登陆</button>
+  </view>
+</view>
+
+<view wx:if='{{loading}}' class="loader-inner line-scale">
+<view></view> 
+  <view></view>
+  <view></view>
+  <view></view>
+  <view></view>
+</view>
+
+
+

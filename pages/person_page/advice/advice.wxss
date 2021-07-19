@@ -1,0 +1,35 @@
+/* pages/person_page/advice/advice.wxss */
+.advice{background: #f9f9f9;}
+.top{
+  height: 80rpx;line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding:0 20px;
+  justify-content: space-between;
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(140,140,140,1);
+}
+picker{
+  width:100%;
+}
+.txt{font-size: 28rpx;color: rgb(140, 140, 140);padding: 0 60rpx 0 30rpx;width: 560rpx;}
+.topArrow{width: 22rpx;height: 22rpx;border-bottom: 4rpx solid #cecece;border-right: 4rpx solid #cecece;transform: rotate(-45deg);}
+
+.liuyan{margin: 20rpx 0;background: #fff;position: relative;}
+.writeText{width: 650rpx;height: 340rpx;position: relative;font-size: 28rpx;padding: 20rpx 50rpx;line-height: 40rpx;}
+.currentWordNumber{position: absolute;bottom: 30rpx;right: 60rpx;font-size: 28rpx;color: rgb(132, 132, 132);}
+.textHolder{line-height: 60rpx;}
+.connect{background: #fff;margin-bottom: 20rpx;padding: 0 30rpx;}
+.connectMsg{height: 80rpx;line-height: 80rpx;width: 690rpx;font-size: 28rpx;}
+
+.send{padding: 20rpx 30rpx;}
+.sendImgs{display: flex;}
+.addImg{width: 206rpx;height: 206rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/add.png) center/206rpx 206rpx;}
+.sendTxt{font-size: 24rpx;color: rgb(132, 132, 132);margin-bottom: 60rpx;}
+
+.sendImgs image{width: 206rpx;height: 206rpx;margin-right: 24rpx;}
+
+.lastSendBtn{background: linear-gradient(to top right,#FF7054,#ff6354,#ff5053);width: 200rpx;height: 60rpx;line-height: 60rpx;text-align: center;color: #fff;border-radius: 10rpx;margin: 200rpx auto 60rpx;}

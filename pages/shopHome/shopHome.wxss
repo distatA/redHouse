@@ -1,0 +1,369 @@
+/* pages/shopHome/shopHome.wxss */
+page{
+  background:#F2F2F2;
+}
+.user{
+  width:100%;
+  height:100%;
+  background: rgba(68, 68, 68, 0.9);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center; 
+}
+.user image{
+  width:290px;
+  height:40px;
+  position: relative;
+  margin:0 auto;
+  display:block;
+}
+button::after {
+  border: none;
+}
+button[plain]{
+  border:0;
+}
+.btn-set{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+button{
+  padding:0;
+}
+.u-wrp-bnr {
+  width: 100%;
+  height: 750rpx;
+  display: block;
+  position: fixed;
+  top:0;
+  left:0;
+  margin: 0 auto;
+  z-index: -1;
+}
+.u-img-slide {
+  width: 100%;
+  height: 100%;
+}
+.show{
+  background: #fff;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  z-index: 3;
+  margin-top:736rpx;
+}
+.head{
+  display: flex;
+  align-items: center;
+  padding:10px 15px;
+  box-sizing: border-box;
+}
+.shop_name{
+  width:170px;
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 1;
+overflow: hidden;
+}
+.head image{
+  width:80px;
+  height:80px;
+  /* background: #abcdef; */
+}
+.head .right{
+  margin-left:26px;
+}
+.head .right .name{
+  font-size:16px;
+  font-family:PingFangSC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+  /* width:270px; */
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-right:10px;
+  box-sizing: border-box;
+  /* margin-top:5px; */
+  margin-bottom:13px;
+}
+.name image{
+  width:40rpx;
+  height:34rpx;
+}
+.right .num{
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+   display: flex;
+  align-items: center;
+}
+/* 海报 */
+button::after{
+  border:none;
+  background: none;
+  
+}
+.popup{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding:10px 30px;
+}
+.btn{
+  position: absolute;
+  width:100%;
+  height:100%;
+  padding:0;
+  top:0;
+  left:0;
+}
+.shareTxt{font-size: 28rpx;color:#000}
+/* 阴影 */
+.shadow{
+  width:100%;
+  height:100%;
+  background: rgba(68, 68, 68, 0.9);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+.guan{
+  display: flex;
+  margin-top:10px;
+  justify-content: space-around;
+}
+.hold-img{
+  width:110px;
+  height:30px;
+  text-align: center;
+  line-height: 30px;
+  background:linear-gradient(to right,#FF9254,#FF5053); 
+  font-size:14px;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(255,255,255,1);
+border-radius:5px;
+/* margin:10px auto; */
+}
+.shadow.no{
+  /* display: none; */
+  opacity: 0;
+}
+.shadow .box-son{
+  width:305px;
+  position: absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  box-sizing: border-box;
+
+}
+.shadow .box-son .top{
+  width:100%;
+  height:150rpx;
+}
+.shadow .box-son .top image{
+  width:100%;
+  height:100%;
+}
+.posterImg{
+  width: 100%; 
+  height: 100%;
+  z-index: 999;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* 房产 */
+.tabs{
+  /* display: flex; */
+  font-size:18px;
+  font-weight:520;
+  color:rgba(0,0,0,1);
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  height:40px;
+  line-height:40px;
+  margin-top:5px;
+}
+
+.tabs.active{
+  color:#FF6D59;
+  border-bottom:2px solid #FF6D59;
+}
+/* 搜索 */
+.search{position: relative;margin:5px 0;}
+.search input{width: 380rpx;height: 54rpx;background: #fff;line-height: 54rpx;border-radius: 54rpx;padding: 0 70rpx;font-size: 28rpx;}
+.searchPic{position: absolute;left: 24rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+/* 房产列表 */
+.houseItem {
+  padding: 10px 10rpx;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  /* background: #F2F2F2; */
+  column-count: 2;
+  width:700rpx;
+  box-sizing: border-box;
+  margin:0 auto;
+}
+page{
+  background: #F2F2F2;
+}
+.houseItems{
+  padding:7px 10px;
+  background: #F2F2F2;
+}
+.shopImg{
+  /* margin:10px; */
+}
+.shopImg image{
+  width:100%;
+  display: block;
+}
+.no{
+  margin:20px auto;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  text-align: center;
+}
+.houseList image{
+  width:170px;
+  /* height:165px; */
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.price{
+padding:0 5px;
+  box-sizing: border-box;
+  margin-top:10px;
+}
+.prices{display: inline-block;}
+.prices .fuhao{display: inline-block;}
+.newPrice{color: #ff5a43;font-size: 16px;margin-top:5px;}
+.oldPrice{color: rgb(216, 216, 216);font-size: 20rpx;margin-left: 16rpx;text-decoration: line-through;}
+.houseList .place{
+    width:165px;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:20px;
+  padding:0 5px;
+  box-sizing: border-box;
+}
+.houseList .num{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+  line-height:17px;
+  margin-top:6px;
+  padding:0 5px;
+  box-sizing: border-box;
+}
+.time{
+  font-size:12px;
+font-weight:400;
+color:rgba(174,174,174,1);
+/* margin-top:19px; */
+}
+.houseList{
+  padding-bottom:10px;
+  box-shadow: 2px 2px 4px 2px rgba(220,220,220,0.5);
+  /* display: inline-block; */
+  margin-bottom:10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #fff;
+}
+.houseLists{
+  padding-bottom:10px;
+  /* box-shadow: 2px 2px 4px 2px rgba(220,220,220,0.5); */
+  /* display: inline-block; */
+  margin-bottom:10px;
+  border-radius: 5px;
+  background: #fff;
+}
+.houseLists image{
+  width:100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+} 
+.houseLists .huoseName{
+  display: flex;
+  justify-content: space-between;
+  padding:0 24px 0 10px;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-top:10px;
+}
+.biaoQian{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+   margin-top:10px;
+   padding:0 10px;
+}
+.sale{
+  font-size:11px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  padding:3px;
+  color:#FFFFFF;
+  /* border:1px solid rgba(255,112,84,1); */
+  background:rgba(255,112,84,1);
+  border-radius:3px;
+}
+.jieshao{
+  font-size:11px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  padding:3px;
+  color:#fff;
+  /* border:1px solid #B9B9B9; */
+  margin-left:5px;
+  background:rgba(255,112,84,1);
+  border-radius:3px;
+  margin-bottom:5px;
+}
+.houseLists .place{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+  margin-top:10px;
+  padding:0 10px;
+}
+/* 品牌故事 */
+.guShi{
+  padding:15px 10px 15px 20px;
+}
+.guShi .item-title{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:600;
+  color:rgba(12,12,12,1);
+}
+.guShi .item-contain{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-top:15px;
+  line-height: 22px;
+}

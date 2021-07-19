@@ -1,0 +1,105 @@
+<!--pages/redRanking/redRanking.wxml-->
+<!-- 轮播图 -->
+<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true' indicator-color='#c1c1c1' indicator-active-color = '#ff6666' wx:if="{{bnrUrl.length>0}}">
+  <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="key">
+    <swiper-item>
+      <image src='{{item.imgUrl}}' class='u-img-slide' mode='aspectFill' bindtap='viewBanner' id="{{item.type}}" data-id="{{item.appUrl}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 排行榜 -->
+<view wx:if="{{hongren.length<1}}" class="no">暂无红人</view>
+<block wx:if="{{hongren.length>0}}">
+<view class="bdcont">
+  <block wx:if="{{hongren[1].headUrl && hongren[1].nickName}}">
+  <view class="three" bindtap="redShop" id="{{hongren[1].response_id}}">
+    <view class="topnum"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/second.png"></image></view>
+      <view class="topHeadPic"><image src="{{hongren[1].headUrl}}"></image></view>
+      <view class="fakeName">
+        <text class="fakeNameChara">{{hongren[1].nickName}}</text>
+        <!-- <view class="testVip">{{hongren[1].red_leve}}</view> -->
+        <text class="funsPeople">{{hongren[1].countNum}}人关注</text>
+      </view>
+  </view>
+  </block>
+  <block wx:if="{{hongren[0].headUrl && hongren[0].nickName}}">
+  <view class="one" bindtap="redShop" id="{{hongren[0].response_id}}" >
+    <view class="topnum"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/first.png"></image></view>
+    <view class="topHeadPic"><image src="{{hongren[0].headUrl}}"></image></view>
+    <view class="fakeName">
+      <text class="fakeNameChara">{{hongren[0].nickName}}</text>
+      <!-- <view class="testVip">{{hongren[0].red_leve}}</view> -->
+      <text class="funsPeople">{{hongren[0].countNum}}人关注</text>
+    </view>
+  </view>
+  </block>
+  <block wx:if="{{hongren[2].headUrl && hongren[2].nickName}}">
+  <view class="three" bindtap="redShop" id="{{hongren[2].response_id}}">
+    <view class="topnum"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/third.png"></image></view>
+    <view class="topHeadPic"><image src="{{hongren[2].headUrl}}"></image></view>
+    <view class="fakeName">
+      <text class="fakeNameChara">{{hongren[2].nickName}}</text>
+      <!-- <view class="testVip">{{hongren[2].red_leve}}</view> -->
+      <text class="funsPeople">{{hongren[2].countNum}}人关注</text>
+    </view>
+  </view>
+  </block>
+</view>
+</block>
+<!-- 第四名开始 -->
+<block  wx:for="{{redArr}}" wx:key="key">
+  <view class="sort">
+    <view class="left" bindtap="redShop" id="{{item.response_id}}">
+      <view class="num">{{index+4}}</view>
+      <view class="headUrl">
+      <image src="{{item.headUrl}}" style="width:40px;height:40px;border-radius:50%"></image>
+      <!-- 红人 -->
+        <block wx:if="{{item.redType==1}}">
+          <image src="/img/icon/hong.png" style="width:12px;height:12px;position: absolute;right:0;bottom:0"></image>
+        </block>
+        <block wx:if="{{item.redType==2}}">
+          <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0"></image>
+        </block>
+      <!-- 企业 -->
+      </view>
+      <view style="margin-left:10px;">
+      <view style="display: flex;align-items: center;">
+         <view class="nickName {{item.nickName.length>15?'nickNames':''}}">{{item.nickName}}</view>
+        <image src="/img/icon/vip.png" style="width:20rpx;height:18rpx;margin-left:6rpx;"></image>
+        </view>
+        <view style="font-size:12px;color:#686868">{{item.sign?item.sign:'热爱生活、爱运动'}}</view>
+      
+     </view>
+    </view> 
+    <view class="right">
+      <!-- 关注 -->
+      <block wx:if="{{item.flag==0}}">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/unfocus.png" style="width:20px;height:22px" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.response_id}}"></image>
+      </block>
+      <block wx:if="{{item.flag==1}}">
+        <image src="../../img/icon/focus.png" style="width:20px;height:22px" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.response_id}}"></image>
+      </block>
+      <view class="focusNum">{{item.countNum}}</view>
+    </view>
+  </view>
+  <!-- bottom -->
+  <view class="bottoms" wx:if="{{item.title}}">
+  <block wx:if="{{item.title}}"> 
+    <view class="left"><image src="../../img/icon/re.png"></image></view>
+  </block>
+    <view class="right">
+      <view class="text" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-headUrl="{{item.headUrl}}" data-nickName="{{item.nickName}}" data-sign="{{item.sign}}">{{item.title}}
+      </view>
+      <block wx:if="{{item.spu_name}}">
+      <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-id="{{item.response_id}}" data-ids="{{item.category_choice}}">
+        <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;"></image>
+        <text class="place">{{item.spu_name}}</text></view>
+        <view class="rights">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;"></image>
+          </view>  
+      </view>
+      </block>
+    </view>
+  </view>
+</block>

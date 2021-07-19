@@ -1,0 +1,125 @@
+<!--pages/person_page/certificate/personal/personal.wxml-->
+<view class="personal">
+  <view class="tip">为确保您账号的安全及正常使用，依据国家相关法律法规，您需要进行实名认证，感谢您的理解和支持</view>
+  <view class="form">
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro">所属城市</view>
+      <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name" wx:if="{{type==1}}">
+        <view class="picker">
+          {{multiArray[0][multiIndex[0]].name}}
+          {{multiArray[1].length > 0 ?( multiArray[1][multiIndex[1]].name ):""}}
+          <!-- {{multiArray[2].length > 0 ?( multiArray[2][multiIndex[2]].name ):""}} -->
+        </view>
+        <view class="cityArrow"></view>
+      </picker>
+      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" wx:if="{{type==0}}" style="width:160px">
+        <view class="picker">
+          {{region[0]}} {{region[1]}}
+        </view>
+        <view class="cityArrow"></view>
+      </picker>
+    </view>
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro">真实姓名</view>
+      <view class="txtIn">
+        <input class="name" name="name" placeholder="请填写证件上的真实姓名" bindinput="getnameValue" value="{{details.name}}" disabled="{{type==0?true:false}}"></input>
+      </view>
+    </view>
+
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro">身份证</view>
+      <view class="txtIn">
+        <input class="idno" name="number" placeholder="请填写证件上的证件号码" bindinput="getcodeValue" value="{{details.id_no}}" disabled="{{type==0?true:false}}"></input>
+      </view>
+    </view>
+
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro pic">上传证件照（个人）</view>
+    </view>
+
+    <view class="formLi formPic">
+      <view class="idpic">
+        <view class="sendpic sendpic01" bindtap="selectPic1" wx:if="{{type==1}}">
+          <image src="{{img1}}"></image>
+        </view>
+        <view class="sendpic sendpic01" wx:if="{{type==0}}">
+          <image src="{{details.front_card}}"></image>
+        </view>
+        <view class="sendTxt">请上传身份证正面照片</view>
+      </view>
+ 
+      <view class="idpic">
+        <block wx:if="{{type==1}}">
+        <view class="sendpic sendpic02" bindtap="selectPic2" >
+          <image src="{{img2}}"></image>
+        </view></block>
+        <block wx:if="{{type==0}}">
+        <view class="sendpic sendpic02" >
+          <image src="{{details.reverse_card}}"></image>
+        </view></block>
+        <view class="sendTxt">请上传身份证反面照片</view>
+      </view>
+    </view>
+
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro">手机号码</view>
+      <view class="txtIn">
+        <input class="idno" name="tell" placeholder="请输入你的手机号" bindinput="getphoneValue" value="{{details.mobile}}" ></input>
+      </view>
+    </view>
+  <block wx:if="{{type==1}}">
+    <view class="formLi">
+      <view class="redTag">*</view>
+      <view class="intro">验证码</view>
+      <view class="txtIn">
+        <input class="checkNum" name="tell" placeholder="请输入短信验证码" bindinput="getwordValue"></input>
+      </view>     
+      <view class="sendCheck" bindtap="getNum" wx:if="{{time==0}}">获取验证码</view>
+      <view class="sendCheck" wx:if="{{time!=0}}">{{time}}s倒计时</view>     
+    </view>
+  </block>
+  </view>
+  <!-- <view class="formLi">
+    <view class="redTag">*</view>
+    <view class="intro">官方红人</view>
+    <radio-group class="radio-group" bindchange="radioChange" style="font-size:14px" >
+      <radio color="#FF9254" wx:for-items="{{items}}" style="margin-right:10px" checked="{{item.checked}}" value="{{item.num}}" disabled="{{type==0?true:false}}">
+          <text>{{item.value}}</text>
+      </radio>
+    </radio-group>
+  </view> -->
+
+  <view class="formLi">
+    <!-- <view class="redTag">*</view> -->
+    <view class="intro">公司名称</view>
+    <view class="txtIn">
+      <input class="name" name="name" placeholder="请输入公司全称" bindinput="company_name" value="{{details.company_name}}" ></input>
+    </view>
+  </view>
+  <view class="formLi" style="height:110px;align-items: flex-start;padding-top:10px;">
+    <view class="redTag">*</view>
+    <view class="intro">上传名片</view>
+    <view class="sendpic sendpic03" bindtap="selectPic3" >
+      <image src="{{img3!=undefined?img3:details.card_image}}"></image>
+    </view>
+    <!-- <view class="sendpic sendpic03" wx:if="{{type==0}}">
+      <image src="{{details.reverse_card}}"></image>
+    </view> -->
+  </view>
+
+
+  <view class="lastBtn" wx:if="{{details.status!=0&&details.status!=1}}">
+    <view class="sendAll" bindtap="sendAll">提交</view>
+  </view>
+</view>
+<view class="foot">
+  <view>已阅读并同意</view>
+  <view style="color:#FF7054" bindtap="users" id="3">《红人注册协议》</view>
+  <view>及</view>
+  <view style="color:#FF7054" bindtap="users" id="7">《红人社区管理政策》</view>
+</view>

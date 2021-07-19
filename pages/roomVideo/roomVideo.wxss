@@ -1,0 +1,202 @@
+/* pages/roomVideo/roomVideo.wxss */
+/* pages/roomLists/roomLists.wxss */
+page{
+  background: #F2F2F2;
+}
+.bangdan{
+  /* width: 710rpx;margin: 0 auto; */
+  /* padding:10px; */
+
+  border-radius: 20rpx;
+  /* margin-top: 16rpx; */
+  box-sizing: border-box;
+}
+.bangdan .bdtop {
+  height: 80rpx;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;box-sizing: border-box;padding: 0 20rpx;display: flex;justify-content: space-between;align-items: center;color: #fff;
+}
+.bangdan .bdtop .left{display: flex;align-items: center;}
+.bangdan .bdtop .left image{width: 34rpx;height: 34rpx;margin-right: 10rpx;}
+.bangdan .bdtop .left text{font-size: 30rpx;color: #fff;}
+.bangdan .bdtop .right text{font-size: 24rpx;color: #fff;}
+.dbarrow{width: 14rpx;height: 12rpx;}
+/* 直播列表 */
+.roomList .roomImg{
+  width:165px;
+  height:90px;
+  border-radius:5px;
+  position: relative;
+}
+.roomList .roomImg image{
+  width:100%;
+  height:100%;
+  border-radius:5px;
+}
+.roomList .roomImg .status{
+  position: absolute;
+  top:6px;
+  left:6px;
+  padding:1px 3px;
+  display: inline-block;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background:rgba(255,146,84,1);
+  border-radius:3px;
+}
+.status1{background:rgba(113,113,113,1);}
+.status2{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top:6px;
+  left:6px;
+}
+.status2 .left{
+  width:30px;
+  height:15px;
+  background:rgba(90,175,1,1);
+  border-radius:3px 0px 0px 3px;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:15px;
+  text-align: center;
+}
+.status2 .time2{
+  /* width:65px; */
+  padding:1px 3px;
+  height:15px;
+  background:rgba(104,104,104,0.7);
+  border-radius:0px 3px 3px 0px;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  box-sizing: border-box;
+  /* line-height:15px; */
+  /* text-align: center; */
+}
+/* .room{
+
+} */
+.room{
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-around; */
+  margin-top:8px;
+ background: #F2F2F2;
+ padding:0 10px;
+}
+.roomList{
+  width:165px;
+  /* margin-right:10px; */
+  margin-bottom:10px;
+  /* padding:0 8px 8px 8px; */
+  border-radius:5px;
+  background: #fff;
+}
+.roomList .title{
+  font-size:15px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(0,0,0,1);
+  margin:8px 0;
+  padding:0 8px;
+  box-sizing: border-box;
+}
+.roomNew{
+  display: flex;
+  align-items: center;
+  padding:0 8px 8px 8px;
+  box-sizing: border-box;
+}
+.roomNew .head{
+  width:40px;
+  height:40px;
+  border-radius: 50%;
+}
+.roomNew .head image{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+.nickname{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:#fff;
+  margin-left:6px;
+}
+.skipNav{display: flex;align-items: center;justify-content: space-between;}
+.skipNav image{margin-left: 10rpx;}
+
+video{
+ width:100%;
+ height:100%;
+/* border-radius:5px; */
+ display: block;
+ position: relative;
+}
+.son{
+  display: flex;
+  align-items: center;
+  padding:10px 0px 10px 24px;
+  box-sizing: border-box;
+  background:rgba(95,95,95,0.3);
+  position: absolute;
+  left:0;
+  bottom:43px;
+  width:100%;
+}
+.son .left{
+  width:50px;
+  height:50px;
+}
+.son .left image{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+.img{
+  width:100%;
+  height:410px;
+   position: relative;
+}
+.img image{
+  width:100%;
+  height:100%;
+}
+.title{
+  font-size:15px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:#fff;
+  margin-top:8px;
+}
+.box{
+  width:70rpx;
+  height:70rpx;
+  background:rgba(255,255,255,1);
+  border-radius:5px;
+  text-align: center;
+  line-height: 70rpx;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:520;
+  color:rgba(0,0,0,1);
+  margin-right:5px;
+  margin-bottom:5px;
+}
+.active{
+  background: linear-gradient(to bottom,#E55F68,#FC7A51);
+  color:#fff;
+}
+.blur {	 
+  /* 模糊处理 */
+  filter: blur(2px); 
+}

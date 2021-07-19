@@ -1,0 +1,60 @@
+<!--pages/news/news.wxml-->
+<!-- 头部菜单 -->
+<view class="top">
+  <view class="li" bindtap="fans" id="1">
+    <image src='/img/icon/new1.png'></image>
+    <view class="box" wx:if="{{count.GZ_count!=0}}">{{count.GZ_count}}</view>
+    <view class="title">粉丝</view>
+  </view>
+  <view class="li" bindtap="fans" id="2">
+    <image src='/img/icon/new2.png'></image>
+    <view class="box" wx:if="{{count.PL_count!=0}}">{{count.PL_count}}</view>
+    <view class="title">评论</view>
+  </view>
+  <view class="li" bindtap="fans" id="3">
+    <image src='/img/icon/new3.png'></image>
+    <view class="box" wx:if="{{count.DZ_count!=0}}">{{count.DZ_count}}</view>
+    <view class="title">点赞</view>
+  </view>
+</view>
+<!-- 列表 -->
+<!-- <view class="list">
+  <view class="left">
+    <image src="/img/icon/kefu2.png" style="width:30px;height:30px"></image>
+    <view style="margin-left:15px">
+      <view class="titles">第一房官方客服</view>
+      <view class="tip">如有疑问，您可以点击此处联系客服进行咨询</view>
+    </view>
+  </view>
+</view> -->
+<!-- <view class="list" bindtap="system">
+  <view class="left">
+    <image src="/img/icon/xitong.png" style="width:22px;height:26px"></image>
+    <view style="margin-left:15px">
+      <view class="titles">系统消息</view>
+      <view class="tip">你有一个新攻略待领取</view>
+    </view>
+  </view>
+  <view class="right">120</view>
+</view> -->
+<scroll-view  scroll-x="true" scroll-with-animation="true" wx:for="{{chatList}}" wx:key="key">
+  <view class="list" bindtap="chat" id="{{item.member_no}}" data-head="{{item.headUrl}}" data-name="{{item.nickName}}">
+    <view class="left">
+      <image src="{{item.headUrl}}"></image>
+      <view style="margin-left:15px">
+        <view class="titles">
+          <view class="nickName {{item.nickName.length>12?'nickNames':''}}">{{item.nickName}}</view>
+          <image src="/img/icon/pinPai.png" style="width:30px;height:11px;border-radius:0;" role="img"
+            wx:if="{{item.redType==2}}"></image>
+          <image src="/img/icon/vip.png" style="width:10px;height:9px;border-radius:0;" role="img"
+            wx:if="{{item.redType==1}}"></image>
+        </view>
+        <view class="tip" wx:if="{{item.message}}">{{item.msgType==1?item.message:'图片'}}</view>
+      </view>
+    </view>
+    <view class="right" wx:if="{{item.count!=0}}">{{item.count}}</view>
+    <view class="delete" catchtap="delete" data-item="{{item}}">
+      删除
+    </view>
+  </view>
+</scroll-view>

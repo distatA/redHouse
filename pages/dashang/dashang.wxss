@@ -1,0 +1,47 @@
+/* pages/dashang/dashang.wxss */
+.title{
+  padding:10px 20px;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+}
+.list{
+  padding:10px 20px;
+  border-bottom:1px solid #F2F2F2;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.left{
+  display: flex;
+  align-items: center;
+}
+.head{
+  width:80rpx;
+  height:80rpx;
+}
+.head image{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+.name{
+  font-size:15px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+}
+.time{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#484848;
+  margin-top:5px;
+}
+.right{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(255,112,84,1);
+}

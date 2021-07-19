@@ -1,0 +1,74 @@
+<!--pages/myShop/myShop.wxml-->
+<!-- 搜索 -->
+<view class="topSearch">
+  <view class="search">
+    <input type="text" class="topInput" placeholder="搜索橱窗商品" bindinput="getInputValue" bindconfirm='searchHandle' value="{{searchValue}}"></input>
+    <view class="searchPic" bindtap="toSearch"></view>
+  </view>
+</view>
+<!-- 导航 -->
+<view class="topTab">
+  <view class="topTxt {{ top1 == 1 ? 'on':'' }}" bindtap="change1"><text>房产</text></view>
+  <view class="topTxt {{ top2 == 1 ? 'on':'' }}" bindtap="change2"><text>居家</text></view>
+</view>
+<!-- 好房列表 -->
+<view class="allGoods" wx:if="{{top1 && huoseList.length>0}}">
+<view class="goodList" wx:for="{{huoseList}}" wx:key = "index" wx:for-index="id" bindtap="detils" id="{{item.merchant_no}}" data-spu="{{item.spu_no}}" data-name="{{item.goods_name}}" data-type="{{item.category_choice}}" >
+  <view class="goodPic">
+    <image src="{{item.spu_image}}"></image>
+  </view>
+  <view class="info">
+    <view class="goodsName">{{item.goods_name}}</view>
+    <view class="infos">
+      <view class="headImg"><image src="{{item.shopImage}}"></image></view>
+      <view class="nickName {{item.shop_name.length>10?'nickNames':''}}" >{{item.shop_name}}</view>
+      <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:3px;border-radius:0" wx:if="{{item.is_brand_shop==1}}"></image>
+    </view>
+    <view calss="sale" style="height:25px;overflow: hidden;margin-top:5px;">
+      <view class="saleList" wx:for="{{item.houseTagVoList}}">{{item.core_tag}}</view>
+    </view>
+    
+    <view class="newPrice prices"><view class="fuhao" wx:if="{{item.average_price}}">￥</view>{{item.average_price?item.average_price:'待定'}}</view>
+    <view class="ins">
+    <view class="inPeople">{{item.count*131}}人已预约</view>
+    
+    <view class="buyNow" catchtap="add" id="{{item.merchant_no}}" data-spu="{{item.spu_no}}"
+     data-name="{{item.goods_name}}" data-img="{{item.spu_image}}" data-price="{{item.low_price}}" 
+     data-type="{{item.category_choice}}" wx:if="{{item.flag==0}}">添加</view>
+    <view class="buyNow" catchtap="del"  data-spu="{{item.spu_no}}" wx:if="{{item.flag==1}}">移除</view>
+  
+    </view>
+  </view>
+  </view>
+</view>
+<!-- 好物列表 -->
+<view class="allGoods" wx:if="{{top2 && lifeList.length>0}}">
+<view class="goodList" wx:for="{{lifeList}}"  wx:key = "index" wx:for-index="id" bindtap="detils" id="{{item.merchant_no}}" data-spu="{{item.spu_no}}" data-name="{{item.goods_name}}"  >
+  <view class="goodPic">
+    <image src="{{item.spu_image}}"></image>
+  </view>
+  <view class="info">
+    <view class="goodsName">{{item.goods_name}}</view>
+    <view class="infos">
+      <view class="headImg"><image src="{{item.shopImage}}"></image></view>
+      <view class="nickName {{item.shop_name.length>8?'nickNamess':''}}" >{{item.shop_name}}</view>
+      <image src="/img/icon/vip.png" role="img" style="width:20rpx;height:18rpx;" wx:if="{{item.is_brand_shop==1}}"></image>
+    </view>
+    <view class="shareMoney" wx:if="{{item.shareMoney}}">最低返￥{{item.shareMoney}}</view>
+    <view class="inPeople" style="margin-top:{{item.shareMoney?'10':'50'}}rpx">{{item.count}}人已参团</view>
+    
+    <view class="ins">
+    <view class="price">
+      <view class="newPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+      <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+    </view>
+
+    <view class="buyNow" catchtap="add" id="{{item.merchant_no}}" data-spu="{{item.spu_no}}"
+     data-name="{{item.goods_name}}" data-img="{{item.spu_image}}" data-price="{{item.low_price}}"
+     data-type="{{item.category_choice}}" wx:if="{{item.flag==0}}">添加</view>
+    <view class="buyNow" catchtap="del"  data-spu="{{item.spu_no}}" wx:if="{{item.flag==1}}">移除</view>
+    
+    </view>
+  </view>
+</view>
+</view>

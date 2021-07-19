@@ -1,0 +1,333 @@
+<!--pages/myNote_detail/myNote_detail.wxml-->
+<import src="../../wxParser/index.wxml" />
+<!-- 是否登陆 -->
+<block wx:if='{{getUserInfoFail}}'>
+<view class="user">
+  <image src="/img/icon/user.png" >
+    <button plain  class='btn-set'  open-type='getUserInfo' bindgetuserinfo='loginApp'> 
+    </button>
+  </image>
+</view>
+</block>
+<!-- 阴影层 -->
+<view class="shadow" style='animation: {{isShow ? "show" : "dismiss"}}Mask 0.3s forwards ease;left: {{isCreate ? 0 : "750rpx"}};' catchtouchmove='myCatchTouch'>
+  <view class="box-son">
+    <view class="di" wx:if="{{type!=5&&type!=6}}">
+      <painter palette="{{template}}" bind:imgOK="onImgOK" />
+    </view>
+    <view class="di" wx:if="{{type==5||type==6}}">
+      <painter palette="{{template1}}" bind:imgOK="onImgOK" />
+    </view>
+    <view class="guan">
+        <view class="hold-img" catchtap='btnCreate'>保存图片</view>
+      <image src="/img/icon/guan.png" style="width:30px;height:30px;" catchtap='catchtap'></image>
+    </view>     
+  </view>
+</view>
+ <!-- 打赏 -->
+<view class="zz {{display == 1 ?'no':''}}" catchtouchmove="myCatchTouch" >
+  <view class="zz-box"  style="width:310px;">
+    <view class="clos" bindtap="closeZz"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block;margin:0"></image></view>
+    <view class="box-title">我要打赏</view>
+    <image src="{{headUrl}}" style="width:120rpx;height:120rpx;border-radius:50%;margin:10px auto;display:block"></image>
+    <view class="box-name">{{nickName}}</view>
+    <block wx:if="{{!otherTrue}}">
+    <view class="box-item">
+      <view class="box-list" wx:for="{{moneyist}}" wx:key="key" bindtap="pay" id="{{item}}" data-type="1">{{item}}元</view>
+    </view>
+    <view class="other" bindtap="other">其他金额</view>
+    </block>
+    <block wx:else>
+      <view class="custom"> 
+        <input type="digit" style="text-align:center" bindinput="getValue" value="{{moneyValue}}"></input>
+        <text style="color:#FF7054">元</text>
+      </view>
+      <view class="other" style="margin:20px 0;" bindtap="back">固定金额</view>
+      <view class="box-foot" bindtap="pay" data-type="2">确定</view>
+    </block>
+  </view>
+</view>
+<!-- 外链 -->
+<block wx:if="{{tempUrl && tempUrl !=''}}">
+  <web-view src="{{tempUrl}}"></web-view>
+</block>
+<!-- 文章 -->
+<view class="main">
+<!-- <block wx:if="{{type==3}}">
+</block> -->
+  <!-- <view class="time" wx:if="{{time != 'undefined'}}">{{time}}</view> -->
+  <view class="news">
+    <view class="left">
+      <view class="headImg">
+        <image src="{{noteDetails.headUrl}}"></image>
+        <image src="../../img/icon/hong.png" style="width:12px;height:12px;position: absolute;right:0;bottom:0" wx:if="{{noteDetails.redType!=0}}"></image>
+      </view>
+      <view class="note">
+        <view class="noteName">{{noteDetails.nickName}}
+        <!-- <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png" style="width:14px;height:10px;margin-bottom:7px"></image> -->
+        </view>
+        <view class="describe">{{noteDetails.create_time}}</view>
+      </view>
+    </view>
+    <view class="right">
+      <block wx:if="{{noteDetails.collecNum==0}}">
+        <image src="../../img/icon/cang1.png" bindtap="cang" id="{{noteId}}" data-flag="{{love}}"></image>
+      </block>
+      <block wx:if="{{noteDetails.collecNum==1}}">
+        <image src="../../img/icon/cang.png" bindtap="cang" id="{{noteId}}" data-flag="{{love}}"></image>
+      </block>
+      
+    </view>
+  </view>
+  <!-- 笔记 -->
+  <view class="content" wx:if="{{noteDetails.type!=5&&noteDetails.type!=3&&noteDetails.type!=6}}">{{noteDetails.content}}</view>
+  <view class="content" wx:if="{{noteDetails.type==5||noteDetails.type==6}}" style="font-weight: 600"><view><image src="/img/icon/xun.png" style="width:40px;height:14px;margin-right:15px"></image></view>{{noteDetails.title}}</view>
+  <view class="content" wx:if="{{noteDetails.type==5||noteDetails.type==6}}">{{noteDetails.content}}</view>
+  <block wx:if="{{noteDetails.type==3}}">
+    <view class="content" style="font-weight: 600">{{noteDetails.title}}</view>
+    <view class="wxParser" style="margin-top:10px;">
+      <template is="wxParser" data="{{wxParserData:article.nodes}}" />
+      <!-- <rich-text  nodes="{{noteDetails.content}}"> </rich-text> -->
+      <view class="money" wx:if="{{noteDetails.is_fee==1&&noteDetails.isPay==0&&authorMember!=mymember_no}}" bindtap="fuqian">
+        <view>点击付费￥{{noteDetails.fee_money}}，阅读全文</view> <image src="/img/icon/xias.png"></image>
+      </view>
+      <template is="wxParser" data="{{wxParserData:article2.nodes}}" wx:if="{{noteDetails.isPay==1||authorMember==mymember_no}}"/>
+    </view>
+  </block>
+  <block wx:if="{{noteDetails.type!=3}}">
+   <view class="imgs" wx:if="{{noteDetails.images.length==1}}" style="justify-content:flex-start">
+      <image wx:for="{{noteDetails.images}}" wx:key="key" src="{{item}}" mode='widthFix'  bindtap="clickImg" id="{{item}}" style="width:210px;" data-list="{{noteDetails.images}}" data-index="{{index}}"></image>
+    </view>
+    <view class="imgs" wx:if="{{noteDetails.images.length>2}}">
+      <image wx:for="{{noteDetails.images}}" src="{{item}}" wx:key="key"  bindtap="clickImg" id="{{item}}" mode="aspectFill" data-list="{{noteDetails.images}}" data-index="{{index}}"></image>
+    </view>
+    <view class="imgs" wx:if="{{noteDetails.images.length==2}}" style="justify-content:flex-start;">
+      <image wx:for="{{noteDetails.images}}" src="{{item}}" wx:key="key"  bindtap="clickImg" id="{{item}}" style="margin-right:7px;" mode="aspectFill" data-list="{{noteDetails.images}}" data-index="{{index}}"></image>
+    </view>
+    </block>
+    <block wx:if="{{noteDetails.videoUrls && noteDetails.videoUrls != 'undefined'}}">
+      <video src="{{noteDetails.videoUrls}}"  id="houseVideo"  bindfullscreenchange="fullscreenchange">
+      </video>
+    </block>
+    <!-- 投票 -->
+      <view class="vote" wx:if="{{memberArtVote.title}}">
+        <view class="vote-top"> <text style="margin-right:4px;">|</text>投票</view>
+        <view class="vote-title">{{memberArtVote.title}}</view>
+        <!-- 文字 -->
+        <block wx:if="{{memberArtVote.type==1}}">
+        <!-- 未开始 -->
+        <block wx:if="{{memberArtVote.isVote==0}}">
+        <view class="vote-list" wx:for="{{memberArtVote.list}}" wx:key="key" bindtap="onclicks1">
+          <view class="left">{{item.title}}</view>
+          <view class="right" wx:if="{{item.checked}}">{{item.num}}</view>
+        </view>
+        </block>
+        <!-- 进行中 -->
+        <block wx:if="{{memberArtVote.isVote==1}}">
+        <view class="vote-list" wx:for="{{memberArtVote.list}}" wx:key="key" bindtap="onclicks" id="{{it.id}}" style="padding:0 {{it.checked==0?'15px':'0px'}}" data-target="{{it.target}}" data-chose="{{it.chose}}" data-item="{{memberArtVote.list}}" wx:for-item="it">
+        <block wx:if="{{it.checked}}">
+          <view class="left" style="background:{{it.target==1?'#FFE8E5':'#E7E7E8'}};padding:0 5px">{{it.title}}</view>
+        </block>
+        <block wx:if="{{!it.checked}}">
+          <view class="left">{{it.title}}</view>
+        </block>
+          <view class="right" wx:if="{{it.checked}}" style="color:{{it.target==1?'#FF6D53':''}}">{{it.num}}</view>
+        </view>
+       
+        </block>
+        <!-- 已结束 -->
+        <block wx:if="{{memberArtVote.isVote==2}}">
+        <view class="vote-list" wx:for="{{memberArtVote.list}}" wx:key="key" bindtap="onclickss"  style="padding:0;box-sizing:border-box;" data-target="{{item.target}}">
+          <view class="left" style="background:#E7E7E8;padding:0 5px;">{{item.title}}</view>
+          <view class="right">{{item.num}}</view>
+        </view>
+        </block>
+        </block>
+        <!-- 图片 -->
+        <block wx:if="{{memberArtVote.type==2}}">
+          <view class="voteImg">
+          <!-- 未开始 -->
+          <block wx:if="{{memberArtVote.isVote==0}}">
+            <view class="img-item" wx:for="{{memberArtVote.list}}" wx:key="key">
+              <image src="{{item.image}}" class="img-items"><view class="voteBox">《{{item.title}}》</view></image>              
+              <view class="vote-piao" bindtap="onclicks1">投票</view>  
+            </view>
+          </block>
+            <!-- 进行中 -->
+            <block wx:if="{{memberArtVote.isVote==1}}">
+              <view class="img-item" wx:for="{{memberArtVote.list}}" wx:key="key" wx:for-item="it">
+                <image src="{{it.image}}" class="img-items"><view class="voteBox">《{{it.title}}》</view></image>
+                <view class="vote-piao" bindtap="onclicks" id="{{it.id}}" data-target="{{it.target}}" data-chose="{{it.chose}}" data-item="{{memberArtVote.list}}">投票</view>
+                </view>
+            </block>
+            <!-- 已结束 -->
+            <block wx:if="{{memberArtVote.isVote==2}}">
+              <view class="img-item" wx:for="{{memberArtVote.list}}" wx:key="key">
+                <image src="{{item.image}}" class="img-items"><view class="voteBox">《{{item.title}}》</view></image>
+                <view class="vote-piao" bindtap="onclickss">投票</view>
+              </view>
+            </block>
+          </view>
+          <view class="vote-tiao" wx:if="{{memberArtVote.list[0].checked||memberArtVote.list[1].checked}}">
+            <view class="tiao-left" style="width:{{memberArtVote.list[0].num/(memberArtVote.list[0].num+memberArtVote.list[1].num)*100}}%" wx:if="{{memberArtVote.list[0].num!=0}}">{{memberArtVote.list[0].num}}</view>
+            <view class="tiao-right" style="width:{{memberArtVote.list[1].num/(memberArtVote.list[0].num+memberArtVote.list[1].num)*100}}%" wx:if="{{memberArtVote.list[1].num!=0}}">{{memberArtVote.list[1].num}}</view>
+          </view>
+        </block>
+        <view class="vote-time">{{voteNum}}人参与  <text style="margin-left:15px;">{{memberArtVote.voteText}}</text></view>
+      </view>
+  </view>
+  <!-- 打赏列表记录 -->
+  <view style="display: flex;justify-content: flex-end;padding-right:20px">
+    <view class="people" wx:if="{{rewardList.length>0}}" bindtap="browseMore" id="{{noteDetails.pid}}" data-type="1">
+      <view class="browseImgItem">
+        <block class="houseIteam" wx:for="{{rewardList}}" wx:key="index">
+          <view class="browseImgView" hover-class="none" hover-stop-propagation="false">
+            <image src="{{item.headUrl}}" class="browseImg" />
+          </view>
+        </block>           
+      </view>
+      <view class="left"><text style="font-weight:520;">{{rewardList.length}}</text>人打赏</view>
+    </view>
+    <image src="/img/icon/shang.png" wx:if="{{rewardList.length==0}}" style="width:52rpx;height:52rpx;" bindtap="shang"></image>
+  </view>
+  <!-- 付费阅读记录 -->
+  <view style="display: flex;justify-content: flex-end;padding-right:20px">
+    <view class="people" wx:if="{{artPayVOS.length>0}}" bindtap="browseMore" id="{{noteDetails.pid}}" data-type="2">
+      <view class="browseImgItem">
+        <block class="houseIteam" wx:for="{{artPayVOS}}" wx:key="index">
+          <view class="browseImgView" hover-class="none" hover-stop-propagation="false">
+            <image src="{{item.headUrl}}" class="browseImg" />
+          </view>
+        </block>           
+      </view>
+      <view class="left"><text style="font-weight:520;">{{artPayVOS.length}}</text>人付费</view>
+    </view>
+  </view>
+  <!-- 链接商品 -->
+  <view class="lian" wx:if = "{{noteDetails.spu_name != 'undefined' && noteDetails.spu_name != ''}}" bindtap="shop" id="{{noteDetails.spu_no}}" data-goods_name="{{noteDetails.spu_name}}" data-member_no="{{noteDetails.member_no}}" data-choice="{{noteDetails.category_choice}}">
+      <view class="lianPage">
+        <view class="left">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"></image>
+          <view class="lianTitle">{{noteDetails.spu_name}}</view>
+        </view>
+        <view class="right">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"></image>
+        </view>
+      </view>
+  </view>
+  <!-- 点赞 -->
+  <view class="mains">
+    <view class="read">
+      <!-- <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{read}}</view>
+      </view> -->
+      <view style="display: flex;width:80%;">
+      <view class="li">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{noteDetails.comment_num}}</view>
+      </view>
+      <view class="li" bindtap="zan" id="{{noteDetails.pid}}" data-type="{{noteDetails.type}}"  style="margin-left:30px">
+        <block wx:if="{{noteDetails.dznum==0}}">
+        <image src="/img/icon/zan0.png" style="width:30rpx;height:28rpx;margin-right:8px;" ></image>
+        </block>
+        <block wx:if="{{noteDetails.dznum==1}}">
+        <image src="../../img/icon/zan1.png" style="width:28rpx;height:28rpx;margin-right:8px;"></image></block>
+        <view>{{noteDetails.like_num}}</view>
+      </view>
+      </view>
+    <!-- <view style="display: flex;align-items: center" wx:if="{{noteDetails.type==3}}">
+      <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+      <view style="position: relative;color:#E66F63;margin-left:10px">分享
+      <button class="btn"  form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+      </button>
+    </view>
+    </view> -->
+      <!-- 分享 -->
+      <!-- wx:if="{{noteDetails.type!=3}}" -->
+      <van-cell title="分享" is-link bindtap="showPopup" style="display: flex;align-items: center">
+      <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+      <view style="color:#E66F63;margin-left:10px">分享</view>
+        </van-cell>
+          <van-popup
+            show="{{ shows }}"
+            closeable
+            close-icon-position="top-left"
+            position="bottom"
+            custom-style="height: 20%"
+            bindtap="onCloses"
+          >
+          <view class="popup">
+            <view style="margin-top:10px">
+              <image src="/img/icon/firend.png" style="width:90rpx;height:90rpx;margin-left:6px; position: relative">
+              <button class="btn" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+              </button>
+              </image>                        
+              <view class="shareTxt">分享朋友</view>  
+            </view>       
+            <view catchtap="createPoster" style="margin-top:10px">
+              <image src="/img/icon/haibao.png" style="width:90rpx;height:90rpx;margin-left:6px;"></image>
+              <view class="shareTxt">生成海报</view>
+            </view>
+          </view>
+          </van-popup>
+    </view>
+  <!-- 写留言 -->
+  <view class="write">
+    <image src="{{myHeadUrl}}" style=" border-radius:50%;"></image>
+    <input placeholder="说点什么，留下你的足迹" bindconfirm='searchHandle' bindinput="getInputValue" value='{{searchValue}}'></input>
+    <image src="../../img/icon/sent.png" bindtap="submit" id="{{0}}" style="width:20px;height:20px;"></image>
+  </view>
+  <!-- 留言列表 -->
+<block wx:for="{{commentList}}" wx:if="{{commentList.length > 0}}" wx:key="key">
+  <view class="message">
+    <view><image src="{{item.head_url}}" style=" border-radius:50%;"></image></view>
+    <view class="right">
+      <view class="top">
+        <view class="name">{{item.nick_name}}
+        <!-- <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png" style="width:14px;height:10px;margin-bottom:7px"></image> -->
+        </view>
+      <view style="display: flex;align-items: center;">
+         <block wx:if="{{item.flag==0}}"> <image bindtap="zan1" data-type="{{6}}"  data-flag="{{item.flag}}" id="{{item.id}}"
+        src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png" style="width:17px;height:17px;margin-right:8px;"></image></block>
+        <block wx:if="{{item.flag==1}}">
+        <image  data-flag="{{item.flag}}" bindtap="zan1" id="{{item.id}}" data-type="{{6}}"
+        src="../../img/icon/zan.png" style="width:17px;height:17px;margin-right:8px;"></image></block>
+        <text style="color:#FF7B54;font-size:12px;">{{item.like_num}}</text>
+      </view> 
+      </view>
+      <view class="text">{{item.context}}</view>
+      <view class="bottom" bindtap="reply" id="{{item.id}}">
+        <view class="time">{{item.create_time}}</view>
+        <view class="reply">回复</view>
+      </view>
+      <view class="foot" wx:if="{{reply}}">
+        <input placeholder="回复你的内容" bindconfirm='searchHandles' bindinput="getInputValues" value="{{searchValues}}" focus="{{focus}}"></input>
+    <image src="../../img/icon/sent.png" bindtap="submits" id="{{1}}" style="width:20px;height:20px;margin-left:10px"></image>
+      </view>
+      <!-- 作者回复 -->
+      <block  wx:for="{{item.memberCommentVoList}}" wx:key="key">
+      <block wx:if="{{item.member_no==authorMember}}">
+        <view class="author">
+          <view class="tops">
+            <view class="left"></view><text>作者</text>
+          </view> 
+          <view class="text">{{item.context}}</view>
+          <view class="time">{{item.create_time}}</view>
+        </view>
+      </block> 
+      <!-- 不是作者 -->
+      <block wx:if="{{item.member_no!=authorMember}}">
+        <view class="author">
+          <view class="tops">
+            <image src="{{item.head_url}}"></image><text>{{ item.nick_name}}</text>
+          </view> 
+          <view class="text">{{item.context}}</view>
+          <view class="time">{{item.create_time}}</view>
+        </view>
+      </block>
+      </block>
+    </view>
+  </view>
+</block>
+</view>

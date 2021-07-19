@@ -1,0 +1,88 @@
+<!--pages/moreHouse/moreHouse.wxml-->
+<!-- 顶部 -->
+
+<view class="top">
+  <!-- 左侧地址 -->
+  <view class="navCity" bindtap="getCity">
+    <image src="/img/icon/diwei.png"></image>
+    <view class="weizhi">{{dingweis}}</view>
+  </view>
+  <!-- 搜索 bindinput="getInputValue"-->
+  <view class="search" bindtap="toSearch">
+    <input type="text" class="topsearch" placeholder="请输入红人名称、好物名称" placeholder-style="color:#717171"></input>
+    <view class="searchPic"></view>
+  </view>
+</view>
+<!-- 区域 -->
+<view class="tab">
+  <view class="tab-item {{currentTab==index?'active':''}}" wx:for="{{tab}}" wx:key="key" bindtap="clickchange" id="{{item.num}}">
+    <view>{{item.name}}</view>
+    <image src="/img/icon/{{currentTab==index?'xias':'xias1'}}.png"></image>
+  </view>
+  <view class="tabBox" wx:if="{{isView}}">
+    <!-- 市区 -->
+    <view class="son" wx:if="{{currentTab==0}}">
+      <view class="list {{current1==index?'listActive':''}}" wx:for="{{areaList}}" wx:key="key" bindtap="click1" id="{{index}}" data-name="{{item.name}}">{{item.name}}</view>
+      <view class="foot">
+        <view class="reset" bindtap="reset1">重置</view>
+        <view class="confirm" bindtap="confirm1">确定</view>
+      </view>
+    </view>
+    <!-- 价格 -->
+    <view class="son" wx:if="{{currentTab==1}}">
+      <view class="list {{current2==index?'listActive':''}}" wx:for="{{option2}}" wx:key="key" bindtap="click2" id="{{index}}">{{item.text}}</view>
+      <view class="foot">
+        <view class="reset" bindtap="reset2">重置</view>
+        <view class="confirm" bindtap="confirm2">确定</view>
+      </view>
+    </view>
+    <!-- 优惠券 -->
+    <view class="son" wx:if="{{currentTab==2}}">
+      <view class="list {{current3==index?'listActive':''}}" wx:for="{{option3}}" wx:key="key" bindtap="click3" id="{{index}}">{{item.text}}</view>
+      <view class="foot">
+        <view class="reset" bindtap="reset3">重置</view>
+        <view class="confirm" bindtap="confirm3">确定</view>
+      </view>
+    </view>
+    
+  </view>
+</view>
+<!-- <van-dropdown-menu active-color="#ee0a24">
+  <van-dropdown-item value="{{ value1 }}" options="{{ option1 }}" bindtap="click1" id="{{value1}}"/>
+  <van-dropdown-item value="{{ value2 }}" options="{{ option2 }}" />
+  <van-dropdown-item value="{{ value3 }}" options="{{ option3 }}" />
+</van-dropdown-menu> -->
+<!-- 房产列表 -->
+<view class="allGoods">
+<view class="goodList" wx:for = "{{houseList}}" wx:key = "index" wx:for-index="id" bindtap="buyNows" id="{{item.member_no}}" data-spu="{{item.spu_no}}" data-name="{{item.goods_name}}"  >
+  <view class="goodPic">
+    <image src="{{item.spu_image}}" lazy-load ></image>
+  </view>
+  <view class="info">
+    <view style="display: flex;justify-content: space-between;">
+      <view class="goodsName">{{item.goods_name}}</view>
+      <image src="/img/icon/quan.png" style="width:50rpx;height:50rpx;" wx:if="{{item.ticketNum>0}}"></image>
+    </view>
+    <view class="infos">
+      <view class="headImg"><image src="{{item.headUrl}}"></image></view>
+      <view class="nickName {{item.nickName.length>10?'nickNames':''}}">{{item.nickName}}</view>
+      <image wx:if="{{item.status === 0}}" src="/img/icon/vip.png" role="img" style="width:20rpx;height:18rpx;"></image>
+      <image   wx:if="{{item.status === 1}}" src="/img/icon/pinPai.png" role="img"
+      style="width:60rpx;height:22rpx;border-radius: unset; margin-left: 5rpx;"></image>
+    </view>
+    <view calss="sale" style="height:25px;overflow: hidden;margin-top:10rpx; ">
+      <view class="saleList" wx:for="{{item.tagList}}" wx:key="key">{{item.core_tag}}</view>
+    </view>
+    
+    <view class="newPrice prices">{{item.price ==0 ? '待定':item.price+'元/㎡'}}</view>
+    <view class="ins">
+    <view class="inPeople">{{item.num * 107}}人已预约</view>
+    
+    <view class="buyNow">立即预约</view>
+  
+    </view>
+  </view>
+  </view>
+  <view wx:if="{{houseList.length==0}}" class="wu">暂无相关楼盘信息</view>
+</view>
+

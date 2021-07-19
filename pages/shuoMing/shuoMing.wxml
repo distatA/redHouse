@@ -1,0 +1,8 @@
+<!--pages/shuoMing/shuoMing.wxml-->
+<view class="main">
+  <view class="title">• 活动说明</view>
+  <view class="contain">{{activite}}</view>
+
+  <view class="title">• 分享收益说明</view>
+  <view class="contain">{{share}}</view>
+</view>

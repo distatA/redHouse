@@ -1,0 +1,55 @@
+/* pages/myFans/myFans.wxss */
+.list{
+  padding:8px 32px 8px 25px;
+  border-bottom:1px solid #F2F2F2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.left{
+  display: flex;
+  align-items: center;
+}
+.list .imgBox{
+  width:54px;
+  height:54px;
+  margin-right:14px;
+  position: relative;
+}
+.imgBox image{
+  width:54px;
+  height:54px;
+  border-radius: 50%;
+  /* background: #abcdef; */
+}
+.imgBox .img{
+  position: absolute;
+  right:0;
+  bottom:0;
+  width:12px;
+  height:12px;
+}
+.nickName{
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  display: flex;
+  align-items: center;
+}
+.nickName image{
+  width:20rpx;
+  height:18rpx;
+  margin-left:3px;
+}
+.place{
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(132,132,132,1);
+  margin-top:14px;
+}
+.right image{
+  width:22px;
+  height:24px;
+}

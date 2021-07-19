@@ -1,0 +1,53 @@
+/* pages/zhangDan/zhangDan.wxss */
+.main{
+  padding-bottom:42px;
+  margin:0 20px;
+  margin-bottom:40px;
+  border-bottom:1px solid #F2F2F2;
+}
+.main image{
+  width:140rpx;
+  height:140rpx;
+  border-radius: 50%;
+  background: #abcdef;
+  margin:23px auto;
+  display: block;
+}
+.main .title{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+  text-align: center;
+}
+.main .money{
+  font-size:28px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(255,112,84,1);
+  margin-top:15px;
+  text-align: center;
+}
+.list{
+  padding:0 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom:15px;
+}
+.list .left{
+  width:20%;
+  text-align: left;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+}
+.list .right{
+  width:70%;
+  text-align: left;
+  word-wrap : break-word ;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(72,72,72,1);
+}

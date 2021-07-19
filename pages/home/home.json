@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-progress": "/dist/progress/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

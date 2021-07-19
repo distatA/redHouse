@@ -1,0 +1,46 @@
+<!--pages/roomLists/roomLists.wxml-->
+<!-- 是否登陆 -->
+<block wx:if='{{getUserInfoFail}}'>
+<view class="user">
+  <image src="/img/icon/user.png" >
+    <button plain  class='btn-set'  open-type='getUserInfo' bindgetuserinfo='loginApp'> 
+    </button>
+  </image>
+</view>
+</block>
+<!-- 轮播图 -->
+<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true' indicator-color='#c1c1c1' indicator-active-color = '#ff6666' wx:if="{{bnrUrl.length>0}}">
+  <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="key">
+    <swiper-item>
+      <image src='{{item.imgUrl}}' class='u-img-slide' mode='aspectFill' bindtap='viewBanner' id="{{item.type}}" data-id="{{item.appUrl}}"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 红人直播 -->
+<view class="bangdan">
+  
+  <!-- 直播列表 -->
+  <view  class="room">
+    <view class="roomList" wx:for="{{roomList}}" bindtap="roomLive" id="{{item.roomid}}" data-status="{{item.live_status}}" data-title="{{item.anchor_name}}" data-head="{{item.cover_img}}" data-name="{{item.name}}">
+      <view class="roomImg">
+        <image src="{{item.anchor_img?item.anchor_img:item.share_img}}" mode="aspectFill"></image>
+        <view class="status " wx:if="{{item.live_status==101}}">直播中</view>
+        <view class="status" wx:if="{{item.live_status==105}}">暂停中</view>
+        <view class="status status1" wx:if="{{item.live_status==103}}">回放</view>
+        <view class="status2" wx:if="{{item.live_status==102}}">
+          <view class="left">预告</view>
+          <view class="time2">{{item.start_time}}</view>
+        </view>
+      </view>
+      <view class="title">{{item.name}}</view>
+      <view class="roomNew">
+        <view class="head"><image src="{{item.cover_img}}"></image></view>
+        <view class="nickname {{item.anchor_name.length>10?'nickNames':''}}">{{item.anchor_name}}</view>
+      </view>
+
+    </view>
+  </view>
+
+</view>
+<!-- 我要直播 -->
+<view class="zhibo" bindtap="myLiveList"><image src="/img/icon/myLive.png"></image></view>

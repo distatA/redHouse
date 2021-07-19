@@ -1,0 +1,170 @@
+.tab {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #FFFFFF;
+}
+.tab_item {
+  height: 100%;
+  flex: 1;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #666666;
+  line-height: 40rrpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.active {
+  color: #ff7054;
+}
+.active::before {
+  position: absolute;
+  left: auto;
+  bottom: 0;
+  content: '';
+  width: 65rpx;
+  height: 4rpx;
+  background-color: #ff7054;
+}
+.order {
+  box-sizing: border-box;
+}
+.order .order_item {
+  margin-top: 15rpx;
+  padding: 15rpx 20rpx;
+  height: 498rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.order .order_item .order_tips {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 4rpx solid #F3F3F3;
+  font-size: 28rpx;
+  color: #000000;
+}
+.order .order_item .statusOne {
+  color: #FF9254;
+}
+.order .order_item .statusTwo {
+  color: #57A901;
+}
+.order .order_item .statusThree {
+  color: #6F6F6F;
+}
+.order .order_item .order_info {
+  margin: 30rpx 0;
+  box-sizing: border-box;
+  height: 224rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-bottom: 4rpx solid #F3F3F3;
+}
+.order .order_item .order_info .order_img {
+  width: 160rpx;
+  height: 160rpx;
+}
+.order .order_item .order_info .order_title {
+  margin-left: 20rpx;
+  width: 322rpx;
+  height: 160rpx;
+  font-size: 28rpx;
+  color: #000000;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+.order .order_item .order_info .order_change {
+  height: 160rpx;
+  text-align: right;
+  flex: 1;
+  font-size: 24rpx;
+  color: #0C0C0C;
+}
+.order .order_item .order_detail {
+  width: 100%;
+  flex: 1;
+}
+.order .order_item .order_detail .order_detail_top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.order .order_item .order_detail .order_detail_top .order_detail_num {
+  font-size: 28rpx;
+  color: #000000;
+}
+.order .order_item .order_detail .order_detail_top .order_detail_copy {
+  width: 90rpx;
+  height: 50rpx;
+  border-radius: 30rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  color: #827F7F;
+  text-align: center;
+  border: 2rpx solid #dddddd;
+  margin-left: 20rpx;
+}
+.order .order_item .order_detail .order_detail_center {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  line-height: auto;
+  font-size: 28rpx;
+  color: #000000;
+}
+.order .order_item .order_detail .order_detail_bottom {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #000000;
+}
+.order .order_item .order_detail .order_detail_bottom .order_detail_money {
+  font-size: 32rpx;
+  color: #FF5053;
+}
+.findOrder {
+  margin-top: 10rpx;
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 28rpx;
+  color: #666666;
+}
+.findOrder .findOrder_tips {
+  text-align: right;
+  flex: 1;
+  margin-right: 25rpx;
+}
+.findOrder .findOrder_toPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 206rpx;
+  height: 70rpx;
+  background: #F6F6F6;
+  border-radius: 200rpx 0rpx 0rpx 200rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+.findOrder .findOrder_toPage .findOrder_icon {
+  margin-left: 15rpx;
+  width: 20rpx;
+  height: 20rpx;
+}

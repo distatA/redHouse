@@ -1,0 +1,330 @@
+/* pages/search/search.wxss */
+page{
+  overflow-x: hidden;
+}
+/* 搜索 */
+.search{position: relative;margin:17px 23px 10px 20px;display: flex;align-items: center;}
+.search input{width: 380rpx;height: 54rpx;background: #fff;line-height: 54rpx;border-radius: 54rpx;padding: 0 70rpx;font-size: 28rpx;}
+.searchPic{position: absolute;left: 24rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+.search text{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(255,104,83,1);
+  margin-left:20px;
+}
+.menu{
+  background: #F9F9F9;
+  display: flex;
+  justify-content: space-between;
+  padding:5px 50px 5px 30px;
+}
+.tabs{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(158,158,158,1);
+  display: inline-block;
+  text-align: center;
+}
+
+.tabs.active{
+  color:#FF6D59;
+  border-bottom:1px solid #FF6853;
+}
+/* 搜索结果 */
+.allGoods{padding: 0 30rpx;margin-top: 28rpx;}
+.allGoods .goodList{display: flex;margin: 20rpx 0;}
+.allGoods .goodPic image{width: 236rpx;height: 236rpx;}
+.allGoods .info{margin-left: 40rpx;width: 420rpx;position: relative;}
+.allGoods .info .title text{font-size: 28rpx;}
+.allGoods .info .title image{width: 28rpx;height: 18rpx;margin-left: 10rpx;position: relative;top: -10rpx;}
+.goodsName{font-size: 24rpx;color: rgb(0, 0, 0);}
+.infos{
+  display: flex;
+  align-items: center;
+  margin-top:10rpx;
+}
+.infos image{
+  width:50rpx;
+  height:50rpx;
+  border-radius: 50%;
+  display: block;
+}
+.infos .nickName{
+  font-size: 24rpx;
+  color:rgb(104, 104, 104);
+  margin-left:10rpx;
+}
+.directLine{width: 192rpx;height: 20rpx;border-radius: 20rpx;background: #ffc3bb;margin-top: 30rpx;}
+.directInline{height: 20rpx;border-radius: 20rpx;background: linear-gradient(to right,#FF7054,#ff5053)}
+.inPeople{font-size: 20rpx;color: rgb(12, 12, 12);margin-bottom: 10rpx;margin-top: 10rpx;}
+
+.prices{display: inline-block;}
+.prices .fuhao{display: inline-block;}
+.newPrice{color: #ff5a43;}
+.oldPrice{color: rgb(216, 216, 216);font-size: 20rpx;margin-left: 16rpx;text-decoration: line-through;}
+.buyNow{width: 120rpx;height: 50rpx;border-radius: 10rpx;font-size: 22rpx;color: #fff;background: linear-gradient(to bottom,#ff604c,#ff784c);
+text-align: center;line-height: 50rpx;
+position: absolute;bottom: 0;right: 0;border: none;padding: 0;
+}
+.dbarrow{width: 14rpx;height: 12rpx;}
+.no{
+  margin:50px auto;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  text-align: center;
+}
+/* 红人店铺 */
+.shop{
+  padding:20px;
+}
+.shop .top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shop .left{
+  display: flex;
+  align-items: center;
+}
+.shop .left image{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+}
+.shopName{
+  margin-left:15px;
+}
+.top .name{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:22px;
+}
+.top .num{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+  line-height:18px;
+}
+.top .right{
+  width:48px;
+  height:20px;
+  border-radius:5px;
+  border:1px solid rgba(255,104,83,1);
+  font-size:12px;
+  font-weight:400;
+  color:rgba(255,104,83,1);
+  line-height:20px;
+  text-align: center;
+}
+.shop .shopImg{
+  display: flex;
+  justify-content: space-between;
+  margin-top:10px;
+}
+.shop .shopImg image{
+  width:100px;
+  height:100px;
+
+}
+/* TA社区 */
+.main{
+  padding:10px 15px;
+}
+.title{
+  font-size:16px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:22px;
+}
+.time{
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  line-height:17px;
+}
+/* 信息 */
+.headImg{
+  position: relative;
+}
+.news{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:10px;
+}
+.news .left{
+  display: flex;
+  align-items: center;
+}
+.news .left image{
+  width:45px;
+  height:45px;
+  border-radius:50%;
+}
+.news .note{
+  margin-left:15px;
+}
+.news .noteName{
+  font-size:16px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(12,12,12,1);
+  line-height:22px;
+}
+.news .describe{
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  line-height:17px;
+}
+.news .right {
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(130,127,127,1);
+}
+
+.titles{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.noteImg{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+  margin-top:8px;
+}
+.bottom{
+  padding:14px 19px 6px 30px;
+ 
+}
+ .time{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  margin:9px 0px 6px 10px;
+}
+.read{
+  display: flex;
+  justify-content: space-between;
+}
+.li{
+  display: flex;
+  align-items: center;
+  font-size:12px;
+  font-weight:400;
+  color:rgba(174,174,174,1);
+  margin-right:20px;
+}
+.article{
+  display: flex;
+  justify-content: space-between;
+  padding:0 10px 0 12px;
+  /* margin-top:8px; */
+}
+/* 商品链接 */
+.link{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: rgb(255, 109, 83);
+  margin-top:15rpx;
+  padding:0 20px 0 10px;
+}
+.link text{
+  margin-left: 20rpx;
+}
+.article .left{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  width:380rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.JDlist {
+  
+background: #F9F9F9;
+  margin-top: 20rpx;
+  padding: 0 20rpx;
+  .JD_item {
+margin-bottom: 12rpx;
+    box-sizing: border-box;
+    padding:30rpx  22rpx;
+    width: 100%;
+height: 300rpx;
+background: #FFFFFF;
+border-radius: 10rpx;
+display: flex;
+align-items: center;
+justify-content: space-between;
+   
+    .JDimg{
+      width: 238rpx;
+      height: 238rpx;
+    }
+
+    .JDinfo {
+      height: 100%;
+      margin-left: 30rpx;
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      .JDtitle {
+        font-size: 30rpx;
+        color: #000000;
+        overflow:hidden;
+        display:-webkit-box;
+        -webkit-box-orient:vertical;
+        -webkit-line-clamp:2;
+        
+      }
+
+      .JDcommision {
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 230rpx;
+        height: 44rpx;
+        background: rgba(255, 112, 84, 0.2);
+        border-radius: 10rpx;
+        border: 2rpx solid #FF7054;
+      font-size: 20rpx;
+      color: #FF7054;
+        
+      }
+      .JD_price {
+      font-size: 20rpx;
+      color: #000000;
+
+        .price {
+          font-size: 32rpx;
+          color: #FF595B;
+        
+        }
+      }
+      .JD_detial {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 20rpx;
+        color: #686868;
+        line-height: 28rpx;
+      }
+    }
+  }
+}

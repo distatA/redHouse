@@ -1,0 +1,404 @@
+<!--pages/home_page/good_group/good_group.wxml-->
+
+<view class="group">
+  <view class="topTab">
+    <view class="topTxt {{ top1 == 1 ? 'on':'' }}" bindtap="change1"><text>好物详情</text></view>
+    <view class="topTxt {{ top2 == 1 ? 'on':'' }}" bindtap="change2"><text>评价</text></view>
+  </view>
+  <view class="show">
+    <view class="show1" wx:if="{{top1}}">
+      <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'
+        indicator-color='#c1c1c1' indicator-active-color = '#ff6666'>
+        <block wx:for="{{bnrUrl1}}" wx:for-index="index" wx:key="key">
+          <swiper-item>
+            <image src='{{item.imgUrl}}' class='u-img-slide' mode='aspectFill'></image>
+          </swiper-item>
+        </block>
+      </swiper>
+
+      <view class="groupBuy">
+        <view class="groupTxt">团购</view>
+        <view class="groupTime">距结束仅剩 <view class="hour">20</view> 时 <view class="minute">03</view> 分 <view class="second">57</view> 秒 </view>
+      </view>
+
+      <view class="price">
+        <view class="fuhao">¥</view>
+        <view class="nowPrice">599</view>
+        <view class="baoshui">包税</view>
+        <view class="baoyou">包邮</view>
+      </view>
+
+      <view class="lowPrice">¥ 899</view>
+      <view class="goodIntro">波西米亚风沙发和的看法司法鉴定所立刻减肥但是多斯拉克九华山但是凡事是的收款方</view>
+
+      <navigator class="goodBack">
+        <view class="backTop">
+          <view class="pei">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/choose.png"></image>
+            <view class="backTxt">一贵就赔</view>
+          </view>
+          <view class="pei">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/choose.png"></image>
+            <view class="backTxt">七天保价</view>
+          </view>
+        </view>
+        <view class="backBd">浅米家具似懂非懂司法第三方第三方刚范德萨盖第三方第三方双方各第三方</view>
+        <view class="backArrow"></view>
+      </navigator>
+
+      <view class="note">
+        <view class="noteTitle">红人笔记</view>
+        <!-- 红人笔记 -->
+        <view class="allList">
+          <view class="liContent" wx:for = "{{tjList}}" wx:key="index">
+            <view class="showListType" wx:if="{{item.showType == 1}}" >
+              <view class="liTop">
+                <view class="liAvar">
+                  <image src="{{item.avar}}" class="avarImg"></image>
+                  <view class="nickName">{{item.nickName}}</view>
+                  <view class="vipLevel"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"></image></view>
+                </view>
+                <view class="time">{{item.time}}</view>
+              </view>
+              <view class="tuwen">
+                <view class="liTitle">{{item.title}}</view>
+                <view class="showPics">
+                  <image src="{{item.picList[0].articleImg}}"></image>
+                  <image src="{{item.picList[1].articleImg}}"></image>
+                  <image src="{{item.picList[2].articleImg}}"></image>
+                </view>
+              </view>
+              <view class="littlePic">
+                <view class="mini see">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"></image>
+                  <view class="miniNum">{{item.readNum}}</view>
+                </view>
+                <view class="mini liuyan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"></image>
+                  <view class="miniNum">{{item.liuyan}}</view>
+                </view>
+                <view class="mini zan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"></image>
+                  <view class="miniNum">{{item.zan}}</view>
+                </view>
+              </view>
+
+              <view class="lian" wx:if = "{{item.lianList}}">
+                <navigator>
+                  <view class="lianPage">
+                    <view class="left">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"></image>
+                      <view class="lianTitle">{{item.lianCont}}</view>
+                    </view>
+                    <view class="right">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"></image>
+                    </view>
+                  </view>
+                </navigator>
+              </view>
+            </view>
+            
+            <view class="showListType2" wx:if="{{item.showType == 2}}" >
+              <view class="liTop">
+                <view class="liAvar">
+                  <image src="{{item.avar}}" class="avarImg"></image>
+                  <view class="nickName">{{item.nickName}}</view>
+                  <view class="vipLevel"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"></image></view>
+                </view>
+                <view class="time">{{item.time}}</view>
+              </view>
+
+              <view class="tuwen2">
+                <view class="liTitle2">{{item.title}}</view>
+                <view class="showPics2">
+                  <image src="{{item.picList[0].articleImg}}"></image>
+                </view>
+              </view>
+
+              <view class="littlePic">
+                <view class="mini see">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"></image>
+                  <view class="miniNum">{{item.readNum}}</view>
+                </view>
+                <view class="mini liuyan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"></image>
+                  <view class="miniNum">{{item.liuyan}}</view>
+                </view>
+                <view class="mini zan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"></image>
+                  <view class="miniNum">{{item.zan}}</view>
+                </view>
+              </view>
+
+              <view class="lian" wx:if = "{{item.lianList}}">
+                <navigator>
+                  <view class="lianPage">
+                    <view class="left">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"></image>
+                      <view class="lianTitle">{{item.lianCont}}</view>
+                    </view>
+                    <view class="right">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"></image>
+                    </view>
+                  </view>
+                </navigator>
+              </view>
+            </view>
+
+            <view class="showListType" wx:if="{{item.showType == 3}}" >
+              <view class="liTop">
+                <view class="liAvar">
+                  <image src="{{item.avar}}" class="avarImg"></image>
+                  <view class="nickName">{{item.nickName}}</view>
+                  <view class="vipLevel"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/v1.png"></image></view>
+                </view>
+                <view class="time">{{item.time}}</view>
+              </view>
+              <view class="tuwen">
+                <view class="liTitle">{{item.title}}</view>
+                
+              </view>
+              <view class="littlePic">
+                <view class="mini see">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"></image>
+                  <view class="miniNum">{{item.readNum}}</view>
+                </view>
+                <view class="mini liuyan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"></image>
+                  <view class="miniNum">{{item.liuyan}}</view>
+                </view>
+                <view class="mini zan">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"></image>
+                  <view class="miniNum">{{item.zan}}</view>
+                </view>
+              </view>
+
+              <view class="lian" wx:if = "{{item.lianList}}">
+                <navigator>
+                  <view class="lianPage">
+                    <view class="left">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"></image>
+                      <view class="lianTitle">{{item.lianCont}}</view>
+                    </view>
+                    <view class="right">
+                      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"></image>
+                    </view>
+                  </view>
+                </navigator>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="groupPeople">
+        <view class="groupTop">
+          <view class="groupTit">2人在拼团，可直接参与</view>
+          <navigator class="groupMore">查看更多</navigator>
+        </view>
+
+        <view class="groupLi">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/ava1.png"></image>
+          <view class="nickNameGroup">叫我。花大姐</view>
+          <view class="tuanBtn">去成团</view>
+        </view>
+
+        <view class="groupLi">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/ava1.png"></image>
+          <view class="nickNameGroup">叫我。花大姐</view>
+          <view class="tuanBtn">去成团</view>
+        </view>
+
+      </view>
+
+      <view class="myShop">
+        <navigator class="shopIn">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/goodBanner.png"></image>
+          <view class="shopName">浅米家具生活工作室</view>
+          <view class="access">进店逛逛</view>
+        </navigator>
+      </view>
+
+      <view class="goodDetail">
+        <view class="goodDetailTit">好物详情</view>
+        <view class="goodIntroduce">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/gooddetail.jpg"></image>
+          <view class="goodIntroduceTxt">奥斯卡解放后士单身狗一哈搜皮肤是多少佛很多事按时大夫发收款奥斯卡解放后士单身狗一哈搜皮肤是多少佛很多事按时大夫发收款奥斯卡解放后士单身狗一哈搜皮肤是多少佛很多事按时大夫发收款奥斯卡解放后士单身狗一哈搜皮肤是多少佛很多事按时大夫发收款奥斯卡解放后士单身狗一哈搜皮肤是多少佛很多事按时大夫发收款</view>
+        </view>
+      </view>
+
+      <view class="foot">
+        <view class="fleft">
+          <view class="fli kefu">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/kf.png"></image>
+            <view class="fliTxt">客服</view>
+          </view>
+          <view class="fli dianpu">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/dp.png"></image>
+            <view class="fliTxt">店铺</view>
+          </view>
+          <!-- <view class="fli gouwuche">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/gwc.png"></image>
+            <view class="fliTxt">加入购物车</view>
+          </view> -->
+        </view>
+
+        <view class="fright">
+          <!-- <button class="shareBtn">
+            <view class="shareTxt">分享</view>
+            <view class="makeMoney">赚￥100.0</view>
+          </button> -->
+          <button class="shareBtn shareBtn2">
+            <view class="shareTxt">￥508</view>
+            <view class="makeMoney">发起拼团</view>
+          </button>
+        </view>
+      </view>
+
+    </view>
+    <view class="show2" wx:if="{{top2}}">
+      <view class="judge">
+        <view class="judgeLeft">
+          <view class="finalNum">5.0</view>
+          <view class="finalTxt">综合评分</view>
+        </view>
+        <view class="judgeContent">
+          <view class="kolJudge judgeLi">
+            <view class="judgeName">KOL评价</view>
+            <block wx:for="{{kolstar}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+            </block>
+            <block wx:for="{{5-kolstar}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+            </block>
+            <view class="kolNum judgeLiNum">{{kolstar}}.0</view>
+          </view>
+
+          <view class="kolJudge judgeLi">
+            <view class="judgeName">商品评价</view>
+            <block wx:for="{{goodstar}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+            </block>
+            <block wx:for="{{5-goodstar}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+            </block>
+            <view class="kolNum judgeLiNum">{{goodstar}}.0</view>
+          </view>
+
+          <view class="kolJudge judgeLi">
+            <view class="judgeName">KOL评价</view>
+            <block wx:for="{{cheap}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+            </block>
+            <block wx:for="{{5-cheap}}" wx:key="index" class="stars">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+            </block>
+            <view class="kolNum judgeLiNum">{{cheap}}.0</view>
+          </view>
+
+        </view>
+      </view>
+
+      <view class="comment">
+        <view class="tabTop">
+          <block wx:for="{{commentTit}}" wx:key="index">
+            <view class="tabs {{currentIndex == index ? 'on' : ''}}" data-index="{{index}}" bindtap="changeTabs">
+              {{item.commentTop}} {{item.num}}
+            </view>
+          </block>
+        </view>
+        <view class="tabDetail">
+          <view hidden="{{ currentIndex != 0 }}" class="tabDetailBody">
+            <view class="commentList">
+              <view class="avarImg">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/ava2.png"></image>
+              </view>
+              <view class="commentListBd">
+                <view class="ListTop">
+                  <view class="topName">甜柠檬</view>
+                  <view class="topTime">2019.06.24</view>
+                </view>
+                <view class="commentScore">
+                  <view class="commentScoreTxt">评分：</view>
+                  <block wx:for="{{clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+                  </block>
+                  <block wx:for="{{5-clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+                  </block>
+                </view>
+                <view class="detailCommentTxt">挺喜欢的，给答复买的，阿US发扬光大看是否ID是安徽省闪电发货都是的流口水的绝佳多斯拉克减肥</view>
+                <view class="commentPicList">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/temppic.png"></image>
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/temppic.png"></image>
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/temppic.png"></image>
+                </view>
+
+
+              </view>
+            </view>
+
+            <view class="commentList">
+              <view class="avarImg">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/ava2.png"></image>
+              </view>
+              <view class="commentListBd">
+                <view class="ListTop">
+                  <view class="topName">甜柠檬</view>
+                  <view class="topTime">2019.06.24</view>
+                </view>
+                <view class="commentScore">
+                  <view class="commentScoreTxt">评分：</view>
+                  <block wx:for="{{clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+                  </block>
+                  <block wx:for="{{5-clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+                  </block>
+                </view>
+                <view class="detailCommentTxt">挺喜欢的，给答复买的，阿US发扬光大看是否ID是安徽省闪电发货都是的流口水的绝佳多斯拉克减肥</view>
+                <view class="commentPicList">
+                  
+                </view>
+
+
+              </view>
+            </view>
+
+            <view class="commentList">
+              <view class="avarImg">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/ava2.png"></image>
+              </view>
+              <view class="commentListBd">
+                <view class="ListTop">
+                  <view class="topName">甜柠檬</view>
+                  <view class="topTime">2019.06.24</view>
+                </view>
+                <view class="commentScore">
+                  <view class="commentScoreTxt">评分：</view>
+                  <block wx:for="{{clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+                  </block>
+                  <block wx:for="{{5-clientstar}}" wx:key="index">
+                    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+                  </block>
+                </view>
+                <view class="detailCommentTxt">
+                  挺喜欢的，给答复买的，阿US发扬光大看是否ID是安徽省闪电发货都是的流口水的绝佳多斯拉克减肥安抚按时发货一㝉个老客户就放短头发宽高个发kg分手的的双方各是大法官第三方
+                </view>
+                <view class="commentPicList">
+                  
+                </view>
+              </view>
+            </view>
+
+
+          </view>
+          <view hidden="{{ currentIndex != 1 }}">好评</view>
+          <view hidden="{{ currentIndex != 2 }}">差评</view>
+          <view hidden="{{ currentIndex != 3 }}">有图</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,534 @@
+<!--pages/huose/huose.wxml-->
+<import src="../../wxParser/index.wxml" />
+<!-- 是否登陆 -->
+<block wx:if='{{getUserInfoFail}}'>
+<view class="user">
+  <image src="/img/icon/user.png" >
+    <button plain  class='btn-set'  open-type='getUserInfo' bindgetuserinfo='loginApp'> 
+    </button>
+  </image>
+</view>
+</block> 
+<!-- 阴影层 -->
+<view class="shadow" style='animation: {{isShow ? "show" : "dismiss"}}Mask 0.3s forwards ease;left: {{isCreate ? 0 : "750rpx"}};' catchtouchmove='myCatchTouch'>
+  <view class="box-son">
+    <view class="di">
+      <painter palette="{{template}}" bind:imgOK="onImgOK" />
+    </view>
+      <view class="guan">
+         <view class="hold-img" catchtap='btnCreate'>保存图片</view>
+        <image src="/img/icon/guan.png" style="width:30px;height:30px;" catchtap='catchtap'></image>
+      </view>     
+  </view>
+</view>
+<view class="group">
+
+<!-- 轮播图 -->
+  <view style="position: relative;">
+    <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true' indicator-color='#c1c1c1' indicator-active-color = '#ff6666' bindchange="swiperChange" current="{{current}}">
+      <block wx:for="{{goodsBurl}}" wx:for-index="index" wx:key="key">
+        <swiper-item>
+          <image src='{{item.house_image}}' class='u-img-slide' mode='aspectFill'></image>
+        </swiper-item>   
+      </block> 
+    </swiper>
+    <view class="boxson">{{current+1}}/{{goodsBurl.length}}</view>
+  </view>
+  <!-- 倒计时 -->
+  <view class="show">
+    <view class="groupBuy">
+    <view class="groupTxt">{{goodsSkuList.entry_name}}</view>
+      <view calss="sale">
+        <view class="saleList" wx:for="{{houseDetail.tagList}}" wx:key="key">{{item.core_tag}}</view>
+      </view>
+    </view>
+    <view style="width:100%;height:6px;background:#F2F2F2"></view>
+  <!-- 优惠券 -->
+  <view class="juan" wx:if="{{goodsCouponList.length>0}}">
+    <view class="houseTitle"  style="padding-left:20px;">消费券</view>
+    <scroll-view class="scroll-view_H" scroll-x="true" style="margin-top:0">
+    <view class="scroll-view-item_H" wx:for="{{goodsCouponList}}" wx:key="key">
+      <view style="display: flex;align-items: center;width:295px;">
+        <view class="juan-right">
+          <view class="juan-right-left" bindtap="youHui" id="{{item.preferential_explanation}}">
+            <view class="name">{{item.coupon_title}}</view>
+            <view class="tip">
+            <view class="tipss">{{item.preferential_explanation}}</view>
+            <view style="color:#007AFF;text-align:right;padding-right:10px;">查看详情>></view> </view>
+            <view class="time">有效期限：{{item.coupon_start_time}}--{{item.coupon_end_time}}</view>
+          </view>
+         
+        </view>
+        <view class="juan-left" bindtap="yuYue" id="{{3}}"  data-id="{{item.id}}"  data-coupon="{{item.coupon_title}}" data-start="{{item.coupon_start_time}}" data-end="{{item.coupon_end_time}}">
+          <block wx:if="{{item.hour<=100 }}">
+          <view style=" text-align: right;padding-right:8px;">剩余</view>
+          <view class="groupTime">
+            <view class="hour">{{item.hour<'10'?'0'+item.hour:item.hour}}</view>时 
+            <view class="hour">{{item.minute<'10'?'0'+item.minute:item.minute}}</view>分 
+            <view class="hour">{{item.second <'10'?'0'+item.second:item.second}}</view>秒
+          </view>
+          </block>
+          <view class="lingqu" style="margin-top:{{item.hour<=100?'15':'30'}}px;">立即领取</view>
+        </view>
+        
+      </view>
+      </view>
+    </scroll-view>
+  </view>
+  <!-- 限量秒杀 -->
+  <view class="seckill" wx:if="{{goodsSeckills.length>0}}">
+    <view class="houseTitle"  style="padding-left:20px;">限量秒杀</view>
+    <scroll-view class="scroll-view_H" scroll-x="true" style="margin-top:0">
+    <view class="scroll-view-item_H" wx:for="{{goodsSeckills}}" wx:key="key" bindtap="huoseKill" data-flag="{{houseDetail.flag}}" id="{{shopId}}" data-rest="{{item.restStock}}" data-index="{{index}}" data-shopno="{{redShop.member_no}}" data-id="{{item.id}}">
+      <image src="{{item.coverMap}}" style="width:135px;height:135px;border-radius:5px;position: relative">
+      <block wx:if="{{item.restStock==0}}">
+        <!-- <view class="box"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-06-09/724343d017ec4ceb8b369166a1bf2440-tmp_591236688cc36e7451b81060f7d92fb5.jpg"></image></view> -->
+      </block>
+      </image>
+      <view class="seckill-name">{{item.goodsName}}</view>
+      <view class="seckill-now">￥{{item.seckillPrice}}</view>
+      <view class="seckill-low"><view style="text-decoration: line-through;">￥{{item.fristPrice}}</view>
+        <view class="miaosha" style="background:{{item.restStock==0?'#CDCDCF':''}}">{{item.start}}</view></view>
+    </view>
+    </scroll-view>
+  </view>
+  <view style="width:100%;height:6px;background:#F2F2F2" wx:if="{{goodsCouponList.length>0}}"></view>
+  <!-- 推荐奖励 -->
+  <block wx:if="{{houseDetail.share.remark || houseDetail.share.price}}">
+   <view class="houseTitle" style="padding-left:20px;"> <view>推荐奖励</view> 
+   <view class="right" wx:if="{{houseDetail.share.price != ''}}">{{houseDetail.share.price}}元</view></view>
+  <view class="jieshao">{{houseDetail.share.remark}}</view>
+  <view style="display: flex;justify-content: flex-end;padding-right:20px">
+  <view class="tuijian" bindtap="yuYue" id="{{2}}">我要推荐</view></view>
+  <view style="width:100%;height:6px;background:#F2F2F2;margin-top:15px;"></view>
+  </block>
+  <!-- 位置 -->
+    <view class="jianjie">
+      <view class="houseTitle">项目简介</view>
+      <view class="titles">{{goodsSkuList.project_introduction}}</view>
+      <scroll-view class="scroll-view_H" scroll-x="true">
+        <view class="scroll-list" wx:for="{{houseDetail.typeList}}" wx:key="key">
+          <view class="scroll-lists">物业类型：<text>{{item.property_type}}</text></view>
+          <view class="scroll-lists">参考均价：
+          <text style="color:#FF7054">{{item.reference_average_price==0?'待定':'约'+item.reference_average_price+'元/㎡'}}</text>
+          </view>
+          <view class="scroll-lists">产权年限：<text>{{item.property_right_years}}年</text></view>
+          <view class="scroll-lists">装修状况：<text>{{item.decoration_situation}}</text></view>
+          <view class="scroll-list-img">
+            <block wx:if="{{item.sale_state==3}}"><image src="/img/icon/daiShou.png"></image></block>
+            <block wx:if="{{item.sale_state==1}}"><image src="/img/icon/zaiShou.png"></image></block>
+            <block wx:if="{{item.sale_state==2}}"><image src="/img/icon/outShou.png"></image></block>
+          </view>
+        </view>
+      </scroll-view>
+      <view class="main" style="padding-bottom:{{viewBottom}};padding-left:0;padding-right:0;margin-top:5px">
+        <view class="main-list">
+          <view class="main-left">楼盘地址：</view> 
+          <text>{{goodsSkuList.address_province + (goodsSkuList.address_city==='市辖区' ?'':goodsSkuList.address_city) + goodsSkuList.address_area+goodsSkuList.address_supplement}}</text> 
+        </view>
+        <view class="main-list">
+          <view class="main-left">开 发 商：</view>
+          <text>{{goodsSkuList.developer}}</text>
+        </view>
+        <view class="main-list">
+          <view class="main-left">物业公司：</view>
+          <text>{{goodsSkuList.property_company}}</text>
+        </view>
+        
+        <block wx:if="{{moreHidden}}">
+          <!-- <view class="main-list">
+            <view class="main-left">项目名称：</view>
+            <text>{{goodsSkuList.entry_name}}</text>
+          </view> -->
+          <view class="main-list">
+            <view class="main-left">物 业 费：</view>
+            <text>{{goodsSkuList.property_fee}}</text>
+          </view>
+          <view class="main-list">
+            <view class="main-left">容 积 率：</view>
+            <text>{{goodsSkuList.plot_ratio}}</text>
+          </view>
+          <view class="main-list">
+            <view class="main-left">车位比例：</view>
+            <text>{{goodsSkuList.parking_ratio}}</text>
+          </view>
+          <view class="main-list">
+            <view class="main-left">规划户数：</view>
+            <text>{{goodsSkuList.planning_household}}</text>
+          </view>
+          <view class="main-list">
+            <view class="main-left">绿 化 率：</view>
+            <text>{{goodsSkuList.afforestation_rate}}</text>
+          </view>
+      
+        </block>
+      </view>
+      <view class="viewMore" hidden="{{viewMoreHidden}}" bindtap="viewMore">
+        展示全部信息
+      </view>
+      <!-- 围观人数 -->
+      <view class="people">
+        <view class="left"><text style="font-weight:520;">{{totalPeople * 71}}</text>人已围观</view>
+        <view class="browseImgItem" bindtap="browseMore">
+          <block class="houseIteam" wx:for="{{listLook }}" wx:key="index">
+            <view class="browseImgView" hover-class="none" hover-stop-propagation="false">
+              <image src="{{item.headUrl}}" class="browseImg" />
+            </view>
+          </block>
+          <view class=" browseMore">. .</view>
+        </view>
+      </view>
+    </view>
+    <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    <!-- 官方红人 -->
+    <view class="redList" wx:if="{{redList.length>0}}">
+      <view class="noteTitle"><view>官方红人</view>  <view class="more" bindtap="moreRed" wx:if="{{redList.length>=3}}">查看更多</view> </view>
+      <view class="redLists" wx:for="{{redList}}" wx:key="key">
+        <view class="left" bindtap="redShop" id="{{item.member_no}}">
+          <view class="redHeadUrl">
+            <image src="{{item.headUrl}}"></image>
+            <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0"></image>
+          </view>
+          <view>
+            <view class="redName">{{item.nickName}}</view>
+            <view class="redSign">{{item.sign}}</view>
+          </view>
+        </view>
+        <view class="right">
+          <view class="gRed">
+            <!-- 关注 -->
+            <block wx:if="{{item.flag==0}}">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/unfocus.png" style="width:20px;height:22px" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}"></image>
+            </block>
+            <block wx:if="{{item.flag==1}}">
+              <image src="../../img/icon/focus.png" style="width:20px;height:22px" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}"></image>
+            </block>
+             <!-- <image src="../../img/icon/focus.png" style="width:20px;height:22px"></image> -->
+            <view style="font-size:12px;color:#848484;margin-left:5px;">{{item.num}}</view>
+          </view>
+          <image src="../../img/icon/phone1.png" style="width:18px;height:20px;margin-left:20px;" bindtap="callings" id="{{item.mobile}}"></image>
+        </view>
+      </view>
+    </view>
+    <view style="width:100%;height:6px;background:#F2F2F2;margin-top:10px;" wx:if="{{redList.length>0}}"></view>
+    <!-- 店铺 -->
+    <view class="liTop" bindtap="redShop" id="{{redShop.member_no}}" wx:if="{{redShop && redShop != ''}}">
+    <!-- 红人店铺 -->
+      <view class="liAvar">
+        <view class="avarImg" style="position: relative">
+        <image src="{{redShop.shoplogo}}" ></image>
+         <image src="../../img/icon/hong.png" style="width:12px;height:12px;position: absolute;right:0;bottom:0"></image>
+         </view>
+        <view class="left">
+          <view class="nickName">{{redShop.shop_name}}</view>
+          <view style="margin-top:10px;">{{redShop.sign}}</view>
+        </view>
+      </view>
+      <view class="backArrows"></view>              
+    </view>
+    <!-- 商家店铺 -->
+    <view class="liTop" wx:else  bindtap="goodsShop" id="{{goodsShop.merchant_no}}">
+      <view class="liAvar" >
+        <view class="avarImg" style="position: relative">
+        <image src="{{goodsShop.shopImage}}" ></image>
+        </view>
+        <view class="left">
+          <view class="nickName">
+            <view>{{goodsShop.shop_name}}</view>
+            <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:5px;border-radius:0;"></image>
+          </view>
+          <view style="margin-top:10px;">{{goodsShop.sign}}</view>
+        </view>
+      </view>
+      <view class="backArrows"></view>              
+    </view>
+     <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    <!-- 笔记 -->
+    <block wx:if="{{memberNoteArticleAllList.length>0}}">
+     <view class="noteTitle">红人笔记</view>
+     
+    <block>
+    <view wx:for="{{memberNoteArticleAllList}}">
+    <view class="content">
+      <view class="titles">{{item.title}}</view>
+      <view class="img">
+        <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" mode="aspectFill"></image>
+      </view>
+     </view>
+       <!-- 视频 -->
+      <block wx:if="{{videoUrls}}">
+        <video src="{{videoUrls}}"  id="houseVideo" bindfullscreenchange="fullscreenchange">
+        </video>
+      </block>   
+    </view>
+    </block>
+     <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    </block>
+   
+     <!-- 导航 -->
+<view class="topTab">
+  <view class="topTxt {{ top1 == 1 ? 'on':'' }}" bindtap="change1"><text>项目详情</text></view>
+  <view class="topTxt {{ top2 == 1 ? 'on':'' }}" bindtap="change2"><text>评价</text></view>
+</view>
+  <block wx:if="{{top1}}">
+    <!-- 商品动态 -->
+    <view class="noteTitle"><view>项目动态</view>  <view class="more" bindtap="more" data-id="{{houseDetail.projectList}}">查看更多</view> </view>
+    <view class="main">
+      <view class="time">{{houseDetail.projectList[0].create_time}}</view>
+      <view class="title">{{houseDetail.projectList[0].project_name}}</view>
+      <view class="contain">{{houseDetail.projectList[0].project_dynamics}}</view>
+    </view>
+     <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    <!-- 具体位置 -->
+    <view class="noteTitle" style="margin-bottom:10px;">具体位置</view>
+  <map id="map" longitude="{{goodsSkuList.address_longitude}}" latitude="{{goodsSkuList.address_latitude}}" scale="14" bindtap="toMap" data-info="{{markers}}" markers="{{markers}}"  polyline="{{polyline}}"  show-location ></map>
+   <view style="width:100%;height:6px;background:#F2F2F2"></view>
+   <!-- 周边设施 -->
+   <view class="noteTitle">周边设施</view>
+   <view class="zhoubian">
+    <!-- 交通 -->
+    <view class="zhoubian-list" wx:if="{{goodsSkuList.traffic}}">
+      <view class="title"><text style="color:#FF7155">·</text>交通</view>
+      <view class="contain">{{goodsSkuList.traffic}}</view>
+    </view>
+    <!-- 学校 -->
+    <view class="zhoubian-list" wx:if="{{goodsSkuList.school}}">
+      <view class="title"><text style="color:#FF7155">·</text>学校</view>
+      <view class="contain">{{goodsSkuList.school}}</view>
+    </view>
+    <!-- 商业 -->
+    <view class="zhoubian-list" wx:if="{{goodsSkuList.business}}">
+      <view class="title"><text style="color:#FF7155">·</text>商业</view>
+      <view class="contain">{{goodsSkuList.business}}</view>
+    </view>
+    <!-- 医疗 -->
+    <view class="zhoubian-list" wx:if="{{goodsSkuList.medical_care}}">
+      <view class="title"><text style="color:#FF7155">·</text>医疗</view>
+      <view class="contain">{{goodsSkuList.medical_care}}</view>
+    </view>
+    <!-- 旅游 -->
+    <view class="zhoubian-list" wx:if="{{goodsSkuList.travel}}">
+      <view class="title"><text style="color:#FF7155">·</text>旅游</view>
+      <view class="contain">{{goodsSkuList.travel}}</view>
+    </view>
+   </view>
+   <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    <!-- 户型图 -->
+    <view class="noteTitle">户型图</view>
+     <scroll-view class="scroll-view_H" scroll-x="true" >
+        <view class="scroll-view-item_H" wx:for="{{houseDetail.huTypeList}}" wx:key="key" bindtap="houseDetail">
+          <view class="img-box">
+            <image src="{{item.imageUrl}}" mode="aspectFit" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+          </view>
+          <view class="houseTitles">
+            <view  style="color:#6F6F6F;font-size:28rpx;">户型：{{item.houseType}}</view>
+            <view  style="color:#6F6F6F;font-size:28rpx;">建面约：{{item.area}}㎡</view>
+          </view>
+        </view>
+      </scroll-view>
+     <view style="width:100%;height:6px;background:#F2F2F2"></view>
+    <!-- 团购说明 -->
+    <!-- <view class="noteTitle" bindtap="shuoMing" id="{{houseDetail.goodsHouseDetails.activity_explain}}" data-id="{{houseDetail.goodsHouseDetails.share_income_explain}}">团购说明 <image src="../../img/icon/right.png"></image> </view>
+    <view class="news"></view> -->
+    <!-- 免责申明 -->
+    <!-- 本站楼盘信息旨在为用户提供更多信息的无偿服务，信息以政府部门登记备案为准。分享活动是由红人发起的推荐客户奖励活动，推荐成交后，推荐人可凭借推荐手机号至项目地址领取推荐奖励，活动最终解释权归活动发起红人所有。 -->
+    <view class="footMain">
+      <view class="noteTitle" style="margin:0;padding:0">免责申明  </view>
+      <view style="margin-top:10px;line-height:23px;" wx:if="{{redShop && redShop != ''}}">本资料中对项目周边环境、交通、学校及商业等其他配套设施的介绍，旨在提供相关信息，不意味着本公司对此作出了承诺。分享活动由红人发起的推荐客户奖励活动，推荐成交后，推荐人可凭借手机号至项目地址领取推荐奖励，活动最终解释权归活动发起红人所有。
+</view>
+<view style="margin-top:10px;line-height:23px;" wx:else>本资料中对项目周边环境、交通、学校及商业等其他配套设施的介绍，旨在提供相关信息，不意味着本公司对此作出了承诺。
+</view>
+    </view>
+    <view class="news"></view>
+    </block>
+    <!-- 底部 calling redShop.mobile?redShop.mobile:houseDetail.shop.mobile chat redShop.member_no?redShop.member_no:goodsShop.merchant_no-->
+    <view class="foot">
+      <view class="list" bindtap="chat" id="{{redShop.member_no?redShop.member_no:goodsShop.merchant_no}}" data-head="{{redShop.shoplogo?redShop.shoplogo:goodsShop.shopImage}}" data-name="{{redShop.shop_name?redShop.shop_name:goodsShop.shop_name}}">
+        <image src="../../img/icon/kefu.png"></image>
+        <view>客服</view>
+      </view>
+      <view class="list" bindtap="cang" id="{{shopId}}">
+        <image src="/img/icon/cang1.png" wx:if="{{houseDetail.flag==0}}"></image>
+        <image src="/img/icon/cang.png" wx:if="{{houseDetail.flag==1}}"></image>
+        <view>收藏</view>
+      </view>
+      <view class="lists" style="line-height:{{houseDetail.share.price?'18':'40'}}px;margin-left:10px">
+      <van-cell title="分享" is-link bindtap="showPopup" style="line-height:{{houseDetail.share.price?'18':'40'}}px">
+    <block wx:if="{{houseDetail.share.price}}">
+      <view style="margin-top:3px;line-height:18px">分享</view>
+    </block>
+      <block wx:else><view>分享</view></block>
+    <view wx:if="{{houseDetail.share.price  && redShop != ''}}" style="font-size:12px;">赚￥{{houseDetail.share.price}}</view>
+    </van-cell>
+      <van-popup
+        show="{{ shows }}"
+        closeable
+        close-icon-position="top-left"
+        position="bottom"
+        custom-style="height: 20%"
+        bindtap="onCloses"
+      >
+       <view class="popup">
+        <view style="margin-top:10px">
+          <image src="/img/icon/firend.png" style="width:90rpx;height:90rpx;margin-left:6px; position: relative">
+          <button class="btn" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+          </button>
+          </image>                        
+          <view class="shareTxt">分享朋友</view>  
+        </view>       
+        <view catchtap="createPoster" style="margin-top:10px">
+          <image src="/img/icon/haibao.png" style="width:90rpx;height:90rpx;margin-left:6px;"></image>
+          <view class="shareTxt">生成海报</view>
+        </view>
+       </view>
+      </van-popup>
+      </view>
+      <view class="lists listss" bindtap="yuYue" id="{{1}}">
+        <view class="share">团购预约</view>
+      </view>
+    </view>
+  </view>
+<!-- 评价 -->
+<view class="show2" wx:if="{{top2}}">
+  <view class="judge">
+    <view class="judgeLeft">
+      <view class="finalNum">{{averageScore?averageScore:0}}</view>
+      <view class="finalTxt">综合评分</view>
+    </view>
+    <view class="judgeContent">
+      <view class="kolJudge judgeLi">
+        <view class="judgeName">红人评价</view>
+        <block wx:for="{{averageRedScore}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+        </block>
+        <block wx:for="{{5-averageRedScore}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+        </block>
+        <view class="kolNum judgeLiNum">{{averageRedScore?averageRedScore:0}}.0</view>
+      </view>
+      <view class="kolJudge judgeLi">
+        <view class="judgeName">商品评价</view>
+        <block wx:for="{{averageSkuScore}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+        </block>
+        <block wx:for="{{5-averageSkuScore}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+        </block>
+        <view class="kolNum judgeLiNum">{{averageSkuScore?averageSkuScore:0}}.0</view>
+      </view>
+
+      <view class="kolJudge judgeLi">
+        <view class="judgeName">优惠评价</view>
+        <block wx:for="{{averageDisCountScores}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+        </block>
+        <block wx:for="{{5-averageDisCountScores}}" wx:key="index" class="stars">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+        </block>
+        <view class="kolNum judgeLiNum">{{averageDisCountScores?averageDisCountScores:0}}.0</view>
+      </view>
+
+    </view>
+  </view>
+<!-- 评论 -->
+<view class="comment">
+  <view class="tabTop">
+    <block wx:for="{{commentTit}}" wx:key="index">
+      <view class="tabs {{currentIndex == index ? 'on' : ''}}" data-index="{{index}}" bindtap="changeTabs" id="{{item.status}}">{{item.commentTop}} {{item.num}}
+      </view>
+    </block>
+  </view>
+  <view class="tabDetail">
+    <view  class="tabDetailBody">
+      <block wx:for="{{goodsCommentList}}" wx:if="{{goodsCommentList.length >0}}" wx:key="key">
+      <view class="commentList" >
+        <view class="avarImg">
+          <image src="{{item.headUrl}}"></image>
+        </view>
+        <view class="commentListBd">
+          <view class="ListTop">
+            <view class="topName">{{item.nick_name}}</view>
+            <view class="topTime">{{item.create_time}}</view>
+          </view>
+          <view class="commentScore">
+            <view class="commentScoreTxt">评分：</view>
+            <block wx:for="{{item.isImage}}" wx:key="index">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+            </block>
+            <block wx:for="{{5-item.isImage}}" wx:key="index">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+            </block>
+          </view>
+          <view class="detailCommentTxt">{{item.comment}}</view>
+          <view class="commentPicList" wx:if="{{item.goodsCommentImageList.length>0}}">
+            <image src="{{item.imageUrl}}" wx:for="{{item.goodsCommentImageList}}" mode="aspectFill" bindtap="clickImg" id="{{item.imageUrl}}" wx:key="key"></image>
+          </view>
+        </view>
+      </view>
+      </block>
+      <block wx:if="{{goodsCommentList.length ==0}}"><view class="wu">暂无评论</view></block>
+    </view>
+        <!-- <view hidden="{{ currentIndex != 1 }}">好评</view>
+        <view hidden="{{ currentIndex != 2 }}">差评</view>
+        <view hidden="{{ currentIndex != 3 }}">有图</view> -->
+    </view>
+   </view>
+  </view>
+</view>
+<!-- 预约报名弹框 -->
+<view class="zz {{display == 1 ?'no':''}}" wx:if="1" catchtouchmove='myCatchTouch'>
+  <view class="zz-box">
+  <view class="boxTop">
+    <view>{{boxType==2?'我要推荐':'我要预约'}}</view>
+    <view style="font-size:18px;margin-top:7px;">{{goodsSkuList.entry_name}}</view>
+  </view>
+  <view class="clos" bindtap="closeZz" data-id="2"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block"></image></view>
+  <!-- 优惠券 -->
+  <scroll-view scroll-y class="scroll-view" style="height:{{houseDetail.goodsCouponList.length==1?'91px':'250px'}}" wx:if="{{boxType==1&&houseDetail.goodsCouponList.length>0}}">
+  <block  wx:for="{{houseDetail.goodsCouponList}}" wx:key="key">
+  <view class="{{juanCurrent==index ?'checked':'list-juan' }}"  bindtap="xuanze" id="{{index}}" data-id="{{item.id}}">
+    <view class="juan-name">{{item.coupon_title}}</view>
+    <view class='juan-time'>有效期限：{{item.coupon_start_time}}--{{item.coupon_end_time}}</view>
+  </view>
+  </block>
+   </scroll-view>
+  <block wx:if="{{boxType==3}}">
+  <view class="checked">
+    <view class="juan-name" style="color:#fff">{{coupon_name}}</view>
+    <view class='juan-time' style="color:#fff">有效期限：{{start_time}}--{{end_time}}</view>
+  </view>
+  </block>
+  <!-- <view class="list" style="margin-top:25px">
+    <view class="left">客户姓名：</view>
+    <input placeholder='请填写真实姓名' bindinput='getnameValue' placeholder-style="font-size:14px;color:#AEAEAE" value="{{nameValue}}"></input>   
+  </view> -->
+  <view class="list" style="margin-top:25px">
+    <view class="left">手机号码：</view>
+    <block wx:if="{{phone ===''}}">
+    <view  style="position: relative;font-size:14px;color:#AEAEAE;">授权手机号
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true"  style="position: absolute;width:100%;height:100%;top:0;left:0;"></button></view>
+    </block>
+    <block wx:else>
+    <input placeholder='请填写11位手机号码' bindinput='getphoneValue' placeholder-style="font-size:14px;color:#AEAEAE" value="{{phone}}"></input></block>   
+  </view>
+
+  <!-- <view class="list">
+    <view class="left">看房时间：</view>
+    <picker mode="date" value="{{userDate}}" start="{{startTime}}" end="2099-12-31" bindchange="bindDateChange">
+      <input class="picker" type="text" name="userDate" value="{{userDate}}"  placeholder="请选择时间" disabled="true" placeholder-style="font-size:14px;color:#AEAEAE"/>
+    </picker>
+  </view> -->
+  <!-- <view class="beizhu">备注</view>
+  <textarea placeholder='{{textStr}}' fixed="true" placeholder-style='font-size:20rpx;'  bindinput='gettextValue' value="{{concent}}"></textarea> -->
+
+    <view class="submit" bindtap='submit'>提交</view>
+  </view>
+</view>
+<!--分享佣金浮窗-->
+<view class="f" wx:if="{{houseDetail.share.price}}">
+  <image src="/img/icon/f.png"></image>
+  <view class="ff"><view>返￥{{houseDetail.share.price}}</view>
+  <view>推荐成交可兑</view></view>
+</view>
+
+

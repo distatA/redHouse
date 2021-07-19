@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-steps": "/dist/steps/index"
+  },
+"navigationBarTitleText": "退款去向"
+}

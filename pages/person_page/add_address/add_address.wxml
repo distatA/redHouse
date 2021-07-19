@@ -1,0 +1,66 @@
+<!--pages/person_page/add_address/add_address.wxml-->
+<view class="edit">
+  <view class="sform">
+    <view class="li">
+      <view class="liTxt">联系人</view>
+      <input type="text" class="name liInput" placeholder="名字" bindinput="nameInput" value="{{name}}"></input>
+      <!-- <image src='/img/icon/icon2_0.png' style="width:25px;height:25px;" bindtap="getTell"></image> -->
+    </view>
+    
+    <view class="li">
+      <view class="liTxt">手机号码</view>
+      <input type="number" class="tell liInput" placeholder="11位手机号码" bindinput="tellInput" value="{{tell}}"></input>
+    </view>
+  <!-- 自己选 -->
+    <view class="li" wx:if="{{types==1}}">
+      <view class="liTxt">选择地区</view>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}" range-key="name">
+        <view class="picker">
+          {{multiArray[0][multiIndex[0]].name}}
+
+          {{multiArray[1].length > 0 ?( multiArray[1][multiIndex[1]].name ):""}}
+
+          {{multiArray[2].length > 0 ?( multiArray[2][multiIndex[2]].name ):""}}
+        </view>
+        <view class="cityArrow"></view>
+      </picker>
+    </view>
+<!-- 微信授权 -->
+<view class="li" wx:if="{{types==0}}" bindtap="getLocation">
+  <view class="liTxt">选择地区</view>
+  <input type="text" class="tell liInput" placeholder="点击获取地址" value="{{place}}" style="width:200px;" disabled="true"></input>
+  <!-- <view >{{place}}</view> -->
+  <image src='/img/icon/diwei.png' style="width:28rpx;height:32rpx"></image>
+</view>
+
+
+    <view class="li">
+      <view class="liTxt">详细地址</view>
+      <input type="text" class="tell liInput" placeholder="如街道、门牌号、小区等"  bindinput="addressInput" value="{{address}}"></input>
+    </view>
+
+  </view>
+
+  <view class="tags">
+    <view class="tagLi">
+      <view class="liTxt">地址标签</view>
+      <view class="allTag">
+        <block  wx:for="{{tag}}" wx:key="tags" wx:for-index="tagid">
+          <view class="thistag {{ tagSelected == tagid ? 'on':'' }}" bindtap="chooseTag" data-tagid="{{tagid}}">{{item.thistag}}</view>
+        </block>
+      </view>
+    </view>
+
+    <view class="tagLi setAddress"  bindtap="changeMoren">
+      <view class="liTxt tagliTxt">设为默认地址</view>
+      <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+    </view>
+  </view>
+
+  <view class="last">
+    <view class="saveBtn" bindtap="saveAddress">保存</view>
+  </view>
+  
+
+</view>
+

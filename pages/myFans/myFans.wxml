@@ -1,0 +1,23 @@
+<!--pages/myFans/myFans.wxml-->
+<view class="list" wx:for="{{fansList}}">
+  <view class="left" bindtap="redHome" id="{{type==1? item.request_id :item.member_no}}">
+    <view class="imgBox">
+      <image src="{{item.headUrl}}"></image>
+      <image src="../../img/icon/hong.png" class="img" wx:if="{{item.redType != 0}}"></image>
+    </view>
+    <view>
+      <view class="nickName">
+        <view>{{item.nickName}}</view> 
+        <image src="/img/icon/vip.png"></image>
+      </view>
+      <view class="place">{{item.city}} | {{item.count}} 粉丝</view>
+    </view>
+  </view>
+  <view class="right" wx:if="{{type==1}}" bindtap="guanZhus" id="{{item.member_no}}" data-flag="{{item.flag}}">
+    <block wx:if="{{item.flag==1}}"><image src="../../img/icon/focus.png"></image></block>
+    <block wx:if="{{item.flag==0}}"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/unfocus.png"></image></block>
+  </view>
+   <view class="right" wx:if="{{type==2}}" bindtap="guanZhu" id="{{item.member_no}}">
+      <image src="../../img/icon/focus.png"></image>
+   </view>
+</view>

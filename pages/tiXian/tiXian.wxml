@@ -1,0 +1,21 @@
+<!--pages/tiXian/tiXian.wxml-->
+<view class="head">
+  <view>提现到:</view>
+  <image src="../../img/icon/weiXin.png"></image>
+  <view>微信</view>
+</view>
+<view class="title">提现金额（元）</view>
+<view class="money">
+  <text>￥</text>
+  <input type="text" value="{{value}}" placeholder="零钱余额剩余{{balance}}" bindinput="getInputValue" placeholder-style="color:#D7D7D7"></input>
+</view>
+
+<view class="foot">
+  <view class="tip">提现说明:</view>
+  <view class="list">1、提现手续费暂免（暂定）</view>
+  <view class="list">2、每天的提现金额不得高于1000元</view>
+  <view class="list">3、提现金额最低1元起，最高200元 </view>
+  <view class="list">4、提现金额将转账到您的微信钱包</view>
+</view>
+<view class="tijiao" bindtap="tijiao">提现</view>
+

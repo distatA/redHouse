@@ -1,0 +1,60 @@
+<!--pages/person_page/order_detail/order_detail.wxml-->
+<view class="confirm">
+<!-- 实体商品展示地址，虚拟商品不展示 -->
+  <block wx:if="{{category_id==2}}">
+    <navigator class="address" url="../../person_page/address/address">
+      <view style="position: relative;">
+      <view class="addressTop">
+        <view class="name">{{thisAddress.name}}</view>
+        <view class="tell">{{thisAddress.mobile}}</view>
+      </view>
+      <view class="detailAddress">{{thisAddress.region}}{{thisAddress.address}}</view>
+      <view class="backArrow" style="top:{{thisAddress.name?'46':'0'}}rpx"></view>
+      </view>
+    </navigator>
+  </block>
+  <!-- 商品信息 -->
+  <view class="goodDetail">
+    <view class="goodUl">
+      <view class="goodLi">
+        <view class="goodPic">
+          <image src="{{thing.image_url}}"></image>
+        </view>
+        <view class="goodTxt">
+          <view class="goodTxtTop">
+            <view class="txtLeft">{{thing.sku_name}}</view>
+            <view class="price">
+              <view class="thisPrice">¥ {{thing.low_price}}</view>
+              <view class="quantity">x {{thing.num}}</view>
+            </view>
+          </view>
+          <view class="guige">{{thing.guige}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+<!-- 订单信息 -->
+  <view class="orderMsg">
+    <view class="orderTop">
+      <view class="orderTopTxt">订单信息</view>
+    </view>
+    <view class="orderBd">
+      <view class="allPrice orderli">
+        <view class="allPriceTxt stxt">商品总价</view>
+        <view class="allPriceNum snum">¥ {{price}}</view>
+      </view>
+      <view class="fastMail orderli">
+        <view class="mailTxt stxt">运费 （快递）</view>
+        <view class="mailPrice snum">¥ {{sendMoney}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="pay">
+    <view class="realTxt">实付金额：</view>
+    <view class="realMoney">¥ {{total_money}}</view>
+    <view class="sendBtn" bindtap="payMoney">立即付款</view>
+  </view>
+</view>
+
+

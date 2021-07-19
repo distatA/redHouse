@@ -1,0 +1,28 @@
+<!--pages/roomVideo/roomVideo.wxml-->
+<!-- <view class="bangdan">
+  <view class="img"><image src="{{head}}" class="blur"></image>
+    <video src="{{video}}" id="houseVideo" bindfullscreenchange="fullscreenchange"  object-fit="cover">
+    </video>
+  </view>
+  <view class="title">{{name}}</view>
+   <view class="roomNew">
+        <view class="head"><image src="{{head}}"></image></view>
+        <view class="nickname {{title.length>20?'nickNames':''}}">{{title}}</view>
+      </view>
+  <view  class="room">
+    <view class="box {{current==index?'active':''}}" wx:for="{{roomList}}" bindtap="roomLive" id="{{item.media_url}}" data-id="{{index}}">
+      {{index+1}}
+    </view>
+  </view>
+
+</view> -->
+<view style="width:{{windowWidth}}px;height:{{windowHeight}}px">
+<video src="{{video}}" id="houseVideo" bindfullscreenchange="fullscreenchange"  object-fit="cover"></video>
+</view>
+<view class="son">
+  <view class="left"><image src="{{head}}"></image></view>
+  <view style="margin-left:10px;">
+    <view class="nickname {{title.length>20?'nickNames':''}}">{{title}}</view>
+    <view class="title">{{name}}</view>
+  </view>
+</view>

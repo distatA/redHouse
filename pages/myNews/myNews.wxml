@@ -1,0 +1,65 @@
+<!--pages/myNews/myNews.wxml-->
+<view class="main">
+<!-- 头像 -->
+  <view class="list" bindtap="uploadImg">
+    <view class="left">头像</view>
+    <image src="{{userHeadUrl?userHeadUrl:headUrl}}"></image>
+  </view>
+  <!-- 昵称 -->
+  <view class="list">
+    <view class="left">昵称</view>
+    <input placeholder='请输入姓名' bindinput='getnameValue' value='{{nickName?nickName:userName}}'></input>
+  </view>
+  <!-- 手机号 -->
+  <view class="list" wx:if="{{phone != ''}}">
+    <view class="left">手机号码</view>
+    <view style="display: flex;align-items: center;">
+      <view style="font-size:14px;color:rgba(154,154,154,1)">{{type==2?phones:phone}}</view>
+      <view style="margin-left:10px;color:#FF7054;border:1px solid #FF7054;padding:3px 5px;font-size:14px" bindtap="phone">更换</view>
+    </view>
+  </view>
+  <!-- 手机号 -->
+  <view class="list" wx:if="{{phone == ''}}" bindtap="phone">
+    <view class="left">手机号码</view>
+    <view style="font-size:14px;font-weight:400;">绑定手机号</view>
+    <!-- <input placeholder='绑定手机号' bindinput='getphoneValue'></input> -->
+  </view>
+  <!-- 性别 -->
+  <view class="list">
+    <view class="left">性别</view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio">
+        <radio value="1" checked="{{sex==1?true:false}}" color="#FF9254">男</radio>
+      </view>
+       <view class="radio">
+        <radio value="2" checked="{{sex==2?true:false}}" color="#FF9254">女</radio>
+      </view>
+    </radio-group>
+  </view>
+<!-- 生日 -->
+  <view class="list">
+    <view class="left">生日</view>
+    <picker mode="date" value="{{userDate}}" start="{{startTime}}" end="2099-12-31" bindchange="bindDateChange">
+				<input class="picker" type="text" name="userDate" value="{{userDate}}"  placeholder="请选择时间" disabled="true"/>
+		</picker>
+  </view>
+  <!-- 个性签名 -->
+  <view class="list">
+    <view class="left">个性签名</view>
+    <input placeholder='请输入个性签名' bindinput='getsignValue' value='{{signature}}' ></input>
+  </view>
+  <!-- 上传店铺展示图 -->
+  <view class="list" bindtap="selectPic" style="border:none;align-items:flex-start" wx:if="{{redType!=0}}">
+    <view class="left">上传店铺展示图</view>
+    <image src="{{img?img:imageUrl}}" style="width:132rpx;height:132rpx;" wx:if="{{imageUrl !=''}}"></image>
+    <image src="{{imageUrl?imageUrl:'/img/icon/img.png'}}" style="width:132rpx;height:132rpx;" wx:else></image>
+  </view>
+<!-- 上传微信二维码 -->
+  <view class="list" bindtap="uploadImgs" style="border:none;align-items:flex-start" wx:if="{{redType!=0}}">
+    <view class="left">上传微信二维码</view>
+    <image src="{{img1?img1:expre12}}" style="width:132rpx;height:132rpx;" wx:if="{{img1}}"></image>
+    <image src="{{expre12?expre12:'/img/icon/img.png'}}" style="width:132rpx;height:132rpx;" wx:else></image>
+  </view>
+  <view class="foot" bindtap="tijiao">保存</view>
+</view>
+

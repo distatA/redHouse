@@ -1,0 +1,51 @@
+/* pages/myNews/myNews.wxss */
+.main{
+  padding:0 20px;
+}
+.list{
+  padding:17px 16px 20px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:1px solid #F2F2F2;
+}
+.left{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(22,22,22,1);
+}
+image{
+  width:80px;
+  height:80px;
+  border-radius: 50%;
+  /* background: #abcdef; */
+}
+input{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+  text-align:right;
+}
+.radio{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+  margin-left:15px;
+}
+radio-group{
+  display: flex;
+}
+.foot{
+  width:100px;
+  height:30px;
+  border-radius: 5px;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  text-align: center;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:30px;
+  margin:0 auto;
+  margin-top:10px;
+  /* padding-bottom:20px; */
+}

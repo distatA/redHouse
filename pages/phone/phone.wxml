@@ -1,0 +1,20 @@
+<!--pages/phone/phone.wxml-->
+<view class="top"><image src="/img/icon/phone2.png"></image></view>
+<view class="title" wx:if="{{phone == ''}}">您还没有绑定手机号码</view>
+<block wx:if="{{phone != ''}}">
+  <view class="title">您的手机号码：{{phone}}</view>
+  <view class="titles">更换手机号码后，该平台所有有关手机号码信息全部更改</view>
+</block>
+
+<view class="list">
+  <view class="left">新手机号码</view>
+  <input placeholder='请输入手机号' bindinput='getphoneValue'></input>
+</view>
+<view class="right" bindtap="getNum" wx:if="{{time==0}}">发送验证码</view>
+<view class="right" wx:if="{{time!=0}}">{{time}}s倒计时</view>
+<view class="list">
+  <view class="left">短信验证码</view>
+  <input placeholder='请输入验证码' bindinput='getcode'></input>
+</view>
+
+<view class="foot" bindtap="sure">确定</view>

@@ -1,0 +1,59 @@
+<!-- tab -->
+<!-- 找回订单 -->
+<view class="findOrder">
+  <view class="findOrder_tips">拼购的订单请手动找回=></view>
+    <view class="findOrder_toPage" bindtap="toFindOrder">
+      <view>找回订单</view>
+       <image class="findOrder_icon" src="../../img/icon/youjiantou.png"  />
+    </view>
+</view>
+  
+<view style="font-family: PingFangSC-Regular, PingFang SC; background: #f9f9f9;">
+  <view class="tab">
+    <view class="tab_item {{item.currentId === current ? 'active' :''}}" wx:for="{{tabArr}}" bind:tap="changeTab"
+      data-currentId="{{item.currentId}}">
+      {{item.name}}
+    </view>
+  </view>
+  <!-- order -->
+  <view class="order" style="padding: 0 20rpx;">
+    <view class="order_item" wx:for="{{list}}" wx:key="index" bindtap="toPage" data-skuid="{{item.skuId}}" data-estimatecommission="{{item.estimateCommission}}" data-price="{{item.price}}"> 
+      <view class="order_tips">
+        <text>我的订单</text>
+        <!-- statusOne---即将到账 statusTwo---已到账 statusThree---无效订单 -->
+        <text class="statusOne" wx:if="{{item.status === 16}}">即将到账</text>
+        <text class="statusTwo" wx:if="{{item.status === 17}}">已到账</text>
+        <text class="statusThree" wx:if="{{item.status !== 15 && item.status !== 16 && item.status !== 17 && item.status !== 18}}">无效订单</text>
+      </view>
+      <view class="order_info">
+        <image class="order_img" src="{{JDimg+item.imgUrl}}" />
+        <view class="order_title">{{item.name}}</view>
+        <view class="order_change">
+          <text>¥{{item.price}}</text>
+          <view style="color: #686868;font-size:24rpx">
+            ×{{item.num}}
+          </view>
+        </view>
+      </view>
+      <view class="order_detail">
+        <view class="order_detail_top">
+          <view class="order_detail_num">
+            订单编号：{{item.orderId}}
+          </view>
+          <view class="order_detail_copy" catchtap="copywxtap" data-content="{{item.orderId}}">
+            复制
+          </view>
+        </view>
+          <text class="order_detail_center" >下单时间：{{item.orderTime}}</text>
+        <view class="order_detail_bottom">
+          约返金额： <text class="order_detail_money">¥{{item.estimateCommission}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-empty
+  class="custom-image"
+  image="https://img.yzcdn.cn/vant/custom-empty-image.png"
+  description="暂无订单" wx:if="{{!list}}"
+/>
+</view>

@@ -1,0 +1,25 @@
+<!--pages/touSu/touSu.wxml-->
+<view class="advice">
+  
+
+  <view class="liuyan">
+    <view class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</view>
+    <textarea bindinput="getValueLength" value="{{editText}}" maxlength="{{max}}" auto-focus class="writeText" placeholder="请填写您的评价/投诉" placeholder-class="textHolder"></textarea>
+  </view>
+  <view class="connect">
+    <input class="connectMsg" placeholder="手机/邮箱/QQ（选填）" bindinput="getNum"></input>
+  </view>
+
+  <view class="send">
+    <view class="sendTxt">上传图片（最多三张）</view>
+
+    <view class="sendImgs">
+      <image src="{{imgList?imgList:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg"></image>
+    <image src="{{imgList2?imgList2:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg2"></image>
+    <image src="{{imgList3?imgList3:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg3"></image>
+    </view>
+    <view class="lastSendBtn" bindtap="tijiao">提交</view>
+  </view>
+
+  
+</view>

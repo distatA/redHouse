@@ -1,0 +1,42 @@
+/* pages/cart/cart_detail/cart_detail.wxss */
+.confirm{background: #fafafa;}
+.address{padding: 40rpx;background: #fff;margin-bottom: 16rpx;}
+.addressTop{display: flex;align-items: baseline;}
+.name{font-size: 32rpx;}
+.tell{font-size: 24rpx;color: rgb(154, 154, 154);margin-left: 24rpx;}
+.detailAddress{margin-top: 20rpx;font-size: 26rpx;color: rgb(102, 102, 102);}
+
+.goodDetail{background: #fff;margin-bottom: 16rpx;}
+.goodTop{padding: 16rpx 40rpx;display: flex;align-items: center;}
+.headImg image{width: 52rpx;height: 52rpx;}
+.headName{font-size: 28rpx;color: rgb(113, 113, 113);margin-left: 16rpx;}
+.lv image{width: 24rpx;height: 20rpx;position: relative;top: -20rpx;}
+.arrow{width: 10rpx;height: 10rpx;border-bottom: 3rpx solid #9f9f9f;border-left: 3rpx solid #9f9f9f;transform: rotate(-135deg);margin-left:10px;}
+
+.goodUl{margin: 0 20rpx;padding: 20rpx 0;border-top: 2rpx solid #fafafa;}
+.goodLi{padding: 0 20rpx;display: flex;}
+.goodPic image{width: 160rpx;height: 160rpx;}
+.goodTxt{margin-left: 20rpx;width: 480rpx;padding-top: 10rpx;}
+.txtLeft{
+  font-size: 24rpx;color: rgb(113, 113, 113);width: 340rpx;
+  display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+}
+.goodTxtTop{display: flex;justify-content: space-between;}
+.price{text-align: right;}
+.thisPrice{font-size: 24rpx;}
+.quantity{font-size: 24rpx;color: rgb(159, 159, 159);}
+.guige{margin-top: 26rpx;font-size: 24rpx;color: rgb(191, 191, 191);}
+
+.orderMsg{padding: 24rpx 20rpx;background: #fff;margin-bottom: 120rpx;}
+.orderTopTxt{font-size: 28rpx;color: rgb(113, 113, 113);padding-left: 16rpx;border-left: 4rpx solid #ff6153;}
+.orderTop{padding-bottom: 20rpx;border-bottom: 2rpx solid #fafafa;}
+.orderBd{padding: 0 20rpx;margin-top: 14rpx;}
+.orderli{display: flex;justify-content: space-between;font-size: 24rpx;color: rgb(113, 113, 113);margin-bottom: 20rpx;}
+
+.pay{position: fixed;width: 750rpx;height: 100rpx;bottom: 0;left: 0;right: 0;display: flex;align-items: center;background: #fff;}
+.realTxt{margin-left: 270rpx;font-size: 24rpx; color: #717171;}
+.realMoney{font-size: 32rpx;color: #FF5053;width: 170rpx;}
+.sendBtn{font-size: 24rpx;width: 150rpx;height: 50rpx;line-height: 50rpx;text-align: center;border: 2rpx solid #ff6c6e;border-radius: 50rpx;color: #ff6c6e;}

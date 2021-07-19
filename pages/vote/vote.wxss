@@ -1,0 +1,79 @@
+/* pages/vote/vote.wxss */
+page{
+  background: #F2F2F2;
+}
+.list{
+  padding:10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FFF;
+  margin-bottom:3px;
+}
+.list input{
+  text-align: right;
+}
+.list .left{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(22,22,22,1);
+}
+.left image{
+  width:140px;
+  height:140px;
+}
+.left input{
+  text-align: left;
+}
+.tab{
+  display: flex;
+  height: 80rpx;
+  font-size:14px;
+  line-height: 70rpx;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:11px;
+  background: #FFF;
+  margin-bottom:3px;
+}
+.tab-item{
+ display: inline-block;
+ width: 50%;
+ text-align: center;
+}
+.tab-item text{font-size: 16px;color: #777777;display: inline-block;box-sizing: border-box;}
+.tab-item.active text{color: #FF7054;border-bottom: 2px solid #FF7054;font-weight: 550}
+.add{
+  text-align: center;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(255,112,84,1);
+  width:100%;
+}
+.radio{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+  margin-left:15px;
+}
+radio-group{
+  display: flex;
+}
+.foot{
+  width:200rpx;
+  height:60rpx;
+  margin:140rpx auto;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius:10rpx;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background: linear-gradient(to right,#FF9254,#FF5053);
+}

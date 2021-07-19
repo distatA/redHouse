@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-area": "/dist/area/index"
+  },
+  "navigationBarTitleText": "个人认证"
+}

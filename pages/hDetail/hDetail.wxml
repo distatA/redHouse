@@ -1,0 +1,152 @@
+<!--pages/hDetail/hDetail.wxml-->
+<van-popup show="{{ show }}" >
+  <view class="main">
+    <view class="boxTop">
+      <view>核销</view>
+    </view>
+    <view class="clos" bindtap="onClose"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block"></image></view>
+    <!-- <view class="code">预约编号：{{houseCode.subCode}}</view> -->
+    <view class="code">向商家出示核销码</view>
+     <view  style="width:200px;height:150px;margin:0 auto; background:url({{codeImg}}) center/100%;background-repeat:no-repeat;" bindtap="brechen"></view>
+    <!-- <image src="/img/icon/juan.png"></image> -->
+    <view class="num">{{houseCode.hxCode}}</view>
+    <view class="title">项目名称：{{houseCode.entry_name}}</view>
+    <view class="title" wx:if="{{houseCode.write_off_start_time}}">有效时间：{{startTime}} 到 {{endTime}}</view>
+    <view class="title">项目地址:{{houseCode.address_supplement}}</view>
+  </view>
+</van-popup>
+<!-- 头部 -->
+<view class="head">
+  <view class="left">
+    <view class="status">
+      <block wx:if="{{detail.status==10}}">待核销</block> 
+      <block wx:if="{{detail.status==20}}">已核销</block>
+      <block wx:if="{{detail.status==30}}">预约关闭</block>
+      <block wx:if="{{detail.status==40}}">待评论</block>
+      <block wx:if="{{detail.status==50}}">投诉</block>
+    </view>
+    <view class="time" wx:if="{{detail.status==10&&goodsCoupon.coupon_off_end_time}}">有效期至：{{goodsCoupon.coupon_off_end_time}}</view>
+  </view>
+  <view class="right"><image src="/img/icon/yue.png"></image></view>
+</view>
+<!-- 房产 -->
+<view class="list">
+  <!-- 商家信息 -->
+  <view class="top" bindtap="shopHome" id="{{detail.merchant_no}}">
+    <view class="left">
+      <view class="headUrl"><image src="{{detail.shopImage}}"></image></view>
+      <view style="margin-left:10px;">
+        <view class="shopName">{{detail.shopName}} <text>></text></view>
+      </view>
+    </view>
+  </view>
+  <!-- 房产信息 -->
+  <view class="bottom" bindtap="hDetail" id="{{detail.spu_no}}" data-goods_name="{{detail.entryName}}">
+    <view class="houseImg"><image src="{{detail.imageUrl}}"></image></view>
+    <view class="deteil">
+      <view class="huoseName">{{detail.entryName}}</view>
+      <view class="houhui">
+        <view>{{detail.couponName}}</view>
+        <view style="color:#6ED400" catchtap="showPopup" wx:if="{{detail.member_no==member_no_me}}">核销</view> 
+      </view>
+      <view class="place">{{detail.address}}</view>
+    </view>
+  </view>
+</view>
+<!-- 预约信息 -->
+<view class="list">
+  <view class="title"><view>预约信息</view>
+    <view style="color:#F32A3A" bindtap="close" wx:if="{{detail.member_no==member_no_me}}">取消预约</view>
+  </view>
+  <view style="width:100%;height:1px;background:#F5F5F5;margin-top:9px"></view>
+  <!-- <view class="li" style="margin-left:17px"> 姓  名 ：<view style="margin-left:15px">{{detail.name}}</view></view> -->
+  <view class="li" style="padding-top:10px">手机号码：<view style="margin-left:15px">{{detail.mobile}}</view></view>
+  <!-- <view class="li">看房时间：<view style="margin-left:15px">{{detail.look_time}}</view></view> -->
+  <!-- <view class="li" style="margin-left:20px">备 注：<view style="margin-left:15px">{{detail.remark}}</view></view> -->
+</view>
+<!-- 推荐奖励 -->
+<view class="list" style="padding-right:0" wx:if="{{detail.price || goodsCoupon.coupon_title}}">
+  <block wx:if="{{detail.recom_member_no&&detail.price}}">
+    <view class="title"><view>推荐奖励</view>
+      <view class="money" wx:if="{{detail.price}}">{{detail.price}}元</view>
+    </view>
+    <view style="width:100%;height:1px;background:#F5F5F5;margin-top:9px"></view>
+    <view class="tip">{{detail.remark}}</view>
+  </block>
+  <block wx:if="{{goodsCoupon.coupon_title}}">
+    <view class="title">
+      <view>领取优惠</view>
+      <view wx:if="{{detail.member_no==member_no_me&&detail.transCount&&detail.transCount==1}}" style="color:#6F6F6F">已转让</view>
+      <view style="display:flex;align-items: center;" bindtap="zhuan" wx:else>
+        <image src="/img/icon/zhuan.png" style="width:20px;height:20px;"></image>
+        <view style="color:#6ED400;margin-left:7px;font-size: 14px;">转让好友</view>
+      </view>
+    </view>
+    <view class="juan" bindtap="shuoming" id="{{goodsCoupon.preferential_explanation}}">
+      <view class="juan-name">{{goodsCoupon.coupon_title}}</view>
+      <view class="juan-time">有效期限：{{start_time}}--{{end_time}}</view>
+    </view>
+  </block>
+</view>
+<!-- 预约详情 -->
+<view class="list">
+  <view class="title"><view>预约详情</view></view>
+  <view style="width:100%;height:1px;background:#F5F5F5;margin-top:9px"></view>
+  <view class="li" wx:if="{{detail.item_member_name}}">项目联系人：<view style="margin-left:15px">{{detail.item_member_name}}</view></view>
+  <view class="li">联 系 电 话：<view style="margin-left:15px">{{detail.item_member_no?detail.item_member_mobile:detail.project_mobile}}</view>
+  <image src="/img/icon/phone1.png" style="width:32rpx;height:36rpx;margin-left:40px" bindtap="calling"></image></view>
+  <!-- <view class="li">看 房 时 间：<view style="margin-left:15px">{{detail.look_time}}</view></view> -->
+  <view class="li" wx:if="{{detail.recom_member_name}}" style="margin-left:11px">推  荐  人  ：
+    <view style="margin-left:15px">
+      <image src="{{detail.recom_member_headUrl}}" style="width:20px;height:20px;border-radius:50%;"></image>
+    </view>
+    <view style="margin-left:7px">{{detail.recom_member_name}}</view><view style="margin-left:10px">{{detail.recom_member_mobile}}</view>
+  </view>
+  <view class="li">项 目 地 址：<view style="margin-left:15px;width:190px">{{detail.address_supplement}}</view></view>
+  <view class="li">预 约 编 号：<view style="margin-left:15px">{{detail.code}}</view></view>
+  <view class="li">预 约 时 间：<view style="margin-left:15px">{{detail.create_time}}</view></view>
+</view>
+<!-- 投诉 -->
+<view class="list" wx:if="{{tousu.length > 0}}">
+  <view class="title"><view>投诉</view></view>
+  <view style="width:100%;height:1px;background:#F5F5F5;margin-top:9px"></view>
+  <view class="news" wx:for="{{tousu}}">
+    <view class="headImg"><image src="{{headUrl}}"></image></view>
+    <view class="right">
+      <view class="name"><view>{{nickName}}</view><view>{{item.create_time}}</view></view>
+      <view class="contain">{{item.remark}}</view>
+      <view class="imgs">
+        <image src="{{item}}" wx:for="{{item.imageUrl}}"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 评论 投诉 -->
+<view class="foot">
+  <view class="pingjia" bindtap="conment" >评价</view>
+  <view class="tousu" bindtap="touSu" id="2">投诉</view>
+</view>
+<!-- 预约报名弹框 -->
+<view class="zz {{display == 1 ?'no':''}}" wx:if="1" catchtouchmove='myCatchTouch'>
+  <view class="zz-box" >
+  <view class="boxTop">
+    <view>转让好友</view>
+    <view style="font-size:18px;margin-top:7px;">{{detail.shopName}}</view>
+  </view>
+  <view class="clos" bindtap="closeZz" data-id="2"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block"></image></view>
+  <!-- 优惠券 -->
+  <block > 
+  <view class="checked">
+    <view class="juan-name" style="padding-left:48px;padding-right:0">{{goodsCoupon.coupon_title}}</view>
+      <view class="juan-time" style="padding-left:48px;padding-right:0">有效期限：{{start_time}}--{{end_time}}</view>
+  </view>
+  </block>
+ 
+  <view class="lists">
+    <view class="left">手机号码：</view>
+    <input placeholder='请填写11位手机号码' bindinput='getphoneValue' placeholder-style="font-size:14px;color:#AEAEAE" value="{{phone}}"></input>  
+  </view>
+
+    <view class="submit" bindtap='submit'>提交</view>
+  </view>
+</view>

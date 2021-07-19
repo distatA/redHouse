@@ -1,0 +1,17 @@
+<!--pages/live/live.wxml-->
+<live-player
+    autoplay
+    wx:if="{{item.playUrl}}"
+    id="{{item.streamID}}"
+    mode="RTC"
+    object-fit="fillCrop"
+    min-cache="0.1"
+    max-cache="0.3"
+    src="{{item.playUrl}}"
+    debug="{{pushConfig.showLog}}"
+    bindstatechange="onPlayStateChange"
+    bindnetstatus="onPlayNetStateChange"
+    binderror="error">
+    <cover-view class='character' style='padding: 0 5px;'>{{item.streamID}}</cover-view>
+</live-player>
+

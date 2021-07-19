@@ -1,0 +1,34 @@
+<!--pages/backNews/backNews.wxml-->
+<view class="list">
+  <view class="left">物流公司：</view>
+   <picker bindchange="bindPickerChange" value="{{index}}"  range="{{arr}}">
+    <view class="picker" >
+      {{arr[index]}}<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;</text> >
+    </view>
+   </picker>
+</view>
+<view class="list">
+  <view class="left">物流单号</view>
+  <input placeholder="请输入物流单号" bindinput='getNumber'></input>
+</view>
+<view class="list">
+  <view class="left">手机号码</view>
+  <input placeholder="请填写手机号" bindinput='getPhone'></input>
+</view>
+<view class="list">
+  <view class="left">备注信息</view>
+  <input placeholder="最多可填写100字" bindinput='getNews'></input>
+</view>
+<view class="list">
+  <view class="left">上传图片</view>
+  <view>最多可上传3张图片</view>
+</view>
+<view class="list">
+      <image src="{{imgList?imgList:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg"></image>
+    <image src="{{imgList2?imgList2:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg2"></image>
+    <image src="{{imgList3?imgList3:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg3"></image>
+
+</view>
+
+<!-- 提交 -->
+<view class="lastSendBtn" bindtap="tijiao">提交</view>

@@ -1,0 +1,177 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/login/login",
+    "pages/redHome/redHome",
+    "pages/personal/personal",
+    "pages/search/search",
+    "pages/person_page/certificate/certificate",
+    "pages/myNote/myNote",
+    "pages/company/company",
+    "pages/myNote_detail/myNote_detail",
+    "pages/person_page/orders/orders",
+    "pages/cityList/cityList",
+    "pages/redRanking/redRanking",
+    "pages/comment/comment",
+    "pages/goodsComment/goodsComment",
+    "pages/newsNote/newsNote",
+    "pages/post/post",
+    "pages/vote/vote",
+    "pages/myAddress/myAddress",
+    "pages/live/live",
+    "pages/user/user",
+    "pages/heXiao/heXiao",
+    "pages/news/news",
+    "pages/fans/fans",
+    "pages/huose/huose",
+    "pages/huoseKill/huoseKill",
+    "pages/moreHouse/moreHouse",
+    "pages/hOrder/hOrder",
+    "pages/hDetail/hDetail",
+    "pages/touSu/touSu",
+    "pages/hSeen/hSeen",
+    "pages/myWindow/myWindow",
+    "pages/myDow/myDow",
+    "pages/myShop/myShop",
+    "pages/myEdit/myEdit",
+    "pages/chat/chat",
+    "pages/system/system",
+    "pages/project/project",
+    "pages/huoseOrder/huoseOrder",
+    "pages/shuoMing/shuoMing",
+    "pages/shenMing/shenMing",
+    "pages/youHui/youHui",
+    "pages/linkGoods/linkGoods",
+    "pages/home_page/good_detail/good_detail",
+    "pages/submitOrder/submitOrder",
+    "pages/cart/cart",
+    "pages/guanFred/guanFred",
+    "pages/pageH/pageH",
+    "pages/myArea/myArea",
+    "pages/myFans/myFans",
+    "pages/wuLiu/wuLiu",
+    "pages/paySucceed/paySucceed",
+    "pages/cart/cart_detail/cart_detail",
+    "pages/sales/sales",
+    "pages/tiMing/tiMing",
+    "pages/about/about",
+    "pages/actieve/actieve",
+    "pages/moreHuose/moreHuose",
+    "pages/tiXian/tiXian",
+    "pages/order_page/wait_pay/wait_pay",
+    "pages/person_page/order_detail/order_detail",
+    "pages/person_page/address/address",
+    "pages/collect/collect",
+    "pages/myNews/myNews",
+    "pages/applyOrder/applyOrder",
+    "pages/applyOrderDetail/applyOrderDetail",
+    "pages/backOrderStatus/backOrderStatus",
+    "pages/backOrder/backOrder",
+    "pages/backMoney/backMoney",
+    "pages/backNews/backNews",
+    "pages/backSubmit/backSubmit",
+    "pages/payment/payment",
+    "pages/home_page/good_group/good_group",
+    "pages/shopHome/shopHome",
+    "pages/mingXi/mingXi",
+    "pages/zhangDan/zhangDan",
+    "pages/phone/phone",
+    "pages/person_page/paypage/paypage",
+    "pages/person_page/balance/balance",
+    "pages/person_page/advice/advice",
+    "pages/person_page/mymsg/mymsg",
+    "pages/person_page/update_address/update_address",
+    "pages/index/index",
+    "pages/person_page/help/help",
+    "pages/kol/kol",
+    "pages/dashang/dashang",
+    "pages/logs/logs",
+    "pages/roomLists/roomLists",
+    "pages/myLive/myLive",
+    "pages/myLiveList/myLiveList",
+    "pages/banCard/banCard",
+    "pages/myCard/myCard",
+    "pages/cardDetail/cardDetail",
+    "pages/cardorder/cardorder",
+    "pages/roomVideo/roomVideo",
+    "pages/person_page/wenda/wenda"
+  ],
+  "navigateToMiniProgramAppIdList": [
+    "wx787c7dbe01af57c6"
+  ],
+  "subpackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "room/room",
+        "JDdetail/index",
+        "JDorder/index",
+        "JDfind/index",
+        "backMoney/index"
+      ],
+      "plugins": {
+        "live-player-plugin": {
+          "version": "1.2.5",
+          "provider": "wx2b03c6e691cd7370"
+        }
+      }
+    },
+    {
+      "root": "packageB",
+      "pages": [
+        "arIndex/arIndex"
+      ],
+      "plugins": {
+        "cloudar": {
+          "version": "1.5.1",
+          "provider": "wx3bbab3920eabccb2"
+        }
+      }
+    }
+  ],
+  "debug": false,
+  "permission": {
+    "scope.userLocation": {
+      "desc": "小程序需要获取你的位置"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF7054",
+    "navigationBarTitleText": "第一房",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#FF7054",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "color": "#808080",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "/img/icon/icon1_0.png",
+        "selectedIconPath": "/img/icon/icon1_1.png"
+      },
+      {
+        "pagePath": "pages/kol/kol",
+        "text": "新闻",
+        "iconPath": "/img/icon/icon2_0.png",
+        "selectedIconPath": "/img/icon/icon2_1.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "消息",
+        "iconPath": "/img/icon/icon4_0.png",
+        "selectedIconPath": "/img/icon/icon4_1.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "我的",
+        "iconPath": "/img/icon/icon3_0.png",
+        "selectedIconPath": "/img/icon/icon3_1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

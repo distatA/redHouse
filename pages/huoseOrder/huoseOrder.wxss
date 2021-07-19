@@ -1,0 +1,26 @@
+/* pages/huoseOrder/huoseOrder.wxss */
+.topSearch{background: #fff;padding: 25rpx 40rpx;}
+.search{width: 570rpx;height: 54rpx;line-height: 54rpx;background: #f2f2f2;border-radius: 54rpx;padding-left: 100rpx;position: relative;}
+.search .topInput{font-size: 30rpx;}
+.searchPic{position: absolute;left: 40rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+/* 菜单 */
+.tab{
+  display: flex;
+  padding: 20rpx;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+}
+.tab-item{
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgb(191, 191, 191);
+}
+.tab-item text{display: inline-block;padding-bottom: 10rpx;}
+.tab-item.active{color: #ff6653;}
+.tab-item.active text{border-bottom: 4rpx solid #ff6653;}

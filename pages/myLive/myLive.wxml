@@ -1,0 +1,81 @@
+<!--pages/myLive/myLive.wxml-->
+<view class="list">
+  <view class="title">直播标题</view>
+  <input placeholder="请输入直播标题" bindinput="bindIuput" maxlength='17' placeholder-class="text-pl">
+    <view class="num">{{num}}/17</view>
+  </input>
+</view>
+<view class="list">
+  <view class="title">开播时间</view>
+  <view style="display:flex;align-items: center;">
+   <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <input value='{{time}}' placeholder='直播开始时间' style="width:155px" disabled='disabled'/>
+  </picker>
+  <view style="color:#565656;font-size:14px;display:inline-block;margin:10px 5px 0 5px;">至</view>
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange2" bindcolumnchange="bindMultiPickerColumnChange2" value="{{multiIndex}}" range="{{multiArray}}">
+    <input value='{{time2}}' placeholder='直播结束时间' style="width:155px" disabled='disabled'/>
+  </picker>
+  </view>
+  <view class='tip'>开播时间段仅供参考，以实际开播或结束时间为准。直播间在开始时间前也可以开播，并且到结束时间不会强制结束。若到结束时间仍未开播，则直播间无法再开播。</view>
+</view>
+<view class="list">
+  <view class="title">主播昵称</view>
+  <input placeholder="请输入主播昵称" bindinput="bindIuput2" maxlength='15' placeholder-class="text-pl">
+    <view class="num">{{num2}}/15</view>
+  </input>
+</view>
+<view class="list">
+  <view class="title">主播微信账号</view>
+  <input placeholder="请输入主播微信账号"  placeholder-class="text-pl" bindinput="bindIuput3"></input>
+  <view class="tip">仅用做主播开播身份核实，不会再展示给观众，每个直播间可绑定一个。</view>
+</view>
+<view class="list" style="display: flex;justify-content: space-between">
+  <view class="title">允许评论</view>
+  <radio-group class="radio-group" bindchange="radioChange">
+    <view class="radio">
+      <radio value="1" checked="{{isComment==1?true:false}}" color="#FF9254">是</radio>
+    </view>
+      <view class="radio" style="margin:0 15px 0 20px;">
+      <radio value="2" checked="{{isComment==2?true:false}}" color="#FF9254">否</radio>
+    </view>
+  </radio-group>
+</view>
+<view class="list">
+  <view class="title">分享卡片封面</view>
+  <view style="display:flex;justify-content: space-between">
+    <view class="left">建议尺寸：800像素*640像素图片大小不得超过1M</view>
+    <view class="right" bindtap="selectPic1"><image src="{{img1?img1:'/img/icon/img.png'}}" style="width:{{img1?'155':'66'}}px;height:{{img1?'80':'66'}}px"></image></view>
+  </view>
+</view>
+<view class="list">
+  <view class="title">直播间封面</view>
+  <view style="display:flex;justify-content: space-between">
+    <view class="left">建议尺寸：1080像素*1920像素图片大小不得超过2M</view>
+    <view class="right" bindtap="selectPic2"><image src="{{img2?img2:'/img/icon/img.png'}}" style="width:{{img2?'155':'66'}}px;height:{{img2?'80':'66'}}px"></image></view>
+  </view>
+</view>
+<!-- <view class="list" bindtap="guanLian">
+  <view style="display:flex;justify-content: space-between;justify-content: baseline">
+    <view class="left">
+      <image src="/img/icon/lian.png" style="width:25px;height:25px;margin-right:10px;"></image>
+      <view>关联商品</view>
+    </view>
+    <view class="go">去关联</view>
+  </view>
+  <view class="tips">若无商品关联可直接发布</view>
+</view> -->
+<!-- 商品 -->
+<view class="shop" wx:if="{{goods_name}}">
+  <view class="left">
+    <view style="width:80px;height:80px"><image src="{{spu_image}}"></image></view>
+    <view class="top">
+      <view class="shop-name">{{goods_name}}</view>
+      <block wx:if="{{category_choice==1}}"><view class="price">{{price}}元/㎡</view></block>
+      <block wx:else><view class="price">¥{{low_price}} <text>¥ {{first_price}}</text></view></block>
+    </view>
+  </view>
+  <view class="right"  bindtap="changeMoren" id="{{spu_no}}">
+      <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+  </view>
+</view>
+<view class="sub" bindtap="submit">创建直播间</view>

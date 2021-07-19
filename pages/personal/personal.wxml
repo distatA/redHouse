@@ -1,0 +1,269 @@
+<!--pages/person/personal.wxml-->
+<view style="background:#{{currentTab==1?'f2f2f2':'fff'}};padding:{{currentTab==1?'0':'20px'}} 0">
+<block wx:if="{{currentTab==1}}">
+  <view class="personalTop">
+    <!-- 是否登陆 -->
+    <block wx:if='{{getUserInfoFail}}'>
+    <view class="infomation" bindtap="user">
+      <view style="display:flex;">
+        <view class="avarImg">
+          <image src="/img/icon/log.png"></image>
+        </view>
+        <view class="infoTxt">
+          <view class="txtTop">
+            <view class="nickName">点击登录</view>
+          </view>
+          <view class="beizhu">
+            <view class="tag">HI！欢迎您的到来</view>
+          </view>
+        </view> 
+        </view>   
+      </view>
+    </block>
+    <block wx:else>
+      <view class="infomation" >
+      <view style="display:flex;width:85%;" bindtap="myNews">
+        <view class="avarImg">
+          <image src="{{myHeadUrl}}"></image>
+        </view>
+        <view class="infoTxt">
+          <view class="txtTop">
+            <view class="nickName">{{nickName?nickName:realName}}</view>
+            <image src="/img/icon/v1.png" wx:if="{{redType==1||redType==2}}"></image>
+          </view>
+          <view class="beizhu">
+            <view style="width:15px;height:15px;"><image src="/img/icon/h.png" style="width:15px;height:15px;"></image></view>
+            <!-- <block><image src="/img/icon/qiYe.png" style="width:10px"></image></block> -->
+            <view class="tags" wx:if="{{sign && sign != ''}}">{{sign}}</view>
+            <view class="tags" wx:else>
+              <image src="/img/icon/meEdit.png" style="width:13px;height:13px"></image>
+              <view style="margin-left:8px;">编辑个性签名</view>
+            </view>
+          </view>
+        </view> 
+        </view>
+        <view bindtap="redShop" style="width:15%;height:70px;line-height:70px;text-align:right"><image src="/img/icon/rights.png" style="width:20rpx;height:34rpx;"></image></view>    
+      </view>
+    </block>
+  </view>
+  <view class="personalPage">
+  <view class="mine">
+    <view class="mineList funs" bindtap="toFans">
+      <view class="funNum mineNum">{{fanCount>1000 ? fanCount/1000 + '万':fanCount}}</view>
+      <view class="sname">我的粉丝</view>
+    </view>
+    <view>|</view>
+    <view class="mineList focus" bindtap="toMyFocus">
+      <view class="focusNum mineNum">{{followCount}}</view>
+      <view class="sname">我的关注</view>
+    </view>
+    <view>|</view>
+    <view class="mineList notes" bindtap="toMyNote">
+      <view class="notesNum mineNum">{{noteCount}}</view>
+      <view class="sname">我的社区</view>
+    </view>
+  </view>
+  <!-- 会员返利 -->
+  <view class="vipBox">
+    <view class="vipinfo">
+      <text class="vipinfo_title">会员返利更高</text>
+      <text class="vipinfo_date" wx:if="{{vipTime}}">会员有效期至  {{vipTime}}</text>
+    </view>
+    <view class="vipPK">
+      <view class="vipPKleft">
+        <text style="margin-left:-90rpx;">会员购买返现相比</text>
+        <text>普通用户多25%</text>
+      </view>
+      VS
+      <view class="vipPKright">
+        <text style="margin-left:15rpx">普通用户返现</text>
+      </view>
+    </view>
+    <view class="vipInvite">
+      <view class="vipInvite_tips">
+        再邀请<text class="vipInvite_num">{{peopleSize}}</text>位好友，延长一年会员</view>
+       <button class="vipInvite_toInvite"  open-type="share">去邀请好友</button>
+    </view>
+    <!-- 数组 -->
+    <view class="people" >
+      <view class="browseImgItem">
+          <!-- 1 -->
+          <view class="browseImgView">
+            <image src="{{list[0].headUrl ?list[0].headUrl : vipBg}}" class="browseImg" />
+          </view>
+          <view class="browseImgView">
+            <image src="{{list[1].headUrl ?list[1].headUrl : vipBg}}" class="browseImg" />
+          </view>
+          <view class="browseImgView">
+            <image src="{{list[2].headUrl ?list[2].headUrl : vipBg}}" class="browseImg" />
+          </view>
+          <view class="browseImgView">
+            <image src="{{list[3].headUrl ?list[3].headUrl : vipBg}}" class="browseImg" />
+          </view>
+          <view class="browseImgView">
+            <image src="{{list[4].headUrl ?list[4].headUrl : vipBg}}" class="browseImg" />
+          </view>
+      </view>
+    </view>
+  </view>
+<!-- 黑卡 -->
+<view class="card" wx:if="{{bnrUrl.length>0}}">
+  <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true' indicator-color='#c1c1c1' indicator-active-color = '#ff6666'  bindtap='banCard'>
+    <block wx:for="{{bnrUrl}}" wx:for-index="index" wx:key="key">
+      <swiper-item>
+        <image src='{{item.imgUrl}}' class='u-img-slide' mode='aspectFill' ></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="myCard" catchtap="myCard">我的黑卡</view>
+</view>
+  <view class="about">
+    <view class="aboutUl">
+      <view class="aboutLi" bindtap="order" style="margin-bottom: 30rpx;">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/dingdan.png"></image>
+        <view class="aboutName" style="margin-top:23rpx;">商品订单</view>
+      </view>
+  
+      <!-- <view class="aboutLi" bindtap="sales" style="margin-bottom: 30rpx;">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/shop.png"></image>
+        <view class="aboutName">分销订单</view>
+      </view> -->
+      <view class="aboutLi" bindtap="collect" style="margin-bottom: 30rpx;">
+        <image src="/img/icon/cang2.png"></image>
+        <view class="aboutName">我的收藏</view>
+      </view>
+      <view class="aboutLi" bindtap="balance" style="margin-bottom: 30rpx;">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/money.png"></image>
+        <view class="aboutName" style="margin-top:25rpx;">账户余额</view>
+      </view>
+      <view class="aboutLi" bindtap="certificate" style="margin-bottom:10px;">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/identificate.png"></image>
+        <view class="aboutName" >红人认证</view>
+      </view>
+      <view class="aboutLi" bindtap="address">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/address.png"></image>
+        <view class="aboutName">地址管理</view>
+      </view>
+<!-- https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/message.png -->
+      <view class="aboutLi" bindtap="mymsg">
+        <image src="/img/icon/yuYue.png" style="width:48rpx;height:50rpx;"></image>
+        <view class="aboutName" style="margin-top:5px">项目预约</view>
+      </view>
+      <!-- <view class="aboutLi" bindtap="cart">
+        <image src="../../img/icon/cart.png"></image>
+        <view class="aboutName" style="margin-top:16rpx;">购物车</view>
+      </view> -->
+    </view>
+  </view>
+  <view class="other">
+    <view class="otherList" wx:if="{{redType && redType!=0}}">
+      <view class="listNav" bindtap="myWindow">
+        <view class="oImg">
+          <image src="/img/icon/window.png"></image>
+        </view>
+        <view class="oInfo">我的橱窗</view>
+      </view>
+    </view>
+    <!-- <view class="otherList">
+      <navigator class="listNav">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/coin.png"></image>
+        </view>
+        <view class="oInfo">好物币</view>
+        <view class="oMoney">26738</view>
+        <view class="makeMoney">赚币</view>
+      </navigator>
+    </view>
+
+    <view class="otherList">
+      <navigator class="listNav">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/fl.png"></image>
+        </view>
+        <view class="oInfo">福利兑换</view>
+      </navigator>
+    </view>
+
+    <view class="otherList">
+      <navigator class="listNav">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/jp.png"></image>
+        </view>
+        <view class="oInfo">我的奖品</view>
+      </navigator>
+    </view> -->
+    <view class="otherList" >
+    <!-- <block wx:if="{{phone==''}}">
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true"  style="position: absolute;width:100%;height:100%;top:0;left:0;"></button>
+    </block> -->
+    <!-- <block wx:if="{{phone && phone!=''}}"> -->
+      <view class="listNav" bindtap="jump">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/zf.png"></image>
+        </view>
+        <view class="oInfo">支付设置</view>
+      </view>
+    <!-- </block> -->
+    </view>
+
+    <view class="otherList">
+      <navigator class="listNav" url="../person_page/help/help">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help.png"></image>
+        </view>
+        <view class="oInfo">客服与帮助</view>
+      </navigator>
+    </view>
+  <!--  暂时注释掉反馈意见
+     <view class="otherList">
+      <view class="listNav" bindtap="advice">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice.png"></image>
+        </view>
+        <view class="oInfo">意见与反馈</view>
+      </view>
+    </view> -->
+
+    <view class="otherList">
+      <navigator class="listNav" url="/pages/about/about">
+        <view class="oImg">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/us.png"></image>
+        </view>
+        <view class="oInfo">关于我们</view>
+      </navigator>
+    </view>
+  </view>
+</view>
+</block>
+<!-- 授权手机号码 -->
+<block wx:if="{{currentTab==2}}">
+  <view style="margin:70px auto;width:580rpx;height:478rpx">
+    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-04-02/0b2d150685114a27891c9da506530cbd-tmp_960a79fe6f3550f6eeef9208cac86a14.jpg" style="width:100%;height:100%"></image>
+  </view>
+  <image src="/img/icon/phones.png" class="img">
+  <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true" class='btn-set'  ></button>
+  </image>
+  <view class="foot">
+    <view>已阅读并同意</view>
+    <view style="color:#FF7054" bindtap="users" id="4">《用户注册协议》</view>
+    <view>及</view>
+    <view style="color:#FF7054" bindtap="users" id="6">《用户隐私政策》</view>
+  </view>
+</block>
+<!-- 微信授权 -->
+<block wx:if="{{currentTab==3}}">
+  <view style="margin:70px auto;width:580rpx;height:478rpx">
+    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-04-02/0b2d150685114a27891c9da506530cbd-tmp_960a79fe6f3550f6eeef9208cac86a14.jpg" style="width:100%;height:100%"></image>
+  </view>
+  <image src="/img/icon/user.png" class="img">
+  <!-- <button plain="true"  class='btn-set' open-type='getUserInfo' bindgetuserinfo='loginApp'> -->
+    <button  bindtap="getUserProfile" plain="true"  class='btn-set'></button>
+  </image>
+  <view class="foot">
+    <view>已阅读并同意</view>
+    <view style="color:#FF7054" bindtap="users" id="4">《用户注册协议》</view>
+    <view>及</view>
+    <view style="color:#FF7054" bindtap="users" id="6">《用户隐私政策》</view>
+  </view>
+</block>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "painter": "../../../painter/painter",
+    "van-action-sheet": "/dist/action-sheet/index",
+    "van-popup": "/dist/popup/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

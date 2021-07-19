@@ -1,0 +1,12 @@
+<!--pages/applyOrder/applyOrder.wxml-->
+<view bindtap="jump">
+<image src="../../img/icon/tui2.png"></image>
+<view class="title">我要退货退款</view>
+<view class="text">已收到货，需要退还已收到的货物</view>
+</view>
+
+<view style="margin-top:72px" bindtap="jump2">
+<image src="../../img/icon/tui1.png"></image>
+<view class="title">我要退款（无需退货）</view>
+<view class="text">未收到货、或与商家协商同意不用退货只退款</view>
+</view>

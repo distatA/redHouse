@@ -1,0 +1,57 @@
+/* pages/system/system.wxss */
+page{
+  background:rgba(250,250,250,1);
+}
+.list{
+  padding:0 20rpx;
+}
+.time{
+  padding:22rpx;
+  text-align: center;
+  font-size:26rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+}
+.main{
+  background: #fff;
+  padding:20rpx;
+}
+.title{
+  font-size:32rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(30,30,30,1);
+  margin-top:6rpx;
+  margin-bottom:26rpx;
+}
+.img{
+  width:100%;
+  height:300rpx;
+  background: #abcdef;
+}
+.img image{
+  width:100%;
+  height:100%;
+  border-radius: 10rpx;
+}
+.contain{
+  margin-top:26rpx;
+  font-size:28rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(116,116,116,1);
+  line-height:40rpx;
+}
+.seen{
+  padding-top:20rpx;
+  border-top:1px solid #F2F2F2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size:24rpx;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(116,116,116,1);
+  margin-top:10rpx;
+}

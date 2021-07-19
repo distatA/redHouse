@@ -1,0 +1,21 @@
+/* pages/person_page/mymsg/mymsg.wxss */
+.mymessage{padding-top: 20rpx;background: #fafafa;}
+
+.li{margin-bottom: 20rpx;padding: 20rpx 50rpx ;background: #fff;height: 80rpx;display: flex;align-items: center;}
+.leftImg{position: relative;width: 80rpx;height: 80rpx;}
+.redDot{width: 20rpx;height: 20rpx;background: #ff0000;border-radius: 20rpx;position: absolute;top: 0;right: -20rpx;}
+.leftImg image{width: 60rpx;height: 60rpx;margin: 10rpx;}
+.txt{margin-left: 46rpx;width: 460rpx;}
+
+.Tname{font-size: 32rpx;}
+.Tintro{font-size: 26rpx;color: rgb(114, 114, 114);margin-top: 10rpx;}
+.arrow{width: 26rpx;height: 26rpx;border-bottom: 4rpx solid #777777;border-right: 4rpx solid #777777;transform: rotate(-45deg);}
+
+
+
+
+
+
+
+
+

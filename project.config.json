@@ -1,0 +1,674 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": false,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.13.2",
+  "appid": "wx369dad223dc55fc7",
+  "projectname": "%E7%BA%A2%E4%BA%BAHouse",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "pages/chat/chat",
+          "pathName": "pages/chat/chat",
+          "query": "",
+          "scene": 1044,
+          "shareInfo": {
+            "groupName": "测试模拟群1",
+            "shareName": "0FMLAPC2RDjFlpdvPsyq8agjYRkuFuRyidZBz2YKiO0@cr4dev",
+            "shareKey": "U0mptbwjMfuvO_uuFyy9hX3SediM1Uc8ZQWmAO2ZjaMZ78sJLtWztdcspuPbgyTpIPScpVi4SjuGKGqZQisQ3g~~"
+          }
+        },
+        {
+          "id": 1,
+          "name": "home",
+          "pathName": "pages/home/home",
+          "query": "city=南京",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "redRanking",
+          "pathName": "pages/redRanking/redRanking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "redHome",
+          "pathName": "pages/redHome/redHome",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "myNote_detail",
+          "pathName": "pages/myNote_detail/myNote_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "cityList",
+          "pathName": "pages/cityList/cityList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "comment",
+          "pathName": "pages/comment/comment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "newsNote",
+          "pathName": "pages/newsNote/newsNote",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "goodsComment",
+          "pathName": "pages/goodsComment/goodsComment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "post",
+          "pathName": "pages/post/post",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "submitOrder",
+          "pathName": "pages/submitOrder/submitOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "paySucceed",
+          "pathName": "pages/paySucceed/paySucceed",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "linkGoods",
+          "pathName": "pages/linkGoods/linkGoods",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "collect",
+          "pathName": "pages/collect/collect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "backOrder",
+          "pathName": "pages/backOrder/backOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "backMoney",
+          "pathName": "pages/backMoney/backMoney",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "backOrderStatus",
+          "pathName": "pages/backOrderStatus/backOrderStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "applyOrder",
+          "pathName": "pages/applyOrder/applyOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "wuLiu",
+          "pathName": "pages/wuLiu/wuLiu",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "sales",
+          "pathName": "pages/sales/sales",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "tiXian",
+          "pathName": "pages/tiXian/tiXian",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "shopHome",
+          "pathName": "pages/shopHome/shopHome",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 24,
+          "name": "pages/person_page/certificate/certificate",
+          "pathName": "pages/person_page/certificate/certificate",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "company",
+          "pathName": "pages/company/company",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "mingXi",
+          "pathName": "pages/mingXi/mingXi",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "about",
+          "pathName": "pages/about/about",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 28,
+          "name": "pages/backSubmit/backSubmit",
+          "pathName": "pages/backSubmit/backSubmit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "backNews",
+          "pathName": "pages/backNews/backNews",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 29,
+          "name": "huose",
+          "pathName": "pages/huose/huose",
+          "query": "shopId=c5e185df-3660-4a46-8a56-eec444eed51d",
+          "scene": null
+        },
+        {
+          "id": 31,
+          "name": "pages/home_page/good_detail/good_detail",
+          "pathName": "pages/home_page/good_detail/good_detail",
+          "query": "sence=3bd0592604ac4941be873cc305fd43d4",
+          "scene": 1047
+        },
+        {
+          "id": -1,
+          "name": "pages/hSeen/hSeen",
+          "pathName": "pages/hSeen/hSeen",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/live/live",
+          "pathName": "pages/live/live",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 33,
+          "name": "pages/actieve/actieve",
+          "pathName": "pages/actieve/actieve",
+          "query": "id=21",
+          "scene": null
+        },
+        {
+          "id": 34,
+          "name": "pages/roomLists/roomLists",
+          "pathName": "pages/roomLists/roomLists",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/myLiveList/myLiveList",
+          "pathName": "pages/myLiveList/myLiveList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/myNews/myNews",
+          "pathName": "pages/myNews/myNews",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/news/news",
+          "pathName": "pages/news/news",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/redHome/redHome",
+          "pathName": "pages/redHome/redHome",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/vote/vote",
+          "pathName": "pages/vote/vote",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 40,
+          "name": "pages/home_page/good_detail/good_detail",
+          "pathName": "pages/home_page/good_detail/good_detail",
+          "query": "shopId=186f9253-c444-4b83-b6ed-7cd8d369b18c&goods_name=%E3%80%90%E6%BB%A8%E6%B9%96%E9%93%B6%E6%B3%B0%E5%9F%8E%20%E6%97%A0%E9%9C%80%E9%A2%84%E7%BA%A6%E3%80%91%E7%81%AB%E7%88%86%E5%85%A8%E5%AE%87%E5%AE%99%E7%9A%84%E5%B0%8F%E7%8C%AA%E5%B0%8F%E7%89%9B%E7%AB%A0%E9%B1%BC%E6%B0%B4%E7%85%8E%E8%82%89%E6%9D%A5%E8%A2%AD!89%E5%85%83%E4%BA%AB%E5%B0%8F%E7%8C%AA%E5%B0%8F%E7%89%9B%E6%B0%B4%E7%85%8E%E8%82%89%E5%A5%97%E9%A4%90%EF%BC%8C%E8%AE%A9%E4%BD%A0%E4%BB%BB%E6%80%A7%E5%8F%AF%E5%8A%B2%E5%84%BF%E9%80%A0%EF%BC%81%E6%B0%B4%E7%85%8E%E5%91%B3%E7%AB%A0%E9%AD%9A%2B%E7%B2%BE%E5%93%81%E4%BA%8C%E5%B1%82%E8%82%89%2B%E9%9B%AA%E8%8A%B1%E5%9F%B9%E6%A0%B9%2B%E8%98%91%E8%8F%87%E5%8C%85%2B%E5%8F%8C%E6%8B%BC%E5%B0%8F%E9%A3%9F%2B%E5%B8%83%E4%B8%81%2B%E8%90%A5%E5%85%BB%E8%9F%B9%E5%AD%90%E9%A5%AD%2B%E8%94%AC%E8%8F%8C%E7%BB%84%E5%90%88%2B%E9%BB%91%E7%89%9B%E7%89%9B%E4%BA%94%E8%8A%B1%2B%E8%94%AC%E8%8F%9C%E5%8F%8C%E6%8B%BC%E6%B2%99%E6%8B%89%2B%E7%89%B9%E8%89%B2%E4%B9%8C%E9%B8%A1%E5%8D%B7%EF%BC%81&source=0",
+          "scene": 1048
+        },
+        {
+          "id": 41,
+          "name": "pages/huoseKill/huoseKill",
+          "pathName": "pages/huoseKill/huoseKill",
+          "query": "shopId=bb7279f9-f1fe-4e8b-afe3-f6649b38cf99&flag=0&currentIndex=0&shopNo=undefined&killId=36",
+          "scene": 1048
+        },
+        {
+          "id": 42,
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyOrderDetail/applyOrderDetail",
+          "pathName": "pages/applyOrderDetail/applyOrderDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/backOrderStatus/backOrderStatus",
+          "pathName": "pages/backOrderStatus/backOrderStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyOrderDetail/applyOrderDetail",
+          "pathName": "pages/applyOrderDetail/applyOrderDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/hOrder/hOrder",
+          "pathName": "pages/hOrder/hOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/applyOrderDetail/applyOrderDetail",
+          "pathName": "pages/applyOrderDetail/applyOrderDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/person_page/orders/orders",
+          "pathName": "pages/person_page/orders/orders",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/person_page/orders/orders",
+          "pathName": "pages/person_page/orders/orders",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myWindow/myWindow",
+          "pathName": "pages/myWindow/myWindow",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/myDow/myDow",
+          "pathName": "pages/myDow/myDow",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/kol/kol",
+          "pathName": "pages/kol/kol",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/person_page/orders/orders",
+          "pathName": "pages/person_page/orders/orders",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/news/news",
+          "pathName": "pages/news/news",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/kol/kol",
+          "pathName": "pages/kol/kol",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/JDdetail/index",
+          "pathName": "pages/JDdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/post/post",
+          "pathName": "pages/post/post",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/kol/kol",
+          "pathName": "pages/kol/kol",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/kol/kol",
+          "pathName": "pages/kol/kol",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/home/home",
+          "pathName": "pages/huose/huose",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDdetail/index",
+          "pathName": "packageA/JDdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDfind/index",
+          "pathName": "packageA/JDfind/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/collect/collect",
+          "pathName": "pages/collect/collect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDorder/index",
+          "pathName": "packageA/JDorder/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/backMoney/index",
+          "pathName": "packageA/backMoney/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDdetail/index",
+          "pathName": "packageA/JDdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDdetail/index",
+          "pathName": "packageA/JDdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packageA/JDdetail/index",
+          "pathName": "packageA/JDdetail/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

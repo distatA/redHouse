@@ -1,0 +1,135 @@
+/* pages/hOrder/hOrder.wxss */
+.topSearch{background: #fff;padding: 25rpx 40rpx;}
+.search{width: 570rpx;height: 54rpx;line-height: 54rpx;background: #f2f2f2;border-radius: 54rpx;padding-left: 100rpx;position: relative;}
+.search .topInput{font-size: 30rpx;height:30px;line-height: 30px;}
+.searchPic{position: absolute;left: 40rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+.tab{
+  display: flex;
+  padding: 20rpx;
+  white-space: nowrap;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: space-between;
+  align-items: center;
+  background: #fafafa;
+}
+.tab-item{
+ display: inline-block;
+ width: 20%;
+ text-align: center;
+ font-size: 28rpx;
+ color: rgb(191, 191, 191);
+
+}
+.tab-item text{display: inline-block;padding-bottom: 10rpx;}
+.tab-item.active{color: #ff6653;}
+.tab-item.active text{border-bottom: 4rpx solid #ff6653;}
+/* 内容 */
+.main{
+  background: #F2F2F2;
+}
+.list{
+  padding:16px 20px 20px 20px;
+  background: #fff;
+  box-sizing: border-box;
+  margin-bottom:10rpx;
+}
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top .left{
+  display: flex;
+  align-items: center;
+  /* width:100%; */
+}
+.top .left .headUrl{
+  width:26px;
+  height:26px;
+}
+.top .left .headUrl image{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+}
+.shopName{
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+}
+.shopName text{
+  color:#9F9F9F;
+  font-size: 12px;
+  margin-left:5px;
+}
+.code{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(120,120,120,1);
+}
+.right{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,80,83,1);
+}
+/* 房产信息 */
+.bottom{
+  display: flex;
+  align-items: center;
+  margin-top:22px;
+}
+.houseImg{
+  width:80px;
+  height:80px;
+}
+.houseImg image{
+  width:100%;
+  height:100%;
+  /* background: #abcdef; */
+}
+.deteil{
+  margin-left:12px;
+  width:70%;
+}
+.huoseName{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+  line-height:20px;
+}
+.houhui{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,112,84,1);
+  /* line-height:17px;
+  margin-top:13px; */
+}
+.place{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(191,191,191,1);
+  line-height:17px;
+  margin-top:10px;
+}
+.time{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:17px;
+  text-align: right;
+  margin-top:20px;
+}

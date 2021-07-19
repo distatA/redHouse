@@ -1,0 +1,126 @@
+<!--pages/backOrderStatus/backOrderStatus.wxml-->
+<view class="head">
+  <block wx:if="{{result.status==1}}"><image src="../../img/icon/dai.png"></image>
+  <view>
+    <view>待商家处理</view><view style="font-size:12px">剩余{{hour}}时{{minute}}分{{second}}秒</view>
+  </view>
+  </block>
+  <block wx:if="{{result.status==2 || result.status==5 || result.status==9 ||result.status==10}}">
+    <image src="../../img/icon/true.png"></image>
+    <view>
+      <view>退款成功</view><view class="price">退款金额： <text>¥{{result.price}}</text> </view>
+    </view>
+  </block>
+  <block wx:if="{{result.status==3}}"><image src="../../img/icon/false.png"></image>
+    <view>
+      <view>商家不同意</view><view style="font-size:12px">剩余{{day}}天{{hour}}时{{minute}}分{{second}}秒</view>
+    </view>
+  </block>
+  <!-- 退款关闭 -->
+  <block wx:if="{{result.status==4 || result.status==11}}"><image src="../../img/icon/false.png"></image>
+  <view>退款关闭</view></block>
+  <!-- 撤销申请 -->
+  <block wx:if="{{result.status==6}}"><image src="../../img/icon/cheXiao.png"></image>
+  <view>您的申请已撤销</view></block>
+  <!-- 平台介入 -->
+  <block wx:if="{{result.status==7 || result.status==24 || result.status==37}}"><image src="../../img/icon/pingTai.png"></image>
+  <view>平台介入处理中</view></block>
+  <block wx:if="{{result.status==8}}"><image src="../../img/icon/true.png"></image>
+    <view>
+      <view>平台审核通过，待商家退款</view><view style="font-size:12px">剩余{{day}}天{{hour}}时{{minute}}分{{second}}秒</view>
+    </view>
+  </block>
+</view>
+<block wx:if="{{result.status==3}}">
+  <view class="text">商家留言：商品说明中已经给出，此商品一经寄出概不退换</view>
+</block>
+<block wx:if="{{result.status==4}}">
+  <view class="text">平台留言：因您超时未处理，本次申请关闭，如果超过维权保障期将不能再次发起申请，如您有其他退款诉求，建议您及时和商家协商</view>
+</block>
+<block wx:if="{{result.status==11}}">
+  <view class="text">商家留言：您的退货退款申请不通过，买家提的问题，属于个人审美问题，不属于商品质量问题，所以本店概不退货！请原谅！</view>
+</block>
+<block wx:if="{{result.status==28}}">
+  <view class="text">平台留言：商家已承诺明确说出，已经售出，概不退款</view>
+</block>
+<!-- 退款商品详情 -->
+<view class="shop">
+  <image src="{{result.imageUrl}}"></image>
+  <view class="shopName">
+    <view class="shopsName">
+      <view class="left">{{result.good_name}}</view>
+      <view style="margin-top:12px;">{{result.specification}}</view>
+    </view>
+    <view>
+     <view class="shopPrice">¥ {{result.price}}</view> 
+     <view style="text-align: right">×{{result.num}}</view>
+    </view>
+  </view>
+</view>
+<!-- 店铺 -->
+<view class="list" id="{{result.merchant_no}}" bindtap="shopHome">
+  <view class="left">
+    <view>店铺名称</view>
+    <image src="{{result.imageUrl}}"></image>
+    <view class="shop_name">{{result.shop_name}}</view>
+  </view>
+  <view class="rights"><image src="../../img/icon/kefu.png"></image></view>
+</view>
+<view class="list">
+  <view class="left">售后类型：</view>
+  <view class="right">{{result.refuse_type==1?'仅退款':'退货退款'}}</view>
+</view>
+<view class="list">
+  <view class="left">收货状态：</view>
+  <view class="right">{{result.refuse_type==1?'未收到货':'已收到货'}}</view>
+</view>
+<view class="list">
+  <view class="left">退款金额：</view>
+  <view class="right">¥ {{result.num *result.price}}</view>
+</view>
+<view class="list">
+  <view class="left">退货原因：</view>
+  <view class="right" style="margin-left:10px;width:230px">{{arr[reasonId-1]}}</view>
+  <view class="detail" bindtap="detail">详 情</view>
+  <!-- 上拉弹窗 -->
+  <van-action-sheet show="{{ show }}" title="退款详情" bindtap="onClose">
+    <view class="list">
+      <view class="left">申请原因</view>
+      <view class="right">{{arr[reasonId-1]}}</view>
+    </view>
+    <view class="list">
+      <view class="left">申请说明</view>
+      <view class="right">{{result.refuse_detail}}</view>
+    </view>
+    <view class="list" wx:if="{{result.images.length>0}}">
+      <image wx:for="{{result.images}}" src="{{item}}" class="imgs"></image>
+    </view>
+    <view class="list">
+      <view class="left">联系电话</view>
+      <view class="right">{{result.refuse_tel}}</view>
+    </view>
+  </van-action-sheet>
+</view>
+<!-- <view class="list">
+  <view class="left">商品名称：</view>
+  <view class="right">{{good_name}}</view>
+</view> -->
+<view class="list">
+  <view class="left">订单编号：</view>
+  <view class="right">{{result.my_order_no}}</view>
+</view>
+<view class="list">
+  <view class="left">申请时间：</view>
+  <view class="right">{{result.create_time}}</view>
+</view>
+
+<view class="foot">
+  <view bindtap="calling" style="display: flex;align-items: center">
+    <image src="../../img/icon/phone1.png"></image>
+    <view>咨询第一房官方客服</view>
+  </view>
+</view>
+<!-- 平台介入 -->
+<view class="pingTai" bindtap="pingTai" wx:if="{{isViews}}">平台介入</view>
+<!-- 撤销申请 -->
+<view class="backout" bindtap="backout" wx:if="{{isView}}">撤销申请</view>

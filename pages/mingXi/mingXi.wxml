@@ -1,0 +1,60 @@
+<!--pages/mingXi/mingXi.wxml-->
+<view class="content">
+<view class="head" >
+  <view>
+    <!-- <picker mode="date" value="{{userDate}}" start="{{startTime}}" end="2099-12-31" bindchange="bindDateChange">
+  <input class="picker" type="text" name="userDate" value="{{userDate}}"  placeholder="请选择时间" disabled="true"/>
+  </picker> -->
+    <view class="left" bindtap="isView">
+      <view>{{year}}年{{month}}月</view>
+      <block wx:if="{{!isView}}">
+        <image src="../../img/icon/xia.png" style="margin-left:15px;"></image>
+      </block>
+      <block wx:else>
+        <image src="../../img/icon/top.png" style="margin-left:15px;"></image>
+      </block>
+    </view>
+
+    <block wx:if="{{isView}}">
+
+      <picker-view indicator-style="height: 50px;" value="{{value}}" bindchange="bindChange">
+        <view style="padding-right:86rpx"></view>
+        <picker-view-column>
+          <view wx:for="{{years}}" style="line-height: 50px">{{item}}年</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view wx:for="{{months}}" style="line-height: 50px">{{item}}月</view>
+        </picker-view-column>
+
+        <view style="padding-right:30rpx" bindtap="show">确定</view>
+
+      </picker-view>
+
+    </block>
+
+  </view>
+  <view class="left">
+    <picker bindchange="bindPickerChange"  range="{{arr}}" value="{{index}}">
+      <view class="picker" >
+        {{arr[index]}}
+      </view>
+    </picker>
+    <image src="../../img/icon/xia.png" style="margin-left:12px;"></image>
+  </view>
+
+</view>
+<view class="sum">支出 ¥{{moneyout}} 收入 ¥{{moneyIn}}</view>
+<!-- 列表 -->
+<view class="list" wx:for="{{detailList}}" bindtap="zhangDan">
+  <view class="left">
+    <view class="title">{{item.title}}</view>
+    <view class="time">{{item.create_time}}</view>
+  </view>
+  <block wx:if="{{item.status==1}}">
+    <view class="right">+{{item.pay_money}}元</view>
+  </block>
+  <block wx:else>
+    <view class="rights">-{{item.pay_money}}元</view>
+  </block>
+</view>
+</view>

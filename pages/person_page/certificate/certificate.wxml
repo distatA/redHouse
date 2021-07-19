@@ -1,0 +1,67 @@
+<!--pages/home_page/certificate/certificate.wxml-->
+<view class="certificate">
+  <view class="type">
+    <label class="personal renzheng" bindtap="changeChoose1">
+      <view class="up">
+      <view class="list">
+       <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/hrlogo.png"></image>
+        <view class="personTxt rzTxt">个人认证</view>
+      </view>
+       
+        <block wx:if="{{people==''}}"><view class="tags {{ personTag == 1 ? 'on':'' }}"></view></block>
+        <block wx:if="{{people!=''}}"><view class="status" style="color: #{{people=='审核通过'?'0CBC30':'FF7054'}}">{{people}}</view></block>
+        <input type="radio" value="个人认证" class="choose"></input>
+      </view>
+
+      <view class="intro">适用于个人用户真实身份认证</view>
+    </label>
+
+    <label class="company renzheng" bindtap="changeChoose2">
+      <view class="up">
+      <view class="list">
+      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/qylogo.png"></image>
+        <view class="companyTxt rzTxt">企业认证</view>
+      </view>
+        <block wx:if="{{company==''}}"> <view class="tags {{ companyTag == 1 ? 'on':'' }}"></view></block>
+        <block wx:if="{{company!=''}}"><view class="status" style="color: #{{company=='审核通过'?'0CBC30':'FF7054'}}">{{company}}</view></block>
+        <input type="radio" value="企业认证" class="choose"></input>
+      </view>
+
+      <view class="intro">为企业品牌诚信加冕，确认开店后拥有第一房平台</view>
+    </label>
+  </view>
+
+  <view class="specialPower">
+    <view class="spTitle">认证特权</view>
+    <view class="spUl">
+      <view class="spLi">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/tag.png"></image>
+        <view class="spliContent">
+          <view class="mainTitle">独家标识</view>
+          <view class="detail">享有专属标识，彰显独特身份</view>
+        </view>
+      </view>
+
+      <view class="spLi">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/tag2.png"></image>
+        <view class="spliContent">
+          <view class="mainTitle">优先推荐</view>
+          <view class="detail">内容优选推荐，增加曝光快速涨粉</view>
+        </view>
+      </view>
+
+      <view class="spLi">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/tag3.png"></image>
+        <view class="spliContent">
+          <view class="mainTitle">更多特权</view>
+          <view class="detail">更多认证用户专享功能</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="lastBtn" bindtap="apply">
+    <view class="rzBtn">立即认证</view>
+  </view>
+</view>
+

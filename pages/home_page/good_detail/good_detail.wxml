@@ -1,0 +1,509 @@
+<!--pages/home_page/good_detail/good_detail.wxml-->
+<import src="../../../wxParser/index.wxml" />
+<!-- 是否登陆 -->
+<!-- <block wx:if='{{getUserInfoFail}}'>
+  <view class="user">
+    <image wx:if='{{getStep==1}}' src="/img/icon/user.png">
+      <button plain class='btn-set' open-type='getUserInfo' bindgetuserinfo='loginApp'>
+      </button>
+    </image>
+    <image wx:if='{{getStep==2}}' src="/img/icon/phones.png">
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true" class='btn-set'></button>
+    </image>
+  </view>
+</block> -->
+<!-- 阴影层 -->
+<view class="shadow"
+  style='animation: {{isShow ? "show" : "dismiss"}}Mask 0.3s forwards ease;left: {{isCreate ? 0 : "750rpx"}};'
+  catchtouchmove='myCatchTouch'>
+  <view class="box-son">
+    <view class="di">
+      <painter palette="{{template}}" bind:imgOK="onImgOK" />
+    </view>
+    <view class="guan">
+      <view class="hold-img" catchtap='btnCreate'>保存图片</view>
+      <image src="/img/icon/guan.png" style="width:30px;height:30px;" catchtap='catchtap'></image>
+    </view>
+  </view>
+</view>
+<!-- 内容 -->
+<view class="detail">
+  <swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'
+    indicator-color='#c1c1c1' indicator-active-color='#ff6666' bindchange="swiperChange" current="{{current}}">
+    <block wx:for="{{goodsBurl}}" wx:for-index="index" wx:key="key">
+      <swiper-item>
+        <image src='{{item.image_url}}' class='u-img-slide' mode='aspectFill'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="show">
+    <view class="show1">
+      <view class="price">
+        <view style="display: flex;align-items: center">
+          <view class="fuhao">¥</view>
+          <view class="nowPrice" wx:if="{{thisGoodAllMsg.is_open==0}}">{{thisGoodAllMsg.lowerPrice}}</view>
+          <view class="nowPrice" wx:if="{{thisGoodAllMsg.is_open==1}}">
+            {{thisGoodSkuList[thisLowPriceGoodNuw].low_price}}</view>
+          <view class="lowPrice" wx:if="{{thisGoodAllMsg.is_open==0}}">¥ {{thisGoodAllMsg.firstPrice}}</view>
+          <view class="lowPrice" wx:if="{{thisGoodAllMsg.is_open==1}}">¥
+            {{thisGoodSkuList[thisLowPriceGoodNuw].first_price}}</view>
+        </view>
+        <view class="groupTime" wx:if="{{hour!=null && hour<=100}}">
+          距结束仅剩
+          <view class="hour">{{hour}}</view> 时
+          <view class="minute">{{minute}}</view> 分
+          <view class="second">{{second}}</view> 秒
+        </view>
+      </view>
+      <block wx:if="{{thisGoodAllMsg.is_open==0}}">
+        <view class="goodIntro">{{goods_name}}</view>
+      </block>
+      <block wx:if="{{thisGoodAllMsg.is_open==1}}">
+
+        <view class="goodIntro">{{goods_name}}</view>
+      </block>
+
+      <view style="font-size:12px;color:#727272;padding:0 10px;margin-bottom:10px;">{{goods_sell_point}}</view>
+      <view style="width:100%;height:6px;background:#F2F2F2"></view>
+      <block wx:if="{{goodsSafeServiceList.length>0}}">
+        <view class="goodBack" bindtap="detail">
+          <view class="backTop">
+            <view class="pei" wx:key="key">
+              <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/choose.png"></image>
+              <view class="backTxt">{{goodsSafeServiceList[0].safe_name}}</view>
+            </view>
+
+          </view>
+          <!-- goodsSafeServiceList[0].safe_describe -->
+          <view class="backBd">{{goods_tag?goods_tag:goodsSafeServiceList[0].safe_describe}}</view>
+          <view class="backArrow"></view>
+        </view>
+
+        <!-- 服务保证 -->
+        <van-action-sheet show="{{ show }}" title="服务说明" bindtap="onClose">
+          <view wx:for="{{goodsSafeServiceList}}" style="border-bottom:1px solid #F5F5F5;padding-bottom:10px"
+            wx:key="key">
+            <view class="backTop" style="padding-left:10px">
+              <view class="pei">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/choose.png"></image>
+                <view class="backTxt">{{item.safe_name}}</view>
+              </view>
+            </view>
+            <view class="backBd" style="padding-left:10px;margin-top:5px">{{item.safe_describe}}</view>
+          </view>
+        </van-action-sheet>
+        <view style="width:100%;height:6px;background:#F2F2F2"></view>
+      </block>
+      <!-- 红人店铺 -->
+      <block wx:if="{{redShop && redShop != undefined}}">
+        <view class="liTop" bindtap="redShop" id="{{redShop.member_no}}">
+          <view class="liAvar">
+            <view class="avarImg">
+              <image src="{{redShop.shoplogo?redShop.shoplogo:redShop.shopImage}}"></image>
+              <image src="../../../img/icon/hong.png"
+                style="width:12px;height:12px;position: absolute;right:0;bottom:0"></image>
+            </view>
+            <view class="left">
+              <view class="nickName">{{redShop.shop_name}}</view>
+              <view style="margin-top:5px;">{{redShop.sign}}</view>
+            </view>
+          </view>
+          <view class="backArrows"></view>
+        </view>
+      </block>
+      <!-- 商家店铺 -->
+      <block wx:else>
+        <view class="liTop" bindtap="goodsShop" id="{{goodsShop.merchant_no}}">
+          <view class="liAvar">
+            <view class="avarImg">
+              <image src="{{goodsShop.shopImage}}"></image>
+            </view>
+            <view class="left">
+              <view class="nickName">{{goodsShop.shop_name}}</view>
+              <view style="margin-top:10px;">{{goodsShop.sign}}</view>
+            </view>
+          </view>
+          <view class="backArrows"></view>
+        </view>
+      </block>
+      <view style="width:100%;height:6px;background:#F2F2F2"></view>
+      <!-- 红人笔记 -->
+      <block wx:if="{{memberNoteArticleAllList.length>0}}">
+        <view class="note">
+          <view class="noteTitle">红人笔记</view>
+          <view class="allList">
+            <view class="liContent" wx:for="{{memberNoteArticleAllList}}" wx:key="index">
+
+              <view class="showListType">
+                <view class="tuwen">
+                  <view class="liTitle" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}"
+                    data-comment="{{item.comment_num}}" data-time="{{item.create_time}}"
+                    data-headUrl="{{redShop.shopImage}}" data-nickName="{{redShop.shop_name}}"
+                    data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+                    data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}
+                  </view>
+                  <view class="showPics" wx:if="{{item.memberNoteArticleImageList.length>2}}">
+                    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}"
+                      bindtap="clickImg" id="{{item.imageUrl}}" mode="aspectFill"></image>
+                  </view>
+                  <view class="showPics" wx:if="{{item.memberNoteArticleImageList.length==2}}"
+                    style="justify-content:flex-start">
+                    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}"
+                      bindtap="clickImg" id="{{item.imageUrl}}" mode="aspectFill" style="margin-right:7px;"></image>
+                  </view>
+                  <view class="showPics" wx:if="{{item.memberNoteArticleImageList.length==1}}">
+                    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}"
+                      style="width:210px;" mode="widthFix" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+                  </view>
+                  <!-- 视频 -->
+                  <block wx:if="{{item.videoUrls}}">
+                    <video src="{{item.videoUrls}}" id="houseVideo" title="{{item.title}}"
+                      bindfullscreenchange="fullscreenchange" style="width:100%;border-radius:5px">
+                    </video>
+                  </block>
+                </view>
+                <view class="time">{{item.create_time}}</view>
+
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style="width:100%;height:6px;background:#F2F2F2"></view>
+      </block>
+      <view class="topTab">
+        <view class="topTxt {{ top1 == 1 ? 'on':'' }}" bindtap="change1"><text>商品详情</text></view>
+        <view class="topTxt {{ top2 == 1 ? 'on':'' }}" bindtap="change2"><text>评价</text></view>
+      </view>
+      <view class="goodDetail">
+        <!-- <view class="goodDetailTit">好物详情</view> -->
+        <view class="goodIntroduce" wx:if="{{top1}}">
+          <view class="wxParser">
+            <template is="wxParser" data="{{wxParserData:article.nodes}}" />
+          </view>
+        </view>
+      </view>
+      <!-- thisGoodAllMsg.shop.mobile -->
+      <view class="foot">
+        <view class="fleft">
+          <view class="fli kefu" bindtap="chat" id="{{redShop.member_no?redShop.member_no:goodsShop.merchant_no}}"
+            data-head="{{redShop.shoplogo?redShop.shoplogo:goodsShop.shopImage}}"
+            data-name="{{redShop.shop_name?redShop.shop_name:goodsShop.shop_name}}">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/kf.png"></image>
+            <view class="fliTxt">客服</view>
+          </view>
+          <view class="fli dianpu" bindtap="cang" id="{{shopId}}">
+            <image src="/img/icon/cang1.png" wx:if="{{thisGoodAllMsg.flag==0}}"></image>
+            <image src="/img/icon/cang.png" wx:if="{{thisGoodAllMsg.flag==1}}"></image>
+            <view class="fliTxt">收藏</view>
+          </view>
+
+          <view class="fli gouwuche" bindtap="addInCart">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/gwc.png"></image>
+            <view class="fliTxt">购物车</view>
+          </view>
+        </view>
+        <view class="fright">
+          <van-cell title="分享" is-link bindtap="showPopup"
+            style="line-height:{{thisGoodAllMsg.shareMoney?'18':'40'}}px">
+            <block wx:if="{{thisGoodAllMsg.shareMoney}}">
+              <view style="margin-top:3px;line-height:18px">分享</view>
+            </block>
+            <block wx:else>
+              <view>分享</view>
+            </block>
+            <view wx:if="{{thisGoodAllMsg.shareMoney}}" style="font-size:12px;">赚￥{{thisGoodAllMsg.shareMoney}}</view>
+          </van-cell>
+          <van-popup show="{{ shows }}" closeable close-icon-position="top-left" position="bottom"
+            custom-style="height: 20%" bindtap="onCloses">
+            <view class="popup">
+              <view style="height:68px;margin-top:25px">
+                <image src="/img/icon/firend.png" style="width:90rpx;height:90rpx;margin-left:6px; position: relative">
+                  <button class="btn" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+                  </button>
+                </image>
+                <view class="shareTxt">分享朋友</view>
+              </view>
+              <view catchtap="createPoster" style="margin-top:25px">
+                <image src="/img/icon/haibao.png" style="width:90rpx;height:90rpx;margin-left:6px;"></image>
+                <view class="shareTxt">生成海报</view>
+              </view>
+            </view>
+          </van-popup>
+          <block
+            wx:if="{{thisGoodSkuList[thisLowPriceGoodNuw].first_price -thisGoodSkuList[thisLowPriceGoodNuw].low_price!=0 && thisGoodAllMsg.is_open==1}}">
+            <button class="shareBtn2" bindtap="skipSkuPage">
+              <view class="shareTxt" style="margin-top:3px;line-height:18px">购买</view>
+              <view class="makeMoney">
+                省￥{{thisGoodSkuList[thisLowPriceGoodNuw].first_price -thisGoodSkuList[thisLowPriceGoodNuw].low_price }}
+              </view>
+            </button>
+          </block>
+          <block
+            wx:if="{{thisGoodSkuList[thisLowPriceGoodNuw].first_price -thisGoodSkuList[thisLowPriceGoodNuw].low_price==0 && thisGoodAllMsg.is_open==1}}">
+            <button class="shareBtn2" bindtap="skipSkuPage" style="line-height:40px">
+              <view class="shareTxt">购买</view>
+            </button>
+          </block>
+          <block wx:if="{{thisGoodAllMsg.firstPrice -thisGoodAllMsg.lowerPrice!=0 && thisGoodAllMsg.is_open==0}}">
+            <button class="shareBtn2" bindtap="skipSkuPage">
+              <view class="shareTxt" style="margin-top:3px;line-height:18px">购买</view>
+              <view class="makeMoney">省￥{{thisGoodAllMsg.firstPrice -thisGoodAllMsg.lowerPrice }}</view>
+            </button>
+          </block>
+          <block wx:if="{{thisGoodAllMsg.firstPrice -thisGoodAllMsg.lowerPrice==0&&thisGoodAllMsg.is_open==0}}">
+            <button class="shareBtn2" bindtap="skipSkuPage" style="line-height:40px">
+              <view class="shareTxt">购买</view>
+            </button>
+          </block>
+
+        </view>
+      </view>
+
+      <!-- 评价 -->
+      <view class="show2" wx:if="{{top2}}">
+        <view class="judge">
+          <view class="judgeLeft">
+            <view class="finalNum">{{averageScore?averageScore:0}}</view>
+            <view class="finalTxt">综合评分</view>
+          </view>
+          <view class="judgeContent">
+            <view class="kolJudge judgeLi">
+              <view class="judgeName">红人评价</view>
+              <block wx:for="{{averageRedScore}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+              </block>
+              <block wx:for="{{5-averageRedScore}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+              </block>
+              <view class="kolNum judgeLiNum">{{averageRedScore?averageRedScore:0}}</view>
+            </view>
+
+            <view class="kolJudge judgeLi">
+              <view class="judgeName">商品评价</view>
+              <block wx:for="{{averageSkuScore}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+              </block>
+              <block wx:for="{{5-averageSkuScore}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+              </block>
+              <view class="kolNum judgeLiNum">{{averageSkuScore?averageSkuScore:0}}</view>
+            </view>
+            <view class="kolJudge judgeLi">
+              <view class="judgeName">优惠评价</view>
+              <block wx:for="{{averageDisCountScores}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png"></image>
+              </block>
+              <block wx:for="{{5-averageDisCountScores}}" wx:key="index" class="stars">
+                <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png"></image>
+              </block>
+              <view class="kolNum judgeLiNum">{{averageDisCountScores?averageDisCountScores:0}}</view>
+            </view>
+          </view>
+        </view>
+        <!-- 评论 -->
+        <view class="comment">
+          <view class="tabTop">
+            <block wx:for="{{commentTit}}" wx:key="index">
+              <view class="tabs {{currentIndex == index ? 'on' : ''}}" data-index="{{index}}" bindtap="changeTabs"
+                id="{{item.status}}">
+                {{item.commentTop}} {{item.num}}
+              </view>
+            </block>
+          </view>
+          <view class="tabDetail">
+            <view class="tabDetailBody">
+              <block wx:for="{{goodsCommentList}}" wx:if="{{goodsCommentList.length >0}}" wx:key="key">
+                <view class="commentList">
+                  <view class="avarImg">
+                    <image src="{{item.headUrl}}"></image>
+                  </view>
+                  <view class="commentListBd">
+                    <view class="ListTop">
+                      <view class="topName">{{item.nick_name}}</view>
+                      <view class="topTime">{{item.create_time}}</view>
+                    </view>
+                    <view class="commentScore">
+                      <view class="commentScoreTxt">评分：</view>
+                      <block wx:for="{{item.isImage}}" wx:key="index">
+                        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star.png">
+                        </image>
+                      </block>
+                      <block wx:for="{{5-item.isImage}}" wx:key="index">
+                        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/star2.png">
+                        </image>
+                      </block>
+                    </view>
+                    <view class="detailCommentTxt">{{item.comment}}</view>
+                    <view class="commentPicList" wx:if="{{item.goodsCommentImageList.length>0}}">
+                      <image wx:for="{{item.goodsCommentImageList}}" src="{{item.imageUrl}}" bindtap="clickImg"
+                        id="{{item.imageUrl}}" wx:key="key"></image>
+                    </view>
+                  </view>
+                </view>
+              </block>
+              <block wx:if="{{goodsCommentList.length ==0}}">
+                <view class="wu">暂无评论</view>
+              </block>
+            </view>
+            <!-- <view hidden="{{ currentIndex != 1 }}">好评</view>
+          <view hidden="{{ currentIndex != 2 }}">差评</view>
+          <view hidden="{{ currentIndex != 3 }}">有图</view> -->
+          </view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 购买弹窗 -->
+<view class="skipPage" wx:if="{{skipPage == 1}}">
+  <view class="skipBody animated {{ fadein == 1 ? 'fadeInUp':'fadeOutDown' }}">
+    <view class="skipTop" wx:if="{{thisLowPriceGoodNuw2 >=0 }}">
+      <!-- 有规格 -->
+      <block wx:if="{{thisGoodAllMsg.is_open==1}}">
+        <image src="{{thisGoodSkuList[thisLowPriceGoodNuw2].image_url}}"></image>
+        <view class="skipTxt">
+          <view class="thisPrice">
+            <view class="moneyFuhao">¥</view>{{thisGoodSkuList[thisLowPriceGoodNuw2].low_price}}
+          </view>
+          <view class="GoodDescribe">已选：{{thisGoodSkuList[thisLowPriceGoodNuw2].sku_name}}</view>
+          <!-- <view class="partIn">该规格参与限时特价</view> -->
+        </view>
+      </block>
+      <!-- 没有规格 -->
+      <block wx:if="{{thisGoodAllMsg.is_open==0}}">
+        <image src="{{thisGoodAllMsg.spuImageList[0].image_url}}"></image>
+        <view class="skipTxt">
+          <view class="thisPrice">
+            <view class="moneyFuhao">¥</view>{{thisGoodAllMsg.lowerPrice}}
+          </view>
+          <view class="GoodDescribe">已选：{{goods_name}}</view>
+          <!-- <view class="partIn">该规格参与限时特价</view> -->
+        </view>
+      </block>
+    </view>
+    <view class="skipTop" wx:else>
+      <view class="soldOut">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/soldOut.png"></image>
+      </view>
+      <image src="{{bnrUrlNew[0].imageUrl}}"></image>
+      <view class="skipTxt">
+        <view class="thisPrice">
+          <view class="moneyFuhao">¥</view>0
+        </view>
+        <view class="GoodDescribe">已选：该商品已售完</view>
+        <!-- <view class="partIn">该规格参与限时特价</view> -->
+      </view>
+    </view>
+    <!-- 规格展示 -->
+    <view class="skuDetails">
+      <view class="skuUl" wx:for="{{guige}}" wx:key="guige" wx:for-index="standard">
+        <view class="skuhd">{{item.spec_name}}</view>
+        <view class="skuhdList">
+          <block wx:for="{{item.goodsValuesVoList}}" wx:key="detailkey" wx:for-index="detailkey">
+            <view class="skuItem {{isSelected[standard] == detailkey ? 'changebg':''}}" bindtap="selectThis"
+              data-standard="{{standard}}" data-detailkey="{{detailkey}}">{{item.spec_value}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="buyNum">
+      <view class="buytxt">购买数量</view>
+      <view class="changeBuyNum">
+        <view class="deleteBtn buyBtn" bindtap="deleteBuyNum">-</view>
+        <view class="nowBuyNum buyBtn">{{buyNum}}</view>
+        <view class="addBtn buyBtn" bindtap="addBuyNum">+</view>
+      </view>
+    </view>
+    <view class="sure" bindtap="checkPhone" wx:if="{{thisLowPriceGoodNuw2 >= 0}}">确定</view>
+    <view class="sure notSure" wx:else>确定</view>
+    <view class="closeSkipPage" bindtap="closeSkipPage">
+      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/x.png"></image>
+    </view>
+  </view>
+</view>
+
+<!-- 购物车弹窗 -->
+<view class="skipPage" wx:if="{{skipPageCart == 1}}">
+  <view class="skipBody animated {{ fadeinCart == 1 ? 'fadeInUp':'fadeOutDown' }}">
+    <view class="skipTop" wx:if="{{thisLowPriceGoodNuw2 >=0 }}">
+      <!-- 有规格 -->
+      <block wx:if="{{thisGoodAllMsg.is_open==1}}">
+        <image src="{{thisGoodSkuList[thisLowPriceGoodNuw2].image_url}}"></image>
+        <view class="skipTxt">
+          <view class="thisPrice">
+            <view class="moneyFuhao">¥</view>{{thisGoodSkuList[thisLowPriceGoodNuw2].low_price}}
+          </view>
+          <view class="GoodDescribe">已选：{{thisGoodSkuList[thisLowPriceGoodNuw2].sku_name}}</view>
+          <!-- <view class="partIn">该规格参与限时特价</view> -->
+        </view>
+      </block>
+      <!-- 没规格 -->
+      <block wx:if="{{thisGoodAllMsg.is_open==0}}">
+        <image src="{{thisGoodAllMsg.spuImageList[0].image_url}}"></image>
+        <view class="skipTxt">
+          <view class="thisPrice">
+            <view class="moneyFuhao">¥</view>{{thisGoodAllMsg.lowerPrice}}
+          </view>
+          <view class="GoodDescribe">已选：{{goods_name}}</view>
+          <!-- <view class="partIn">该规格参与限时特价</view> -->
+        </view>
+      </block>
+    </view>
+    <!-- 无商品 -->
+    <view class="skipTop" wx:if="{{thisLowPriceGoodNuw2 < 0 }}">
+      <view class="soldOut">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/soldOut.png"></image>
+      </view>
+      <image src="{{bnrUrlNew[0].imageUrl}}"></image>
+      <view class="skipTxt">
+        <view class="thisPrice">
+          <view class="moneyFuhao">¥</view>0
+        </view>
+        <view class="GoodDescribe">已选：该商品已售完</view>
+        <!-- <view class="partIn">该规格参与限时特价</view> -->
+      </view>
+    </view>
+    <!-- 规格展示 -->
+    <view class="skuDetails">
+      <view class="skuUl" wx:for="{{guige}}" wx:key="guige" wx:for-index="standard">
+        <view class="skuhd">{{item.spec_name}}</view>
+        <view class="skuhdList">
+          <block wx:for="{{item.goodsValuesVoList}}" wx:key="detailkey" wx:for-index="detailkey">
+            <view class="skuItem {{isSelected[standard] == detailkey ? 'changebg':''}}" bindtap="selectThis"
+              data-standard="{{standard}}" data-detailkey="{{detailkey}}">{{item.spec_value}}</view>
+          </block>
+        </view>
+      </view> 
+    </view>
+    <view class="buyNum">
+      <view class="buytxt">购买数量</view>
+      <view class="changeBuyNum">
+        <view class="deleteBtn buyBtn" bindtap="deleteBuyNum">-</view>
+        <view class="nowBuyNum buyBtn">{{buyNum}}</view>
+        <view class="addBtn buyBtn" bindtap="addBuyNum">+</view>
+      </view>
+    </view>
+    <view class="sure" bindtap="sureInCart" wx:if="{{thisLowPriceGoodNuw2 >= 0}}">加入购物车</view>
+    <view class="sure notSure" wx:else>加入购物车</view>
+    <view class="closeSkipPage" bindtap="closeSkipPageCart">
+      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/good_detail/x.png"></image>
+    </view>
+  </view>
+</view>
+<!-- 手机授权弹窗 -->
+<view class="mask"  wx:if="{{showPhoneBox}}">
+  <view class="phoneBox">
+    <image class="close" src="/img/icon/cha.png" bindtap="closePhoneBox" />
+    <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">授权手机号</button>
+  </view>
+</view>
+
+<!--分享佣金浮窗  -->
+<view class="f" wx:if="{{thisGoodAllMsg.shareMoney}}">
+  <image src="/img/icon/f.png"></image>
+  <view class="ff">
+    <view>返￥{{thisGoodAllMsg.shareMoney}}</view>
+    <view>订单完成即得</view>
+  </view>
+</view>

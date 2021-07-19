@@ -1,0 +1,33 @@
+<!--pages/myEdit/myEdit.wxml-->
+<view class="main">
+<view class="head">商品名称（不可编辑）</view>
+<view class="name">{{name}}</view>
+<!-- 房产佣金 -->
+<block wx:if="{{type==1}}">
+  <view class="head">
+    <view class="left">佣金设置</view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <view class="radio">
+        <radio value="1" checked="{{sex==1?true:false}}" color="#FF9254">金额</radio>
+      </view>
+      <view class="radio">
+        <radio value="2" checked="{{sex==2?true:false}}" color="#FF9254">其它</radio>
+      </view>
+    </radio-group>
+  </view>
+  <view class="money" wx:if="{{sex==1}}">
+    <view class="left">金额（元）</view>
+    <input bindinput="getInputValue" value="{{prices}}" placeholder="填写成交奖励金额" placeholder-class="text-pl"></input>
+  </view>
+  <textarea maxlength='520' wx:if="{{sex==2}}" focus='{{true}}'  class='text' bindblur="bindTextAreaBlur1"  placeholder-class="text-pl" value="{{textValue1}}"/>
+  
+</block>
+<view class="title">商品分享内容</view>
+<!-- <view class="tip">此标题将用于分享页面展示</view> -->
+<view class="contain">
+  <textarea maxlength='520' focus='{{true}}' bindinput="bindIuput" class='text' bindblur="bindTextAreaBlur"  placeholder-class="text-pl" placeholder="我在第一房发现了优质{{type==1?'好房':'好物'}}，分享给你。" value="{{textValue}}"/>
+  <view class="num">{{num}}/50</view>
+</view>
+<view class="foot" bindtap="submit" wx:if="{{status==1}}">完成编辑</view>
+<view class="foot" bindtap="submits" wx:if="{{status==2}}">完成编辑</view>
+</view>

@@ -1,0 +1,69 @@
+<!--pages/fans/fans.wxml-->
+<!-- 粉丝 -->
+<view wx:if="{{chatList.length==0}}" class="wu">暂无消息</view>
+<!-- 列表 -->
+<view class="list" wx:for="{{chatList}}" wx:key="key" wx:if="{{type==1}}">
+  <view class="left">
+    <view class="headImg">
+      <image src="{{item.headUrl}}"></image>
+      <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0" role="img" wx:if="{{item.redType!=0}}"></image>
+    </view>
+    <view style="margin-left:14px">
+      <view style="display: flex;align-items: center;">
+        <view class="name {{item.nickName.length>12?'nickNames':''}}">{{item.nickName}}</view>
+        <image src="/img/icon/vip.png" style="width:10px;height:9px;margin-left:3px;" role="img" wx:if="{{item.redType==1}}"></image>
+        <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:3px;" role="img" wx:if="{{item.redType==2}}"></image>
+      </view>
+      <view class="city">{{item.city}}</view>
+      <view class="time">{{item.create_time}}</view>
+    </view>
+  </view>
+  <view class="right" wx:if="{{item.flag==1}}" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}">关注</view>
+  <view class="rights" wx:if="{{item.flag==0}}" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}">互相关注</view>
+</view>
+<!-- 评论 -->
+<view class="list" wx:for="{{chatList}}" wx:key="key" wx:if="{{type==2}}" bindtap="jump" id="{{item.extend}}" data-member="{{item.member_no}}">
+  <view class="left">
+    <view class="headImg">
+      <image src="{{item.headUrl}}"></image>
+      <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0" role="img" wx:if="{{item.redType!=0}}"></image>
+    </view>
+    <view style="margin-left:14px">
+      <view style="display: flex;align-items: center;">
+        <view class="name {{item.nickName.length>12?'nickNames':''}}">{{item.nickName}}</view>
+        <image src="/img/icon/vip.png" style="width:10px;height:9px;margin-left:3px;" role="img" wx:if="{{item.redType==2}}"></image>
+        <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:3px;" role="img" wx:if="{{item.redType==1}}"></image>
+      </view>
+      <view class="city">{{item.msg}}</view>
+      <view class="time">{{item.create_time}}</view>
+    </view>
+  </view>
+  <!-- <view class="right">关注</view> -->
+  <view class="right-img">
+    <image src="{{item.sendImage}}" wx:if="{{item.sendImage}}" mode="aspectFill"></image>
+    <view class="title" wx:if="{{!item.sendImage}}">{{item.title}}</view>
+  </view>
+</view>
+<!-- 点赞 -->
+<view class="list" wx:for="{{chatList}}" wx:key="key" wx:if="{{type==3}}" bindtap="jump" id="{{item.extend}}" data-member="{{item.member_no}}">
+  <view class="left">
+    <view class="headImg">
+      <image src="{{item.headUrl}}"></image>
+      <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0" role="img" wx:if="{{item.redType!=0}}"></image>
+    </view>
+    <view style="margin-left:14px">
+      <view style="display: flex;align-items: center;">
+        <view class="name {{item.nickName.length>12?'nickNames':''}}">{{item.nickName}}</view>
+        <image src="/img/icon/vip.png" style="width:10px;height:9px;margin-left:3px;" role="img" wx:if="{{item.redType==1}}"></image>
+        <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:3px;" role="img" wx:if="{{item.redType==2}}"></image>
+      </view>
+      <view class="city">{{item.msg}}</view>
+      <view class="time">{{item.create_time}}</view>
+    </view>
+  </view>
+  <!-- <view class="right">关注</view> -->
+  <view class="right-img">
+    <image src="{{item.sendImage}}" wx:if="{{item.sendImage}}" mode="aspectFill"></image>
+    <view class="title" wx:if="{{!item.sendImage}}">{{item.title}}</view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+<!--pages/newsNote/newsNote.wxml-->
+<!-- 内容 -->
+<form>
+  <textarea maxlength='520' focus='{{true}}' bindinput="bindTextAreaBlur" class='text' bindblur="bindTextAreaBlur"  placeholder-class="text-pl" placeholder=" 分享新鲜事…" />
+  <view class="num">{{num}}/300</view>
+  <!-- 添加文件 -->
+  <view class=""></view>
+	<button class='btn-submit' form-type="submit" bindtap='submit' >发布</button>
+</form>

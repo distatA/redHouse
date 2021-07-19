@@ -1,0 +1,104 @@
+/* pages/linkGoods/linkGoods.wxss */
+/* 搜索 */
+page{
+   background:rgba(249,249,249,1);
+}
+.tip{
+  font-size:14px;color:#FF7054;
+  margin:10px auto;
+  text-align: center;
+}
+
+.search{position: relative;padding:10px 15px;}
+.search input{height: 30px;background: #fff;line-height: 30px;border-radius: 5px;padding: 0 70rpx;font-size: 28rpx;width:80%}
+.searchPic{position: absolute;left: 48rpx;top: 33rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+.search image{
+  width:16px;
+  height:16px;
+  position: absolute;
+  top:18px;
+  right:30px;
+}
+
+.img{
+  width:16px;
+  height:16px;
+  background: #B6B6B6;
+  border-radius: 50%;
+}
+.img image{
+  width:100%;
+  height:100%;
+  display: block;
+}
+/* 商品 */
+.shop{
+  padding:10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width:300px;
+  box-sizing: border-box;
+}
+.shop image{
+  width:80px;
+  height:80px;
+  /* background: #abcdef; */
+}
+.shop .top{
+  /* width:260px; */
+  margin-left:20px;
+}
+.shop .left{
+  display: flex;
+  /* align-items: center; */
+}
+.top .shop-name{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+  line-height:20px;
+}
+.price{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(255,146,84,1);
+  line-height:20px;
+  margin-top:13px;
+}
+text{
+  font-size:10px;
+  font-weight:400;
+  color:rgba(216,216,216,1);
+  line-height:14px;
+  margin-left:7px;
+  text-decoration:line-through;
+}
+/* 商品关联 */
+.select{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/unfocus.png) no-repeat center/40rpx 40rpx;}
+.select.on{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/focus.png) no-repeat center/40rpx 40rpx;}
+.btn-submit{
+  width:100px;
+  height:30px;
+	line-height:30px;
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+text-align: center;
+	border-radius: 4rpx;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+margin-top:110px;
+}
+/*  */
+/* .value-class {
+  flex: none !important;
+} */
+/* radio-group{
+  width:20px;
+  height:20px;
+  background: #FF5053;
+} */
+.radio{
+  padding:0 10px;
+}

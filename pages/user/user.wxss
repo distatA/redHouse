@@ -1,0 +1,27 @@
+/* pages/user/user.wxss */
+@import '../../wxParser/index.wxss';
+.wxParser{
+  padding:0 20rpx;
+  box-sizing: border-box;
+}
+.wxParser-p {
+  text-indent:2em !important;
+  /* margin: 5rpx auto;
+  font-size: 14px; */
+}
+button::after {
+  border: none;
+}
+button[plain]{
+  border:0;
+}
+.btn-set{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+button{
+  padding:0;
+}

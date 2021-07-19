@@ -1,0 +1,9 @@
+<!--pages/heXiao/heXiao.wxml-->
+<view class="main">
+  <!-- <view class="code">订单编号：{{houseCode.my_order_no}}</view> -->
+  <view class="code">向商家出示核销码</view>
+  <view  style="width:200px;height:150px;margin:0 auto; background:url({{codeImg}}) center/100%;background-repeat:no-repeat;" bindtap="brechen"></view>
+  <view class="num">{{houseCode}}</view>
+  <view class="title">商品名称：{{name}}</view>
+  <view class="title">有效时间：{{startTime}} 到 {{endTime}}</view>
+</view>

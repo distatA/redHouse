@@ -1,0 +1,169 @@
+<!--pages/collect/collect.wxml-->
+<!-- 菜单 -->
+<view class="head">
+  <view class="title {{index == current?'active':''}}" wx:for="{{menu}}" bindtap="changetype" data-id="{{index}}" data-num="{{item.num}}">
+    {{item.name}}
+  </view>
+</view>
+<!-- 商品 -->
+<block wx:if="{{current==0}}" >
+<block wx:if="{{goodsList.length==0}}">
+  <view class="wu">
+    <image src="/img/icon/cangWu.png"></image>
+    <view>您还没有收藏，快去逛逛吧</view>
+  </view>
+</block>
+<van-swipe-cell right-width="{{ 86 }}" wx:for="{{goodsList}}">
+  <van-cell-group>
+    <van-cell title="单元格" value="内容">
+    <!-- 商品 -->
+      <view class="list" bindtap="shop" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-id="{{item.category_id}}" data-item="{{item}}">
+        <view><image src="{{JDimg+item.spu_image}}" mode="widthFix"></image></view>
+        <view class="right">
+          <view class="name">{{item.shop_name}}</view>
+          <view class="title">{{item.goods_name}}</view>
+          <!-- <view class="price" wx:if="{{item.category_id != 1 && item.jd_type !== 1 }}">
+            <view class="newPrice">¥ {{item.low_price}} 
+            <text>¥ {{item.first_price}}</text>
+            </view>
+            <view bindtap="showPopup" type="primary" >. . .</view>
+          </view> -->
+           <view class="price">
+            <view class="newPrice">¥ {{item.first_price}}
+            <!-- <text>¥ {{item.first_price}}</text> -->
+            </view>
+            <view bindtap="showPopup" type="primary" >. . .</view>
+          </view>
+          <!-- <view class="price" wx:if="{{item.jd_type === 1}}">
+            <view class="newPrice">¥ {{item.first_price}}</view>
+            <view bindtap="showPopup" type="primary" >. . .</view>
+          </view>
+          <view class="price" wx:if="{{item.category_id == 1}}">
+            <view class="newPrice">{{item.average_price==0?'待定':'￥'+item.average_price}}</view>
+            <view bindtap="showPopup" type="primary" >. . .</view>
+          </view> -->
+        </view>
+      </view>
+    </van-cell>
+  </van-cell-group>
+  <view slot="right" class="close" bindtap="close" id="{{item.spu_no}}">取消收藏</view>
+  <view style="width:100%;height:6px;background:#F2F2F2;"></view>
+</van-swipe-cell>
+</block>
+<!-- 笔记 -->
+<block wx:if="{{current==1}}">
+<block wx:if="{{nodeList.length==0}}">
+  <view class="wu">
+    <image src="/img/icon/cangWu.png"></image>
+    <view>您还没有收藏，快去逛逛吧</view>
+  </view>
+</block>
+<van-swipe-cell right-width="{{ 86 }}" wx:for="{{nodeList}}">
+  <van-cell-group>
+    <van-cell title="单元格" value="内容">
+    <!-- 笔记 -->
+     <view class="headTop">
+      <image src="{{item.headUrl}}"></image>
+      <view class="right">
+        <view class="shopName">{{item.nickName}}</view>
+        <view class="sign">{{item.sign}}</view>
+      </view>
+     </view>
+     <!-- 多张图片 -->   
+     <view class="content" wx:if="{{item.memberNoteArticleImageList.length > 0}}">
+      <view class="titles" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}" data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}" data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-spu="{{item.spu_no}}"  data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">{{item.title}}</view>
+      <view class="img">
+       <block wx:if="{{item.memberNoteArticleImageList.length>2}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}" style="margin-bottom:12rpx;" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+      </block>
+      <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}" mode="widthFix" style="width:210px" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+      </block>
+      </view>
+      <view class="img" wx:if="{{item.memberNoteArticleImageList.length==2}}" style="justify-content:flex-start">
+        <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}" style="margin-bottom:12rpx;margin-right:12rpx;" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+      </view>
+     </view>  
+     <!-- 没图 -->
+      <block wx:if="{{item.memberNoteArticleImageList.length==0}}">
+      <view class="content">
+        <view class="left" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}" data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}" data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-spu="{{item.spu_no}}"  data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">{{item.title}}</view>
+       <!-- 视频 -->
+        <block wx:if="{{item.videoUrls}}">
+          <video src="{{item.videoUrls}}"  id="houseVideo"  title="{{item.title}}" bindfullscreenchange="fullscreenchange" style="width:100%">
+          </video>
+        </block>
+      </view>
+     </block>
+     <!-- 链接商品 -->
+  <view class="lian" wx:if = "{{item.spu_name != 'undefined' && item.spu_name != ''}}" bindtap="shop" id="{{item.spu_no}}" data-goods_name="{{spu_name}}" data-member_no="{{member_nos}}" data-choice="{{item.category_choice}}">
+      <view class="lianPage">
+        <view class="left">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png"></image>
+          <view class="lianTitle">{{item.spu_name}}</view>
+        </view>
+        <view class="right">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png"></image>
+        </view>
+      </view>
+  </view>
+     <!-- 点赞数 -->
+      <view class="littlePic">
+        <view class="mini see" style="justify-content: flex-start;">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/see.png"></image>
+          <view class="miniNum">{{item.read_num}}</view>
+        </view>
+        <view class="mini liuyan" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}" data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}" data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-spu="{{item.spu_no}}"  data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+          <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/liuyan.png"></image>
+          <view class="miniNum">{{item.comment_num}}</view>
+        </view>
+        <view class="mini zan" data-flag="{{item.flag}}" bindtap="zan" id="{{item.id}}" style="justify-content: flex-end;">
+          <block wx:if="{{item.flag==0}}">
+            <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/zan.png"></image>
+          </block>
+          <block wx:if="{{item.flag==1}}" data-flag="{{item.flag}}" bindtap="zan" id="{{item.id}}">
+            <image src="../../img/icon/zan.png"></image>
+          </block>
+          <view class="miniNum">{{item.like_num}}</view>
+        </view>
+      </view>
+    </van-cell>
+  </van-cell-group>
+  <view slot="right" class="closes" bindtap="closes" id="{{item.id}}">取消收藏</view>
+  <view style="width:100%;height:6px;background:#F2F2F2;"></view>
+</van-swipe-cell>
+
+</block>
+
+<!-- 店铺 -->
+<block wx:if="{{current==2}}">
+<block wx:if="{{shopList.length==0}}">
+  <view class="wu">
+    <image src="/img/icon/cangWu.png"></image>
+    <view>您还没有收藏，快去逛逛吧</view>
+  </view>
+    </block>
+  <van-swipe-cell right-width="{{ 86 }}" wx:for="{{shopList}}" >
+    <van-cell-group>
+      <van-cell title="单元格" value="内容">
+      <!-- 店铺 -->
+        <view class="headTop" bindtap="shopHome" id="{{item.merchant_no}}">
+          <image src="{{item.shopImage}}"></image>
+          <view class="right">
+            <view class="shopName">{{item.shop_name}}</view>
+            <view class="sign">爱生活、爱健康、爱努力</view>
+          </view>
+          <!-- <view class="dot">. . .</view> -->
+        </view>
+      </van-cell>
+    </van-cell-group>
+    <view slot="right" class="close3" bindtap="close3" id="{{item.merchant_no}}">取消收藏</view>
+    <view style="width:100%;height:6px;background:#F2F2F2;"></view>
+  </van-swipe-cell>
+  
+</block>
+
+

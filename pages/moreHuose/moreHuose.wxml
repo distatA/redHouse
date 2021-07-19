@@ -1,0 +1,80 @@
+<!--pages/moreHuose/moreHuose.wxml-->
+<!-- 轮播图 -->
+<view class="lunbo" wx:if="{{imgUrl.length>0}}">
+<swiper  class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'
+  indicator-color='#c1c1c1' indicator-active-color = '#FF6B09'>
+  <block wx:for="{{imgUrl}}" wx:for-index="index" wx:key="key">
+    <swiper-item>
+      <image src='{{item.sub_item_url}}' class='u-img-slide'></image>
+    </swiper-item>
+  </block>
+</swiper>
+</view>
+<!-- 优惠券 -->
+<block wx:if="{{type==3}}">
+<view class="main" style="background:{{color}}">
+  <view class="list">
+    <view class="list-img" wx:for="{{detailList}}" bindtap="yuYue" id="{{item.spu_no}}" data-appUrl="{{item.appUrl}}"  data-coupon="{{item.coupon_name}}" data-start="{{item.start_time}}" data-end="{{item.end_time}}" data-merchant="{{item.merchant_no}}" data-name="{{item.spu_name}}">
+      <view class="name">{{item.spu_name}}</view>
+      <view class="place">{{item.address}}</view>
+      <view class="money">{{item.coupon_name}}</view>
+    </view>
+  </view>
+</view>
+</block>
+<!-- 项目列表 -->
+<block wx:else>
+<view class="main" wx:for="{{detailList}}" style="background:{{color}}">
+  <view class="huoseList" bindtap="temp" id="{{item.house.spu_no}}" data-type="{{item.house.category_choice}}">
+    <image src="{{item.house.spu_image}}"></image>
+    <view class="huoseItem">
+      <view class="huoseName {{item.house.goods_name.length>12?'huoseNames':''}}">{{item.house.goods_name}}</view>
+      <view class="huoseMoney">{{item.house.reference_average_price!=0?item.house.reference_average_price+'元/㎡':'待定'}}</view>
+    </view>
+    <view class="biaoQian"><view class="jieshao" wx:for="{{item.house.houseTagVoList}}">{{item.core_tag}}</view></view>
+    <view class="bottom">
+      <view class="people">{{item.house.num * 131}}人已预约</view>
+      <view class="yuyue">立即预约</view>
+    </view>
+  </view>
+</view>
+</block>
+<!-- 预约报名弹框 -->
+<view class="zz {{display == 1 ?'no':''}}" wx:if="1" catchtouchmove='myCatchTouch'>
+  <view class="zz-box" >
+  <view class="boxTop">
+    <view>我要预约</view>
+    <view style="font-size:18px;margin-top:7px;">{{spu_name}}</view>
+  </view>
+  <view class="clos" bindtap="closeZz" data-id="2"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block"></image></view>
+  <!-- 优惠券 -->
+  <block > 
+  <view class="checked">
+    <view class="juan-name" style="color:#fff">{{coupon_name}}</view>
+    <view class='juan-time' style="color:#fff">有效期限：{{start_time}}--{{end_time}}</view>
+  </view>
+  </block>
+  <!-- <view class="lists">
+    <view class="left">客户姓名：</view>
+    <input placeholder='请填写真实姓名' bindinput='getnameValue' placeholder-style="font-size:14px;color:#AEAEAE"></input>   
+  </view> -->
+  <view class="lists">
+    <view class="left">手机号码：</view>
+    <block wx:if="{{phone ==''}}">
+    <view  style="position: relative;font-size:14px;color:#AEAEAE;">授权手机号
+      <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" plain="true"  style="position: absolute;width:100%;height:100%;top:0;left:0;"></button></view>
+    </block>
+    <block wx:else>
+    <input placeholder='请填写11位手机号码' bindinput='getphoneValue' placeholder-style="font-size:14px;color:#AEAEAE" value="{{phone}}"></input></block>   
+  </view>
+
+  <!-- <view class="lists">
+    <view class="left">看房时间：</view>
+    <picker mode="date" value="{{userDate}}" start="{{startTime}}" end="2099-12-31" bindchange="bindDateChange">
+      <input class="picker" type="text" name="userDate" value="{{userDate}}"  placeholder="请选择时间" disabled="true" placeholder-style="font-size:14px;color:#AEAEAE"/>
+    </picker>
+  </view> -->
+
+    <view class="submit" bindtap='submit'>提交</view>
+  </view>
+</view>

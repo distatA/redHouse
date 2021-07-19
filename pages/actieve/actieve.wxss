@@ -1,0 +1,386 @@
+/* pages/actieve/actieve.wxss */
+.user{
+  width:100%;
+  height:100%;
+  background: rgba(68, 68, 68, 0.9);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center; 
+}
+.user image{
+  width:290px;
+  height:40px;
+  position: relative;
+  margin:0 auto;
+  display:block;
+}
+.btn-sets{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+/* 轮播图 */
+.u-wrp-bnr {
+  width: 100%;
+  height: 460rpx;
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+.u-img-slide {
+  width: 100%;
+  height: inherit;
+  border-radius: 10px;
+  background: #abcdef;
+}
+.main{
+  background: #FF6B09;
+  padding:10px;
+}
+/* 背景图 */
+.topImg{
+  width:100%;
+  height:544px;
+  background: #abcdef;
+}
+.topImg image{
+  width:100%;
+  height:100%;
+}
+/* 特价优惠 */
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:13px 24px 10px 12px;
+  box-sizing: border-box;
+  font-size:15px;
+  font-family:PingFangSC-Regular;
+  font-weight:600;
+  color:rgba(12,12,12,1);
+  background: #fff;
+  border-radius:5px 5px 0 0;
+}
+.title .left{display: flex;align-items: center}
+.title .left text{
+  display: block;
+  width:2px;
+  height:15px;
+  background:linear-gradient(192deg,rgba(255,80,83,1) 0%,rgba(255,146,84,1) 100%);
+  margin-right:5px;
+}
+.list{
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom:10px;
+  background: #fff;
+  border-radius:0 0 5px 5px;
+}
+.list .list-img{
+  width:160px;
+  height:147px;
+  margin-bottom:14px;
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-16/e8c9e02d20394c88a28e5859c63633e0-tmp_322409f1f554a51b38687e0c6add368c.jpg) center/100%;
+  background-repeat:no-repeat;
+}
+.list-img .image{
+  width:100%;
+  height:100%;
+  
+}
+.name{
+  width:140px;
+  margin:0 auto;
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:600;
+  color:rgba(12,12,12,1);
+  text-align: center;
+  margin-top:20px;
+  
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+}
+.place{
+  width:140px;
+  margin:0 auto;
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(12,12,12,1);
+  text-align: center;
+  margin-top:7px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+}
+.money{
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:550;
+  color:rgba(255,255,255,1);
+  text-align: center;
+  margin-top:28px;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow: hidden;
+}
+button::after {
+  border: none;
+  background: none;
+}
+button[plain]{
+  border:0;
+}
+/* 问答 */
+.lunbo{
+  /* padding:0 10px; */
+  background: #fff;
+  margin-bottom:20px;
+  border-radius:0 0 10px 10px;
+}
+.imgs{
+  width:100%;
+  height:185px;
+  margin-bottom:10px;
+  background: #abcdef;
+}
+.imgs image{
+  width:100%;
+  height:100%;
+ border-radius:5px 5px 0px 0px;
+}
+/* 品牌馆 */
+.title .right{
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+}
+.list-item{
+  width:320rpx;
+  height:320rpx;
+  /* background: #abcdef; */
+  margin-bottom:30rpx;
+}
+.list-item image{
+  width:100%;
+  height:100%;
+  border-radius:5px;
+}
+/* 项目 */
+.huoseList{
+  margin-top:10px;
+  background: #fff;
+  padding-bottom:15px;
+  border-radius:5px 5px 0 0;
+}
+.huoseList image{
+  width:100%;
+  height:185px;
+  border-radius:5px 5px 0 0;  
+  /* background: #abcdef; */
+}
+.huoseItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top:10px;
+  padding:0 15px 0 10px;
+}
+.huoseName{
+  font-size:16px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+}
+.huoseMoney{
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,104,83,1);
+}
+.bottom{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top:10px;
+  padding:0 15px 0 10px;
+}
+.people{
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,69,65,1);
+}
+.yuyue{
+  width:60px;
+  height:24px;
+  background: #FF7D57;
+  text-align: center;
+  line-height: 24px;
+  font-size:11px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.biaoQian{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+   margin-top:15px;
+   padding:0 10px;
+}
+.jieshao{
+  font-size:11px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  padding:3px;
+  color:#fff;
+  /* border:1px solid #B9B9B9; */
+  margin-left:5px;
+  background:rgba(255,112,84,1);
+  border-radius:3px;
+  margin-bottom:5px;
+}
+
+/* 弹框 */
+.zz{
+	position:fixed;
+  width:100%;
+  height:100%;
+	left:0;
+	top:0;
+	background:rgba(0,0,0,0.7);
+	z-index:999;
+	display:flex;
+	align-items:center;
+}
+.zz-box{
+  /* width:100%; */
+ background:rgba(255,255,255,1);
+ border-radius:15px 15px 10px 10px;
+ margin: 0 auto;
+ position: relative;
+}
+.zz-box .title{
+  font-size:45rpx;
+  text-align: center;
+  font-weight:bold;
+  margin-top:109rpx;
+  height:42rpx;
+  line-height: 42rpx;
+  color:rgba(4,7,23,1);
+}
+.zz.no{
+	display:none;
+}
+.list-juan{
+  width:295px;
+  height:77px;
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-09/b439dc8939f945ce8aa6a0b157384a68-tmp_0f477f79a17488a5b374f62474657af4.jpg) center/100%;
+  background-repeat:no-repeat;
+  margin:7px auto;
+  padding-top:15px;
+  box-sizing: border-box;
+}
+.checked{
+  width:295px;
+  height:77px;
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-09/f3e9dcc9969242819ac2639696dfa3d2-tmp_1584eb580672c3898ed3ceb233dccfcf.jpg) center/100%;
+  background-repeat:no-repeat;
+  margin:10px auto;
+  padding-top:15px;
+  box-sizing: border-box;
+}
+.juan-name{
+  font-size:19px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(111,111,111,1);
+  margin:0 auto;
+  text-align: center;
+  padding-left:43px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.juan-time{
+  font-size:8px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#6F6F6F;
+  margin:0 auto;
+  text-align: center;
+  margin-top:8px;
+  padding-left:40px;
+}
+.boxTop{
+ width:630rpx;
+  height:200rpx;
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-09/afd930f746c64006b15172ac5e835711-tmp_a843e621c02d32a920ec55a5cc22a402.jpg) center/100%;
+  background-repeat:no-repeat;
+  font-size:22px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  /* line-height:240rpx; */
+  text-align: center;
+  border-radius:12px 12px 0 0;
+  padding-top: 25px;
+  box-sizing: border-box;
+}
+.zz-box .clos{
+  position:absolute;
+  top:27rpx;
+  right:27rpx;
+  width:20px;
+  height:20px;
+}
+.zz-box .lists{
+  /* padding:0 15px; */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width:230px;
+  margin:0 auto;
+  margin-top:20px;
+
+  /* justify-content: space-between; */
+}
+.zz-box .lists .left{
+  height:20px;
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:550;
+  color:#000000;
+}
+.zz-box .lists input{
+  width:100px;
+  font-size:28rpx;
+  font-weight:500;
+  color:#000;
+}
+
+
+.zz-box .submit{
+  width:100px;
+  height:30px;
+  line-height: 30px;
+  text-align: center;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin:30px auto;
+  border-radius:5px;
+}

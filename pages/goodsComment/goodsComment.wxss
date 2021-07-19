@@ -1,0 +1,105 @@
+/* pages/goodsComment/goodsComment.wxss */
+.top{
+  display: flex;
+  padding:12px 23px 23px 15px;
+}
+.top .shopImg{
+  width:60px;
+  height:60px;
+  background: #abcdef;
+}
+.shopImg image{
+  width:100%;
+  height:100%;
+}
+.top .text{
+  width:255px;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-left:22px;
+}
+/* 星 */
+.list{
+  display: flex;
+  align-items: center;
+  margin-left:18px;
+  margin-bottom:22px;
+}
+.list .title{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-right:20px;
+}
+.list image{
+  width:16px;
+  height:15px;
+  margin-right:10px;
+}
+/* 内容 */
+button::after{ border: none; }
+.text{
+  width:100%;
+  padding:8rpx 18rpx 19rpx 14px;
+  box-sizing: border-box;
+  font-size:30rpx;
+  position: relative;
+}
+.btn-submit{
+  width:100px;
+  height:30px;
+	line-height:30px;
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  text-align: center;
+	border-radius: 4rpx;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+}
+.num{
+  position:absolute;
+  bottom:10rpx;
+  right :10rpx;
+  font-size:14px;
+	width:140rpx;
+  text-align:center;
+  color:#848484;
+  z-index: 2;
+}
+.text-pl{
+  text-align: right;
+  color:#cccccc;
+}
+/* 匿名 */
+.nickName{
+  font-size:12px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  display: flex;
+  align-items: center;
+  text-align: right;
+  float: right;
+  /* margin-top:-18px; */
+  padding-right:23px;
+}
+.select{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/unfocus.png) no-repeat center/40rpx 40rpx;}
+.select.on{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/focus.png) no-repeat center/40rpx 40rpx;}
+/* 上传图片 */
+.tops{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-top:18px;
+  margin-left:18px;
+}
+.upload{
+  display: flex;
+  justify-content: space-between;
+  padding:13px 16px 23px 15px;
+}
+.upload image{
+  width:106px;
+  height:106px;
+}

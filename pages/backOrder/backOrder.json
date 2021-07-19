@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-action-sheet": "/dist/action-sheet/index"
+  },
+  "navigationBarTitleText": "退款/售后详情"
+}

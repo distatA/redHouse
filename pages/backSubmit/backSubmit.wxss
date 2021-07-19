@@ -1,0 +1,33 @@
+/* pages/backSubmit/backSubmit.wxss */
+image{
+  width:80px;
+  height:80px;
+  margin:0px auto;
+  margin-top:36px;
+  display: block;
+}
+.title{
+  font-size:16px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  margin-top:25px;
+  text-align: center;
+}
+.foot{
+  margin-top: 41px;
+  padding: 26px 45px;
+  background: #FAFAFA;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list{
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  padding:5px 21px;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  border-radius: 4px;
+}

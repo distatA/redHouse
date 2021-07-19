@@ -1,0 +1,147 @@
+/* pages/myLiveList/myLiveList.wxss */
+page{
+  background: #F4F1F4;
+}
+.top{
+  padding:14px 21px 14px 18px;
+  background: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.top .left{
+  display: flex;
+  align-items: center;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(22,22,22,1);
+}
+.mine{
+  padding:7px 20px;
+  background: #F2F2F2;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(12,12,12,1);
+}
+/* 直播列表 */
+.list{
+  padding:10px 20px;
+  background: #FFFFFF;
+  margin-bottom:5px;
+}
+.title{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.titles{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+}
+.share{
+  display: flex;
+  align-items: center;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:460;
+}
+.btn-set{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+button[plain]{
+  border:0;
+}
+button::after{
+  border:none;
+  background: none;  
+}
+.bottom{
+  display: flex;
+  align-items: center;
+  margin-top:10px;
+}
+.bottom .img{
+  width:155px;
+  height:80px;
+  border-radius: 5px;
+  background: #abcdef;
+}
+.bottom .img image{
+  width:100%;
+  height:100%;
+  display: block;
+  border-radius: 5px;
+}
+.bottom .right{
+  margin-left:15px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:520;
+  color:rgba(0,0,0,1);
+  
+}
+/* 弹框 */
+.zz{
+	position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+	background:rgba(0,0,0,0.7);
+  /* background: #fff; */
+	z-index:999;
+	display:flex;
+	align-items:center;
+}
+.zz-box{
+width:280px;
+ /* height:100%; */
+ background:rgba(255,255,255,1);
+
+	left:0;
+  right:0;
+  margin:auto;
+ border-radius:10px;
+ position: absolute;
+ padding:0 10px;
+ box-sizing: border-box;
+}
+.zz-box image{
+ width:100%;
+
+ margin:0 auto;
+ margin-top:40px;
+ display: block;
+}
+.zz.no{
+	display:none;
+}
+.zz-box .clos{
+  position:absolute;
+  top:10px;
+  right:27rpx;
+  width:20px;
+  height:20px;
+}
+.clickBaocun{
+  width:100px;
+  height:30px;
+  border-radius: 5px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#fff;
+  text-align: center;
+  line-height: 30px;
+  background: linear-gradient(to right,#FF9452,#FF4F56);
+  margin:20px auto;
+  /* margin-top:20px; */
+}

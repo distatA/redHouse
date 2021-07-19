@@ -1,0 +1,105 @@
+/* pages/myEdit/myEdit.wxss */
+.main{
+  padding:0 20px;
+}
+.head{
+  display: flex;
+  align-items:center ;
+  justify-content: space-between;
+  padding:15px 0px;
+  border-bottom:1px solid #F2F2F2;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:#000000;
+}
+.name{
+  padding:15px 0px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#565656;
+  border-bottom:1px solid #F2F2F2;
+}
+.radio{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+  margin-left:15px;
+}
+radio-group{
+  display: flex;
+}
+.money{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+}
+input{
+  padding:10px;
+  text-align: right;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:#FF0000;
+  /* border:1px solid #FF0000; */
+}
+.title{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(22,22,22,1);
+  margin-top:10px;
+}
+.tip{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(154,154,154,1);
+}
+.contain{
+  position: relative;
+  margin-top:20px;
+}
+.num{
+  position:absolute;
+  top:70px;
+  right :0px;
+  font-size:14px;
+  color:#848484;
+}
+.text-pl{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#848484;
+}
+.foot{
+  width:100px;
+  height:30px;
+  text-align: center;
+  line-height: 30px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background: linear-gradient(to right,#FE9156,#FF5050);
+  margin:50px auto;
+  border-radius: 5px;
+}
+textarea{
+  width:336px;
+  height:60px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#000;
+  border-radius:5px;
+  border:1px solid rgba(151,151,151,1);
+  padding:5px;
+  box-sizing: border-box;
+}

@@ -1,0 +1,3 @@
+<!--pages/pageH/pageH.wxml-->
+<import src="../../wxParser/index.wxml" />
+<web-view src="{{url}}"></web-view>

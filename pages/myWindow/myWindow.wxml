@@ -1,0 +1,40 @@
+<!--pages/myWindow/myWindow.wxml-->
+ <!-- <view class="box">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+</view> -->
+<view style="background: #FF6E57;height:60px;width:100%"></view>
+<view class="header" bindtap="myDow">
+  <view class="left">
+    <image src="{{headUrl}}"></image>
+    <view class="right">橱窗管理</view>
+  </view>
+  <view><image src="/img/icon/youjiantou.png" style="width:18rpx;height:32rpx;"></image></view>
+</view> 
+
+
+<!-- 会员绑定 -->
+<view class='title'>
+  <view class="left">会员绑定（{{total}}）</view>
+  <view class="right">三个月内未产生购买行为，系统自动解绑</view>
+</view>
+<!-- 列表 -->
+<view class="list" wx:for="{{huiyuanList}}">
+  <view class="left" bindtap="redShop" id="{{item.member_no}}">
+    <view class="headImg">
+      <image src="{{item.headUrl}}"></image>
+      <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0" role="img" wx:if="{{item.redType==1 || item.redType==2}}"></image>
+    </view>
+    <view style="margin-left:14px">
+      <view style="display: flex;align-items: center;">
+        <view class="name {{item.nickName.length>10?'nickNames':''}}">{{item.nickName}}</view>
+        <image src="/img/icon/vip.png" style="width:10px;height:9px;margin-left:3px;" role="img" wx:if="{{item.redType==1}}"></image>
+        <image src="/img/icon/pinPai.png" style="width:30px;height:11px;margin-left:3px;" role="img" wx:if="{{item.redType==2}}"></image>
+      </view>
+      <view class="city">{{item.city}}</view>
+      <view class="time">{{item.create_time}}</view>
+    </view>
+  </view>
+
+  <view class="right" wx:if="{{item.flag==0}}" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}">关注</view>
+  <view class="rights" wx:if="{{item.flag==1}}" bindtap="guanZhu" id="{{item.flag}}" data-id="{{item.member_no}}">互相关注</view>
+</view>

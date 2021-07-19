@@ -1,0 +1,30 @@
+<!--pages/img/img.wxml-->
+<!-- 图片 -->
+<template name="img">
+  <view class="list-item"><image src="{{src}}" id="{{type}}" bindtap="temp" data-id="{{appUrl}}" data-color="{{color}}"></image></view>
+</template>
+<!-- 轮播图 -->
+<template name="lunbo">
+  <image src='{{src}}' class='u-img-slide' bindtap='temp' id="{{type}}" data-id="{{appUrl}}" data-color="{{color}}"></image>    
+</template>
+<!-- 优惠券 -->
+<template name="youhiu">
+  <view class="name">{{spu_name}}</view>
+  <view class="place">{{address}}</view>
+  <view class="money">{{coupon_name}}</view>
+</template>
+<!-- 项目 -->
+<template name="xiangmu">
+  <view class="huoseList">
+    <image></image>
+    <view class="huoseItem">
+      <view class="huoseName">文一·塘溪津门</view>
+      <view class="huoseMoney">￥26738</view>
+    </view>
+    <view class="biaoQian"><view class="jieshao">普通住宅</view></view>
+    <view class="bottom">
+      <view class="people">34人已预约</view>
+      <view class="yuyue">立即预约</view>
+    </view>
+  </view>
+</template>

@@ -1,0 +1,65 @@
+<!--pages/cart/cart.wxml-->
+<view class="cart">
+  <!-- <navigator>
+    <view class="topAdv">
+      <view class="horn"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/cart/horn.png"></image></view>
+      <view class="advTxt">自营商品单笔订单金额满88元可免邮费</view>
+      <view class="advArrow"></view>
+    </view>
+  </navigator> -->
+  <view class="cartBody">
+    <block wx:if="{{cart.length==0}}">
+      <view class="wu">
+        <image src="/img/icon/cangWu.png"></image>
+        <view>暂无商品，快去购买吧</view>
+      </view>
+    </block>
+    <view class="shop" wx:for="{{cart}}" wx:key="shopkey" wx:for-index="shopkey">
+      <view class="shopTop">
+        <view class="shopBtn {{ item.state == true ? 'on':'' }}" data-shopkey="{{shopkey}}" bindtap="seleteShop"></view>
+        <navigator class="shoper" url="/pages/shopHome/shopHome?merchant_no={{item.merchant_no}}">
+          <image src="{{item.headImg}}"></image>
+          <view class="shoperName">{{item.name}}</view>
+          <view class="shoperArrow"></view>
+        </navigator>
+      </view>
+      <view class="goodList">
+        <view class="thisGood" wx:for="{{item.goodList}}" wx:key="goodkey" wx:for-index="goodkey">
+          <view class="shopBtn {{ item.state == true ? 'on':'' }}" data-goodkey="{{goodkey}}" data-shopkey="{{shopkey}}" bindtap="seleteGood"></view>
+          <view class="goodInfo">
+            <view class="goodImage">
+              <image src="{{item.imageUrl}}"></image>
+            </view>
+            <view class="goodTxt">
+              <view class="intro">{{item.good_name}}</view>
+              <view class="priceAndGuige">
+                <view class="guige">{{item.specification}}</view>
+                <view class="price">¥ {{item.price}}</view>
+              </view>
+              <view class="goodLast">
+                <view class="goodNum">
+                  <view class="delNum box" bindtap="deleteNum" data-goodkey="{{goodkey}}" data-shopkey="{{shopkey}}">-</view>
+                  <view class="num box">{{item.num}}</view>
+                  <view class="addNum box" bindtap="addNum" data-goodkey="{{goodkey}}" data-shopkey="{{shopkey}}">+</view>
+                </view>
+                <view class="deleteGood" bindtap="deleteGood" data-goodkey="{{goodkey}}" data-shopkey="{{shopkey}}">
+                  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/cart/delete.png"></image>
+                </view>
+              </view>
+            </view>
+            
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom">
+    <view class="shopBtn {{ allGoodTag == true ? 'on':'' }}" bindtap="selectAll"></view>
+    <view class="allin" bindtap="selectAll" >全选</view>
+    <view class="allPriceTxt">合计： </view>
+    <view class="allPrice">¥ {{allMoney}}</view>
+
+    <view class="payAllBtn" bindtap="finishMoney">结算</view>
+  </view>
+</view>

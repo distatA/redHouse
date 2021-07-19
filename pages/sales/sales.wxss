@@ -1,0 +1,144 @@
+/* pages/sales/sales.wxss */
+.search{
+  padding:0 20px;
+  box-sizing: border-box;
+  }
+.search input{
+  position: relative;
+  height: 54rpx;
+  background: #F2F2F2;
+  line-height: 54rpx;
+  border-radius: 54rpx;
+  padding: 0 70rpx;
+  font-size: 28rpx;
+  margin:10px auto;
+  }
+.search text{
+position: absolute;
+ right: 60rpx;
+  top: 30rpx;
+   font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:#000;
+}
+.searchPic{
+  position: absolute;
+  left: 60rpx;
+  top: 32rpx;
+  width: 32rpx;
+  height: 32rpx;
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;
+}
+.shop_name{
+  width:180px;
+  overflow: hidden;
+text-overflow:ellipsis;
+white-space: nowrap;
+}
+/* 列表 */
+.list{
+  padding:15px 20px;
+  /* box-shadow: 10rpx 10rpx 35rpx 10rpx #F2F2F2; */
+  border-bottom: 6px solid #F2F2F2;
+  /* border-radius:10px; */
+}
+.list .head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom:5px;
+}
+.head .left{
+  display: flex;
+  align-items: center;
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+}
+.head .left image{
+  width:26px;
+  height:26px;
+  border-radius:50%;
+  /* background: #abcdef; */
+  margin-right:8px;
+}
+.head .right image{
+  width:44rpx;
+  height:44rpx;
+}
+.time{
+  font-size:11px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(191,191,191,1);
+}
+.member{
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+}
+.money{
+  width:100%;
+  text-align: right;
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,80,83,1);
+}
+/* 商品 */
+.shop{
+  display: flex;
+  margin-top:22px;
+}
+.shop image{
+  width:81px;
+  height:81px;
+  /* background: #abcdef; */
+}
+.shop .right{
+  margin-left:12px;
+}
+.shop .right .top{
+  display: flex;
+  align-items: baseline;
+}
+.right .top .shopName{
+  width:175px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+}
+.top .price{
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(12,12,12,1);
+  margin-left:24px;
+}
+.price .num{
+  color:rgba(159,159,159,1);
+  text-align: right;
+}
+.size{
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(191,191,191,1);
+  margin-top:12px;
+}
+.wu{
+  font-size:16px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(191,191,191,1);
+  margin:50px auto;
+  text-align: center;
+}

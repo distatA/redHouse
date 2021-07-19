@@ -1,0 +1,97 @@
+<!--pages/post/post.wxml-->
+<!-- 发笔记 -->
+<form>
+  <block wx:if="{{postId==1}}">
+    <textarea focus='{{true}}' bindinput="bindIuput" class='text' placeholder-class="text-pl" placeholder=" 分享新鲜事…"
+      value="{{textValue}}" maxlength='800' style="border:none;padding-left:0;margin-right:0;width:90%;"></textarea>
+    <!-- 添加 -->
+    <view class="add">
+      <view class="list" bindtap="addImg">
+        <image
+          src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/8bfd9b99a49d42fc98d1bdedd18f5512-tmp_d90c0247c6182bb76a797509b697e600.jpg"
+          style="width:60rpx;height:48rpx;"></image>
+        <view>添加图片</view>
+      </view>
+
+      <view class="list" bindtap="addVideoTap">
+        <image
+          src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/4a04a55f9083415f8b68ed993eb6146c-tmp_c83e23894ee39c4f234537c033a34455.jpg"
+          style="width:60rpx;height:48rpx;"></image>
+        <view>添加视频</view>
+      </view>
+      <!-- <view class="list" bindtap="addVideoTap">
+      <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/b74186f1dc2c4bceb5834102f8e01e4c-tmp_4ddd09bf35a541808b8e0793b7bb483d.jpg" style="width:28px;height:28px;"></image>
+      <view>发起话题</view>
+    </view> -->
+      <view class="list" bindtap="vote">
+        <image
+          src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-06-04/f04da2a73f924ae685675a1e458ddc3b-tmp_682685ca25b185c39d76dc237aa8ffb9.jpg"
+          style="width:60rpx;height:54rpx;"></image>
+        <view>发起投票</view>
+      </view>
+    </view>
+    <view class="zhanshi">
+      <!-- 图片渲染的列表  -->
+      <view wx:for="{{imageUrl}}" wx:key="index" class="imgs">
+        <image src="{{item.imageUrl}}" style="position:relative" class="close" >
+          <view style="color:red;position:absolute;top:0;right:0" bindtap="delete" data-id="{{index}}">X</view>
+        </image>
+        <!-- <image src="/img/icon/edl.png" class="close" style="width:15px;height:15px; position: absolute; right:0px;top:0px;" bindtap="delete" id="{{index}}"></image> -->
+      </view>
+      <video wx:if="{{videoUrls}}" src="{{videoUrls}}" bindfullscreenchange="fullscreenchange"></video>
+    </view>
+  </block>
+  <!-- 发布快讯 -->
+  <block wx:if="{{postId==2}}">
+    <view class="title">快讯标题</view>
+    <textarea placeholder="编辑快讯标题" maxlength='30' focus='{{true}}' bindinput="bindTextAreaBlur1"
+      placeholder-class="text-pl" value="{{textValue1}}" style="height:60px"></textarea>
+    <view class="num">{{num}}/30</view>
+    <view style="width:100%;height:4px;background:#F9F9F9;margin:8px 0;"></view>
+    <view class="title">快讯内容</view>
+    <textarea placeholder="编辑文章内容" maxlength='245' focus='{{true}}' bindinput="bindTextAreaBlur2"
+      placeholder-class="text-pl" value="{{textValue2}}"></textarea>
+    <view class="num">{{num1}}/245</view>
+    <view style="width:100%;height:20px;background:#F9F9F9;margin:8px 0;"></view>
+  </block>
+  <!-- 投票 -->
+  <view class="toupiao" wx:if="{{isDel}}">
+    <image
+      src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/600ff0db890740859c72ad69bcc32d5f-tmp_baf8f41d7cde4281859c29952008692e.jpg"
+      style="width:18px;height:16px;margin-right:10px"></image>
+    <view class="concater">{{voteTitle}} <text bindtap="del">x</text></view>
+  </view>
+  <!-- 关联 -->
+  <view class="guanLian" bindtap="guanLian" wx:if="{{open}}">
+    <view class="list" style="display: flex;align-items: center;">
+      <image
+        src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/e21d94a14c6d44d8a919f427d6bd7046-tmp_f3548b216a29599bd5c81be8dbf4e815.jpg"
+        style="width:25px;height:25px;margin-right:10px;margin-bottom:0"></image>
+      <view>关联商品</view>
+    </view>
+    <view class="go">去关联</view>
+  </view>
+  <!-- 提示 -->
+  <view class="tips" wx:if="{{open}}">若无商品关联可直接发布</view>
+  <!-- 商品 -->
+  <view class="shop" wx:if="{{goods_name&&goods_name!='undefined'}}">
+    <view class="left">
+      <view style="width:80px;height:80px">
+        <image src="{{spu_image}}"></image>
+      </view>
+      <view class="top">
+        <view class="shop-name">{{goods_name}}</view>
+        <block wx:if="{{category_choice==1}}">
+          <view class="price">{{price}}元/㎡</view>
+        </block>
+        <block wx:else>
+          <view class="price">¥{{low_price}} <text>¥ {{first_price}}</text></view>
+        </block>
+      </view>
+    </view>
+    <view class="right" bindtap="changeMoren" id="{{spu_no}}">
+      <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+    </view>
+  </view>
+  <button class='btn-submit' form-type="submit" bindtap='submit'>发布</button>
+</form>

@@ -1,0 +1,42 @@
+<!--pages/linkGoods/linkGoods.wxml-->
+
+<!-- 搜索 -->
+<view class="search">
+  <input type="text" class="topsearch" placeholder="请输入商品名称搜索" bindinput="getInputValue" bindconfirm='searchHandle' value="{{searchValue}}"></input>
+  <view class="searchPic" bindtap="toSearch"></view>
+  <image src="/img/icon/edls.png" bindtap="cancel"></image>
+</view>
+<!-- 商品 -->
+<view class="tip">只能关联一件商品哦！</view>
+<!-- <view class="shop" wx:for="{{goodsList}}">
+  <view class="left">
+    <view style="width:80px;height:80px"><image src="{{item.spu_image}}"></image></view>
+    <view class="top">
+      <view class="shop-name">{{item.goods_name}}</view>
+      <view class="price" wx:if="{{item.category_choice != 1}}">¥{{item.low_price}} <text>¥ {{item.first_price}}</text></view>
+      <view class="price" wx:if="{{item.category_choice == 1}}">{{item.average_price==0?'待定':'￥'+item.average_price}} </view>
+    </view>
+  </view>
+  <view class="right" bindtap="radioChange" id="{{index}}">
+    <view class="select {{ item.checked == true ? 'on':'' }}"></view>
+  </view>
+</view> -->
+<radio-group class="radio-group" bindchange="radioChange">
+  <radio class="radio" wx:for="{{items}}" wx:key="name" value="{{index}}" checked="{{item.checked}}" color="#FF9254" >
+      <!-- <text>{{item.goods_name}}</text> -->
+    <view class="shop">
+      <view class="left">
+        <view style="width:80px;height:80px"><image src="{{item.spu_image}}"></image></view>
+        <view class="top">
+          <view class="shop-name">{{item.goods_name}}</view>
+          <view class="price" wx:if="{{item.category_choice != 1}}">¥{{item.low_price}} <text>¥ {{item.first_price}}</text></view>
+          <view class="price" wx:if="{{item.category_choice == 1}}">{{item.average_price==0?'待定':'￥'+item.average_price}} </view>
+        </view>
+      </view>
+    </view>
+  </radio>
+</radio-group>
+
+<button class='btn-submit' form-type="submit" bindtap='submit'>关联</button>
+
+

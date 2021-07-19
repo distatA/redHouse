@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "painter": "../../painter/painter",
+    "van-popup": "/dist/popup/index"
+  }
+}

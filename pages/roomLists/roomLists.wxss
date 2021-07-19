@@ -1,0 +1,196 @@
+/* pages/roomLists/roomLists.wxss */
+page{
+  background: #F2F2F2;
+}
+.user{
+  width:100%;
+  height:100%;
+  background: rgba(68, 68, 68, 0.9);
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center; 
+}
+.user image{
+  width:290px;
+  height:40px;
+  position: relative;
+  margin:0 auto;
+  display:block;
+}
+.btn-set{
+  position: absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+}
+button{
+  padding:0;
+}
+button[plain]{
+  border:0;
+}
+button::after{
+  border:none;
+  background: none;  
+}
+/* 轮播图 */
+.u-wrp-bnr {
+  width: 100%;
+  height: 420rpx;
+  display: block;
+
+  margin: 0 auto;
+  z-index: -1;
+}
+.u-img-slide {
+  width: 100%;
+  height: 100%;
+  /* background: #abcdef; */
+}
+.bangdan{
+  /* width: 710rpx;margin: 0 auto; */
+  padding:10px;
+
+  border-radius: 20rpx;
+  /* margin-top: 16rpx; */
+  box-sizing: border-box;
+}
+.bangdan .bdtop {
+  height: 80rpx;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;box-sizing: border-box;padding: 0 20rpx;display: flex;justify-content: space-between;align-items: center;color: #fff;
+}
+.bangdan .bdtop .left{display: flex;align-items: center;}
+.bangdan .bdtop .left image{width: 34rpx;height: 34rpx;margin-right: 10rpx;}
+.bangdan .bdtop .left text{font-size: 30rpx;color: #fff;}
+.bangdan .bdtop .right text{font-size: 24rpx;color: #fff;}
+.dbarrow{width: 14rpx;height: 12rpx;}
+/* 直播列表 */
+.roomList .roomImg{
+  width:165px;
+  height:90px;
+  border-radius:5px;
+  position: relative;
+}
+.roomList .roomImg image{
+  width:100%;
+  height:100%;
+  border-radius:5px;
+}
+.roomList .roomImg .status{
+  position: absolute;
+  top:6px;
+  left:6px;
+  padding:1px 3px;
+  display: inline-block;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  background:rgba(255,146,84,1);
+  border-radius:3px;
+}
+.status1{background:rgba(113,113,113,1) !important;}
+.status2{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top:6px;
+  left:6px;
+}
+.status2 .left{
+  width:30px;
+  height:15px;
+  background:rgba(90,175,1,1);
+  border-radius:3px 0px 0px 3px;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:15px;
+  text-align: center;
+}
+.status2 .time2{
+  /* width:65px; */
+  padding:1px 3px;
+  height:15px;
+  background:rgba(104,104,104,0.7);
+  border-radius:0px 3px 3px 0px;
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  box-sizing: border-box;
+  /* line-height:15px; */
+  /* text-align: center; */
+}
+/* .room{
+
+} */
+.room{
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+  /* margin-top:8px; */
+ background: #F2F2F2;
+}
+.roomList{
+  width:330rpx;
+  margin-right:10px;
+  margin-bottom:10px;
+  /* padding:0 8px 8px 8px; */
+  border-radius:5px;
+  background: #fff;
+}
+.roomList .title{
+  font-size:15px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(0,0,0,1);
+  margin:8px 0;
+  padding:0 8px;
+  box-sizing: border-box;
+}
+.roomNew{
+  display: flex;
+  align-items: center;
+  padding:0 8px 8px 8px;
+  box-sizing: border-box;
+}
+.roomNew .head{
+  width:21px;
+  height:21px;
+  border-radius: 50%;
+}
+.roomNew .head image{
+  width:100%;
+  height:100%;
+  border-radius: 50%;
+}
+.roomNew .nickname{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(104,104,104,1);
+  margin-left:6px;
+}
+.skipNav{display: flex;align-items: center;justify-content: space-between;}
+.skipNav image{margin-left: 10rpx;}
+/* 我要直播 */
+.zhibo{
+  width:112rpx;
+  height:124rpx;
+  position: fixed;
+  right:10px;
+  bottom:50px;
+}
+.zhibo image{
+  width:100%;
+  height:100%;
+  display: block;
+}

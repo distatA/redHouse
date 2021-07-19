@@ -1,0 +1,30 @@
+<!--pages/zhangDan/zhangDan.wxml-->
+<view class="main">
+  <image src=""></image>
+  <view class="title">付费阅读-来自蒙奇奇</view>
+  <view class="money">+0.01</view>
+</view>
+<view class="list">
+  <view class="left">文章标题</view>
+  <view class="right">24家房企报名！抢地大战一触即发！</view>
+</view>
+<view class="list">
+  <view class="left">当前状态</view>
+  <view class="right">已收钱</view>
+</view>
+<view class="list">
+  <view class="left">支付时间</view>
+  <view class="right">2020-04-18 15:56:32</view>
+</view>
+<view class="list">
+  <view class="left">付款方</view>
+  <view class="right">蒙奇奇</view>
+</view>
+<view class="list">
+  <view class="left">支付方式</view>
+  <view class="right">微信支付</view>
+</view>
+<view class="list">
+  <view class="left">转账单号</view>
+  <view class="right">4678346398264786487267468373297</view>
+</view>

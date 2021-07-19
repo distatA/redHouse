@@ -1,0 +1,65 @@
+/* pages/cart/cart.wxss */
+.cart{background: #fafafa;padding-bottom:50px;}
+.wu{
+  margin:50px auto;
+  text-align: center;
+  font-size:16px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(130,127,127,1);
+}
+.wu image{
+  width:420rpx;
+  height:260rpx;
+  display: block;
+  margin:50px auto;
+}
+.topAdv{display: flex;padding: 20rpx 40rpx;font-size: 24rpx;align-items: center;color: #ff9253;}
+.horn{width: 32rpx;height: 28rpx;}
+.horn image{width: 32rpx;height: 28rpx;}
+.advTxt{margin-left: 40rpx;width: 580rpx;}
+.advArrow{width: 20rpx;height: 20rpx;border-bottom: 4rpx solid #ff9253;border-right: 4rpx solid #ff9253;transform: rotate(-45deg);}
+
+.shop{background: #fff;margin: 0 20rpx 20rpx;padding: 16rpx 10rpx;}
+.shopTop{display: flex;align-items: center;}
+
+.shopBtn{width: 48rpx;height: 48rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/unfocus.png) no-repeat center/24rpx 24rpx;margin-right: 24rpx;}
+.shopBtn.on{width: 48rpx;height: 48rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/focus.png) no-repeat center/24rpx 24rpx;margin-right: 24rpx;}
+
+.shoperName{font-size: 28rpx;color: #717171;text-align: center;}
+.shoper{display: flex;align-items: center;}
+.shoper>image{width: 52rpx;height: 52rpx;}
+.shoperArrow{width: 12rpx;height: 12rpx;border-bottom: 2rpx solid #9f9f9f;border-right: 2rpx solid #9f9f9f;transform: rotate(-45deg);}
+
+.thisGood{display: flex;padding-top: 45rpx;}
+.goodImage>image{width: 160rpx;height: 160rpx;}
+.goodInfo{display: flex;}
+.goodTxt{width: 440rpx;margin-left: 20rpx;}
+.intro{font-size: 24rpx;color: #717171;width: 330rpx;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+overflow: hidden;
+}
+.priceAndGuige{display: flex;justify-content: space-between;margin-top: 30rpx;}
+.guige{font-size: 24rpx;color: #bfbfbf;}
+.price{font-size: 24rpx;color: #ff9254;}
+
+.goodLast{display: flex;align-items: center;margin-top: 40rpx;}
+.goodNum{display: flex;align-items: center;margin-left: 260rpx;}
+.goodNum .box{width: 40rpx;height: 40rpx;border: 2rpx solid #f1f1f1;line-height: 40rpx;text-align: center;font-size: 24rpx;}
+.deleteGood{width: 38rpx;height: 36rpx;margin-left: 20rpx;}
+.deleteGood image{width: 38rpx;height: 36rpx;position: relative;top: -5rpx;}
+
+.bottom{
+  position: fixed;left: 0;right: 0;bottom: 0;
+  height: 120rpx;line-height: 120rpx;width: 690rpx;
+  display: flex;align-items: center;padding: 0 30rpx;
+  font-size: 28rpx;
+  background: #fff;
+  }
+.allPriceTxt{margin-left: 210rpx;}
+.allPrice{color: #ff9254;width: 150rpx;}
+.payAllBtn{width: 106rpx;height: 44rpx;line-height: 44rpx;text-align: center;background: linear-gradient(to top right,#ff9254,#ff6b53,#ff5053);color: #fff;border-radius: 10rpx;}
+
+

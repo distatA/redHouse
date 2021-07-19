@@ -1,0 +1,145 @@
+/* pages/myLive/myLive.wxss */
+page{
+  padding-bottom:20px;
+}
+.list{
+  padding:10px 20px;
+  background: #fff;
+  border-bottom:3px solid #F2F2F2;
+}
+.title{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(22,22,22,1);
+}
+input{
+  width:336px;
+  height:35px;
+  border-radius:5px;
+  border:1px solid rgba(151,151,151,1);
+  padding:7px;
+  box-sizing: border-box;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(86,86,86,1);
+  position: relative;
+  margin:0 auto;
+  margin-top:11px;
+}
+.text-pl{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#848484;
+}
+.num{
+  position: absolute;
+  top:9px;
+  right:10px;
+}
+picker{
+  display:inline-block;
+}
+.tip{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(164,164,164,1);
+  line-height:20px;
+  margin-top:8px;
+}
+.radio-group{
+  display: flex;
+  
+}
+.list .left{
+  font-size:13px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(164,164,164,1);
+  display: flex;
+  align-items: center;
+  width:170px;
+  line-height: 22px;
+}
+.left .right{
+  /* background: #abcdef; */
+}
+/* 关联商品 */
+.go{
+  width:60px;
+  height:24px;
+  background: #FF9254;
+  border-radius:6px;
+  text-align: center;
+  line-height: 24px;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+}
+.tips{
+  margin-top:3px;
+  /* background: #F9F9F9; */
+  text-align: right;
+  font-size:12px;
+  font-weight:400;
+  color:rgba(132,132,132,1);
+}
+.shop{
+  padding:10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.shop image{
+  width:80px;
+  height:80px;
+  background: #abcdef;
+}
+.shop .top{
+  margin-left:20px;
+}
+.shop .left{
+  display: flex;
+  /* align-items: center; */
+}
+.top .shop-name{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+  line-height:20px;
+}
+.price{
+  font-size:14px;
+  font-weight:400;
+  color:rgba(255,146,84,1);
+  line-height:20px;
+  margin-top:30px;
+}
+text{
+  font-size:10px;
+  font-weight:400;
+  color:rgba(216,216,216,1);
+  line-height:14px;
+  margin-left:7px;
+  text-decoration:line-through;
+}
+/* 商品关联 */
+.select{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/unfocus.png) no-repeat center/40rpx 40rpx;}
+.select.on{width: 40rpx;height: 40rpx;margin-left: 10rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/focus.png) no-repeat center/40rpx 40rpx;}
+
+.sub{
+  width:100px;
+  height:30px;
+  text-align: center;
+  line-height: 30px;
+  background: linear-gradient(to right,#FD9153,#FF4F58);
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  margin:30px auto;
+  
+}

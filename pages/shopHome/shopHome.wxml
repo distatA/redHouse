@@ -1,0 +1,183 @@
+<!--pages/shopHome/shopHome.wxml-->
+<!-- 是否登陆 -->
+<block wx:if='{{getUserInfoFail}}'>
+<view class="user">
+  <image src="/img/icon/user.png" >
+    <button plain  class='btn-set'  open-type='getUserInfo' bindgetuserinfo='loginApp'> 
+    </button>
+  </image>
+</view>
+</block>
+<!-- 阴影层 -->
+<view class="shadow" style='animation: {{isShow ? "show" : "dismiss"}}Mask 0.3s forwards ease;left: {{isCreate ? 0 : "750rpx"}};' catchtouchmove='myCatchTouch'>
+  <view class="box-son">
+    <view class="di">
+      <painter palette="{{template}}" bind:imgOK="onImgOK" />
+    </view>
+      <view class="guan">
+         <view class="hold-img" catchtap='btnCreate'>保存图片</view>
+        <image src="/img/icon/guan.png" style="width:30px;height:30px;" catchtap='catchtap'></image>
+      </view>     
+  </view>
+</view>
+<!-- 轮播图 -->
+<swiper class='u-wrp-bnr' indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true' indicator-color='#c1c1c1' indicator-active-color = '#ff6666'>
+  <block wx:for="{{shopDetail.merchantShopImageVos}}" wx:for-index="index" wx:key="key">
+    <swiper-item>
+      <image src='{{item.image_url}}' class='u-img-slide' mode='aspectFill'></image>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="show">
+<view class="head">
+  <view><image src="{{shopDetail.merchantShop.shopImage}}" style=" border-radius: 50%;"></image></view>
+  <view class="right">
+    <view class="name">
+      <view class="shop_name">{{shopDetail.merchantShop.shop_name}}</view> 
+      <block wx:if="{{shopDetail.flag==0}}">
+        <image src="../../img/icon/cang1.png" bindtap="cang" ></image>
+      </block>
+      <block wx:if="{{shopDetail.flag==1}}">
+        <image src="../../img/icon/cang.png" bindtap="cang" ></image>
+      </block>
+      <van-cell title="分享" is-link bindtap="showPopup">
+   <image src="../../img/icon/fx.jpg"  style="width:18px;height:18px;margin-left:15px;"></image>
+    </van-cell>
+      <van-popup
+        show="{{ shows }}"
+        closeable
+        close-icon-position="top-left"
+        position="bottom"
+        custom-style="height: 20%"
+        bindtap="onCloses"
+      >
+       <view class="popup">
+        <view style="margin-top:10px">
+          <image src="/img/icon/firend.png" style="width:90rpx;height:90rpx;margin-left:6px; position: relative">
+          <button class="btn" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+          </button>
+          </image>                        
+          <view class="shareTxt">分享朋友</view>  
+        </view>       
+        <view catchtap="createPoster" style="margin-top:10px">
+          <image src="/img/icon/haibao.png" style="width:90rpx;height:90rpx;margin-left:6px;"></image>
+          <view class="shareTxt">生成海报</view>
+        </view>
+       </view>
+      </van-popup>
+      
+    </view>
+    <view class="num">
+      <view>商品·{{shopDetail.spuNum}}</view>
+      <view style="margin-left:23px;">收藏·{{shopDetail.collecNum}}</view>
+    </view>
+  </view>
+</view>
+<view style="width:100%;height:6px;background:#F2F2F2"></view>
+<!-- 品牌故事 -->
+<view class="guShi" wx:if="{{shopDetail.merchantShop.brand_story}}">
+  <view class="item-title">品牌故事</view>
+  <view class="item-contain">{{shopDetail.merchantShop.brand_story}}</view>
+</view>
+<view style="width:100%;height:6px;background:#F2F2F2"></view>
+<!-- 店面图 -->
+<view class="shopImg" wx:if="{{shopDetail.merchantShop.brand_story_image}}">
+  <image src="{{shopDetail.merchantShop.brand_story_image}}" mode="widthFix"></image>
+</view>
+<view style="width:100%;height:6px;background:#F2F2F2;"></view>
+<!-- 房产 -->
+<block wx:for="{{menuLists}}" wx:key="index">
+  <view class="tabs {{currentTabs == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenus' wx:if="{{houseList.length>0 && gouseList.length>0}}">
+    <text>{{item.name}}</text>
+  </view>
+</block>
+<block wx:if="{{currentTabs==0}}">
+  <!-- 搜索 -->
+  <!-- <view class="search">
+    <input type="text" class="topsearch" placeholder="请输入项目名称、品牌、区域" bindinput="getInputValue" bindconfirm='searchHandle'></input>
+    <view class="searchPic" bindtap="toSearch"></view>
+  </view> -->
+<!-- 房产列表 -->
+  <!-- 搜索结果 -->
+  <block wx:if="{{isSearch}}">
+    <block  wx:if="{{searchList.length>0}}">
+    <view class="houseItem">
+      <view class="houseList" wx:for="{{searchList}}" bindtap="goodsDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="{{item.category_id}}">
+        <image src="{{item.spu_image}}" mode="widthFix"></image>
+        <view class="place">{{item.goods_name}}</view>
+        <view class="num">{{item.goods_stock-item.goods_rest_stock}}人已参团</view>
+        <view class="price">
+          <view class="newPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+          <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+        </view>
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{searchList.length==0}}"><view class="no">暂无搜索结果</view></block>
+  </block>
+  <!-- 房产列表 -->
+  <block wx:if="{{!isSearch}}">
+    <view class="houseItems">
+      <view class="houseLists" wx:for="{{houseList}}"  bindtap="goodsDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="1">
+        <image src="{{item.spu_image}}" mode="widthFix"></image>
+        <view class="huoseName">
+          <view style="display: flex;justify-content: space-between;">
+            <view style="margin-right:5px">{{item.goods_name}}</view>
+            <image src="/img/icon/quan.png" style="width:50rpx;height:50rpx;" wx:if="{{item.ticketNum>0}}"></image></view>
+           <block wx:if="{{item.flag==0}}">
+            <image src="../../img/icon/cang1.png" catchtap="cang1" id="{{item.spu_no}}" style="width:20px;height:17px" data-flag="{{item.flag}}"></image>
+          </block>
+          <block wx:if="{{item.flag==1}}">
+            <image src="../../img/icon/cang.png" catchtap="cang1" id="{{item.spu_no}}" style="width:20px;height:17px"></image>
+          </block>
+        </view>
+        <view class="newPrice prices" style="margin-left:10px;font-size: 17px;">{{item.average_price == 0?'待定':item.average_price+'元/㎡'}}</view>
+        <view class="biaoQian">
+          <!-- <view class="sale">在售</view> -->
+          <view class="jieshao" wx:for="{{item.houseTagVoList}}">{{item.core_tag}}</view>
+        </view>
+        <view class="place">{{item.address_province+item.address_city+item.address_area+item.address_supplement}}</view>
+      </view>
+    </view>
+  </block>
+</block>
+  <!-- 生活 -->
+<block wx:if="{{currentTabs==1}}">
+  <!-- 搜索 -->
+  <!-- <view class="search">
+    <input type="text" class="topsearch" placeholder="请输入商家名、品类、商品名" bindinput="getInputValues" bindconfirm='searchHandles'></input>
+    <view class="searchPic" bindtap="toSearchs"></view>
+  </view> -->
+<!-- 搜索结果 -->
+  <block wx:if="{{isSearchs}}">
+    <block  wx:if="{{searchLists.length>0}}">
+    <view class="houseItem">
+      <view class="houseList" wx:for="{{searchLists}}" bindtap="goodsDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="{{item.category_id}}">
+        <image src="{{item.spu_image}}" mode="widthFix"></image>
+        <view class="place">{{item.goods_name}}</view>
+        <view class="num">{{item.goods_stock-item.goods_rest_stock}}人已参团</view>
+        <view class="price">
+          <view class="newPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+          <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+        </view>
+      </view>
+    </view>
+    </block>
+    <block wx:if="{{searchLists.length==0}}"><view class="no">暂无搜索结果</view></block>
+  </block>
+<!-- 生活列表 -->
+  <block wx:if="{{!isSearchs}}">
+    <view class="houseItem" style="margin-top:5px;">
+      <view class="houseList" wx:for="{{gouseList}}" bindtap="goodsDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="{{item.category_id}}">
+        <image src="{{item.spu_image}}" mode="widthFix"></image>
+        <view class="place">{{item.goods_name}}</view>
+        <view class="num">{{item.goods_stock-item.goods_rest_stock}}人已参团</view>
+        <view class="price">
+          <view class="newPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+          <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</block>
+</view>

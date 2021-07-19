@@ -1,0 +1,30 @@
+module.exports = {
+    JsonParse: function (data) {
+        data = JSON.parse(data);
+
+        if ((typeof data) !== 'object' || !Object.keys(data).length) {
+            return {type: 1, upImgs: []};
+        } else {
+            return data;
+        }
+    },
+    jsonPar: function (data) {
+
+        return JSON.parse(data);
+
+
+    },
+    tofix: function (num, n = 2) {
+        return num.toFixed(n)
+
+    },
+    setImg: function (url) {
+        return 'http://image.loushikol.com/xcx/' + url
+    },
+    // artcileTitle: function (title) {
+    //     return title.replace(/[\r\n]/g, "");
+    //
+    // }
+
+
+};

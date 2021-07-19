@@ -1,0 +1,36 @@
+<!--pages/myDow/myDow.wxml-->
+<!-- 搜索 -->
+<view class="topSearch">
+  <view class="search">
+    <input type="text" class="topInput" placeholder="搜索橱窗商品" bindinput="getInputValue" bindconfirm='searchHandle' value="{{searchValue}}"></input>
+    <view class="searchPic" bindtap="toSearch"></view>
+  </view>
+</view>
+<view class='title'> 全部商品（{{total}}）</view>
+<block wx:if="{{shopList.length>0}}">
+<view class="allGoods" wx:for="{{shopList}}" bindtap="detils" id="{{item.merchant_no}}" data-spu="{{item.spu_no}}" data-name="{{item.goods_name}}" data-type="{{item.category_choice}}">
+  <view class="goodList">
+    <view class="goodPic">
+      <image src="{{item.spu_image}}" ></image>
+    </view>
+    <view class="info">
+      <view class="goodsName">{{item.goods_name}}</view>
+      <view class="inPeople" wx:if="{{item.category_choice !=1}}">{{item.count}}人已买</view>
+      <view class="inPeople" wx:if="{{item.category_choice ==1}}">{{item.count*131}}人已预约</view>
+      <view class="ins">
+        <view class="price" wx:if="{{item.category_choice !=1}}">
+          <view class="newPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+          <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+        </view>
+        <view class="price" wx:if="{{item.category_choice ==1}}">
+          <view class="newPrice prices">
+            <view class="fuhao"></view>{{item.average_price==0?'待定':'￥'+item.average_price}}</view>
+        </view>
+        <view class="buyNow" catchtap="sets"  data-spu="{{item.spu_no}}" data-name="{{item.goods_name}}"  data-price="{{item.low_price?item.low_price:item.average_price}}" data-type="{{item.category_choice}}" data-prices="{{item.price}}" data-share="{{item.goods_share}}" data-remark="{{item.remark}}">设置</view>
+      </view>
+    </view>
+  </view>
+</view>  
+</block>
+<!-- 添加商品 -->
+<view class="foot" bindtap="myShop">添加商品</view>

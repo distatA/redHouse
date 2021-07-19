@@ -1,0 +1,38 @@
+<!--pages/goodsComment/goodsComment.wxml-->
+<view class="top">
+  <view class="shopImg"><image src="{{img}}"></image></view>
+  <view class="text">{{name}}</view>
+</view>
+<!-- 星级 -->
+<view class="star">
+  <view class="list">
+    <view class="title">红人评价</view>
+    <van-rate value="{{ value1 }}" color="#FF9254" void-color="#B6B6B6" bind:change="onChange1" />
+  </view>
+  <view class="list">
+    <view class="title">商品评价</view>
+    <van-rate value="{{ value2 }}" color="#FF9254" void-color="#B6B6B6" bind:change="onChange2" />
+  </view>
+  <view class="list">
+    <view class="title">优惠评价</view>
+    <van-rate value="{{ value3 }}" color="#FF9254" void-color="#B6B6B6" bind:change="onChange3" />
+  </view>
+</view>
+<!-- 内容 -->
+<form>
+  <textarea maxlength='520' focus='{{true}}' bindinput="bindTextAreaBlur" class='text' bindblur="bindTextAreaBlur"  placeholder-class="text-pl" placeholder=" 分享新鲜事…" >
+  <view class="num">{{num}}/300</view></textarea>
+  <view class="nickName"  bindtap="changeMoren">
+  <view>匿名评论</view>
+  <view class="select {{ moren == 1 ? 'on':'' }}"></view>
+</view>
+
+<!-- 上传图片 -->
+<view class="tops">上传图片（最多3张）</view>
+<view class="upload">
+  <image src="{{imgList?imgList:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg"></image>
+    <image src="{{imgList2?imgList2:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg2"></image>
+    <image src="{{imgList3?imgList3:'https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/advice/tempimg.png'}}" bindtap="uploadImg3"></image>
+</view>
+	<button class='btn-submit' form-type="submit" bindtap='submit' >提交</button>
+</form>

@@ -1,0 +1,11 @@
+/* pages/person_page/paypage/paypage.wxss */
+.paypage{background: #fafafa;}
+.ul{padding: 0 40rpx;background: #fff;border-bottom: 2rpx solid #f2f2f2;}
+.li{display: flex;font-size: 28rpx;height: 100rpx;align-items: center;}
+.li~.li{border-top: 2rpx solid #f2f2f2;}
+.txt{width: 160rpx;}
+.getNum{font-size: 24rpx;color: #FF7054;
+/* width: 140rpx; */
+height: 50rpx;border-radius: 10rpx;border: 2rpx solid #FF7054;line-height: 50rpx;text-align: center;}
+.finish{width: 200rpx;height: 60rpx;line-height: 60rpx;text-align: center;border-radius: 10rpx;font-size: 28rpx;background: linear-gradient(to top right,#FF7054,#ff6353,#ff5053);color: #fff;margin: 140rpx auto;}
+

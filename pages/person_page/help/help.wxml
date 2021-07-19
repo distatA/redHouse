@@ -1,0 +1,39 @@
+<!--pages/home_page/help/help.wxml-->
+  <import src="../../../wxParser/index.wxml" />
+<view class="help">
+  <view class="helpTop">
+    <!-- <view class="online">
+      <navigator class="msg">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help/online.png"></image>
+        <view class="txt">在线客服</view>
+      </navigator>
+    </view> -->
+    <view class="online" bindtap="calling">
+      <view class="tell">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help/tell.png"></image>
+        <view class="txt">咨询第一房官方客服</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="askTitle">
+    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help/sline.png"></image>
+    <view class="askTxt">常见问题</view>
+  </view>
+
+<view class="wxParser">
+  <template is="wxParser" data="{{wxParserData:article.nodes}}" />
+</view>
+  <!-- <view class="list">本网站已尽力确保所提供信息的真实性和准确性，但并不对使用本网站信息所造成的任何后果负责。
+  </view>
+   <view class="list">一、本网站所刊载的所有资料及图表仅供参考使用。参阅本网站上所刊的文档的人士，应被视为已认同上述立场。浏览者依据本网站提供的信息、资料及图片进行评论及所发表文章持有的观点与本网站无关。
+  </view>
+   <view class="list">二、本网站已尽力确保所有资料的准确、完整及最新性。就该资料的针对性、精确性以及特定用途的适合性而言，本网站不能做出最对应的方案。所以因依赖该资料所至的任何损失本网站概不负责，亦不承担任何法律责任。
+  </view>
+   <view class="list">三、对使用本网站信息和服务所引起的后果，本网站不作任何承诺，也不承担任何责任。
+  </view>
+   <view class="list">四、对由于使用本网站所产生的任何直接、间接或偶然性的损失或破坏，本网站不承担任何责任，无论该损失或破坏是否源于疏忽、违约、诽谤、侵权甚至电脑病毒。同时，对是否对外公报该类损失或破坏，只要本网站没有蓄意隐瞒，否则，本网站不作任何承诺。
+  </view>
+   <view class="list">五、本网站不保证所有信息、文本、图形、链接及其它项目的绝对准确性和完整性，故仅供访问者参照使用。其中政策法规中文本不得作为正式法规文本使用。
+  </view> -->
+</view>

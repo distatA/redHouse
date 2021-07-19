@@ -1,0 +1,32 @@
+<!--pages/paySucceed/paySucceed.wxml-->
+<view class="top">
+  <view class="img"><image src="../../img/icon/succeed.png"></image></view>
+  <view class="title">订单支付成功</view>
+</view>
+<view class="list">
+  <view>支付方式</view>
+  <view>{{isKill?'微信支付':'账户余额'}}</view>
+</view>
+<view class="list">
+  <view>支付金额</view>
+  <view>¥ {{payment}}</view>
+</view>
+
+<!-- 底部 -->
+<view class="foot">
+  <view class="li" bindtap="order">我的订单</view>
+  <view class="li" bindtap="backHome">回到首页</view>
+</view>
+<!-- 房产支付二维码 -->
+<block wx:if="{{status==1&&!isKill}}">
+  <view class="huose">
+    <view class="huose-title">{{huoseCode.qr_code_title}}</view>
+    <view class="huose-titles">{{huoseCode.qr_code_explain}}</view>
+    <image src="{{huoseCode.qr_code_image}}"></image>
+  </view>
+</block>
+<!-- 提示 -->
+<view class="tips">
+  <view class="headTitle">温馨提示:</view>
+  <view class="text">第一房不会以订单异常、系统升级为由要求您点击任何网址链接进行退款操作。</view>
+</view>

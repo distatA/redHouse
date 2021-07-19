@@ -1,0 +1,42 @@
+<!--pages/myLiveList/myLiveList.wxml-->
+<view class="top" bindtap="myLive">
+  <view class="left"><image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-17/bfa98a1dd946421ebc2d7129f639b625-tmp_95e9cb457213bc2db7aa1ca3fb1d1ed9.jpg" style="width:44rpx;height:42rpx;"></image>
+  <view style="margin-left:10px">我要直播</view>
+  </view>
+  <image src="/img/icon/right.png" style="width:9px;height:16px"></image>
+</view>
+<!-- 我的直播 -->
+<view class="mine" wx:if="{{liveList.length>0}}">我的直播</view>
+<!-- 直播列表 -->
+<view class="list" wx:for="{{liveList}}">
+  <view class="title">
+    <view class="titles">{{item.live_title}}</view>
+    <view style="color:#FF0000;font-size:14px;font-weight:520;" wx:if="{{item.status==0}}">审核中</view>
+    <view style="color:#FF0000;font-size:14px;font-weight:520;" wx:if="{{item.status==2}}">审核不通过</view>
+    <view class="share" wx:if="{{item.status==1}}">
+      <view bindtap="wxCodes" data-type="0" id="{{item.share_code}}"  style="display: flex;align-items: center;">
+      <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+      <view style="color:#E66F63;margin-left:10px">分享</view></view>
+
+      <view style="color:#007AFF;margin-left:26px" bindtap="wxCodes" data-type="1" id="{{item.broadcast_code}}">开播码</view>
+    </view>
+  </view>
+  <!-- 图片 -->
+  <view class="bottom">
+    <view class="img"><image src="{{item.live_url}}"></image></view>
+    <view class="right">
+      <view>开播  {{item.start_time}}</view>
+      <view style="margin-top:12px">结束  {{item.end_time}}</view>
+      <view style="margin-top:12px">主播  {{item.nick_name}}</view>
+    </view>
+  </view>
+</view>
+
+<!-- 分享观播 -->
+<view class="zz {{display == 1 ?'no':''}}" catchtouchmove="myCatchTouch" >
+  <view class="zz-box">
+  <view class="clos" bindtap="closeZz"><image src='/img/icon/guan.png' style="width:20px;height:20px;display:block;margin:0"></image></view>
+  <image src="{{imgUrl}}" mode="widthFix"></image>
+  <view class="clickBaocun" catchtap='save'>点击保存</view>
+  </view>
+</view>

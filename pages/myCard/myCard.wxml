@@ -1,0 +1,13 @@
+<!--pages/myCard/myCard.wxml-->
+
+<view class="list" wx:for="{{cardList}}" wx:key="index" wx:if="{{cardList.length>0}}" bindtap="cardDetail" id="{{item.order_no}}">
+  <image src="{{item.card.cover_image}}"></image>
+  <view class="time">有效期：{{item.card.effective_start_time}}至{{item.card.effective_end_time}}</view>
+</view>
+
+<block wx:if="{{cardList.length==0}}">
+  <view class="list" >
+  <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-03-26/7269f06eb689447b98458ebc91e2898c-tmp_9eb97655141eb00398022b8cc3d3cdaf.jpg" style="width:420rpx;margin:0 auto;margin-top:80px;display:block" mode="widthFix"></image>
+  </view>
+</block>
+

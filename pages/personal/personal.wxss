@@ -1,0 +1,411 @@
+/* pages/person/personal.wxss */
+page {
+  background: #FFFFFF;
+  font-family: PingFangSC-Regular, PingFang SC;
+}
+.personalPage {
+  padding: 0 10px;
+}
+.personalTop {
+  background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2019-12-20/9b5f6f8384134846aa4b0348f2e05280-tmp_4e78ee7908af64fb49f86491508f1cac.jpg) center / 100%;
+  background-repeat: no-repeat;
+  margin-bottom: 16rpx;
+  height: 145px;
+  padding: 25px 23px 0 23px;
+  box-sizing: border-box;
+  margin-top: -8px;
+}
+.infomation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+.avarImg image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+}
+.infoTxt {
+  width: 440rpx;
+  margin-left: 34rpx;
+  padding-top: 10rpx;
+}
+.txtTop {
+  display: flex;
+  align-items: center;
+}
+.txtTop > image {
+  width: 43px;
+  height: 13px;
+  margin-left: 3px;
+}
+.nickName {
+  font-size: 32rpx;
+}
+.beizhu {
+  display: flex;
+  margin-top: 28rpx;
+}
+.beizhu > image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.tags {
+  font-size: 24rpx;
+  color: #fff;
+  margin-left: 10rpx;
+  padding-left: 10rpx;
+  border-left: 1px solid #fff;
+  display: flex;
+  align-items: center;
+}
+.tag {
+  font-size: 24rpx;
+  color: #fff;
+}
+.mine {
+  /* width: 355px; */
+  height: 60px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -42px;
+  padding: 15px 25px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  align-items: center;
+  color: #686868;
+}
+.mineList {
+  width: 110rpx;
+  text-align: center;
+}
+.mineNum {
+  font-size: 28rpx;
+  color: #000;
+  font-weight: 900;
+}
+.sname {
+  font-size: 24rpx;
+  color: #686868;
+  margin-top: 16rpx;
+}
+.about {
+  background: #fff;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+.aboutUl {
+  padding: 60rpx 0;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+  align-items: center;
+}
+.aboutLi {
+  width: 175rpx;
+  height: 110rpx;
+}
+.aboutLi .aboutName {
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  color: #000000;
+  font-weight: 400;
+}
+.aboutLi:nth-child(1) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(2) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(3) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(4) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(5) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(6) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(7) > image {
+  width: 40rpx;
+  height: 42rpx;
+}
+.aboutLi:nth-child(8) > image {
+  width: 52rpx;
+  height: 48rpx;
+}
+/* .item-img{
+  width:26px;
+  height:26px;
+} */
+.img {
+  width: 580rpx;
+  height: 80rpx;
+  margin: 0 auto;
+  display: block;
+  /* margin-top:100px; */
+  position: relative;
+}
+.foot {
+  /* width:646rpx; */
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000000;
+  margin: 0 auto;
+  margin-top: 30px;
+  justify-content: center;
+}
+button::after {
+  border: none;
+}
+button[plain] {
+  border: 0;
+}
+.btn-set {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* background: #1BB723; */
+}
+button {
+  padding: 0;
+}
+.other {
+  background: #fff;
+  padding: 20rpx 23px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+.otherList {
+  width: 670rpx;
+  display: flex;
+  height: 66rpx;
+  position: relative;
+  box-sizing: border-box;
+}
+.otherList ~ .otherList {
+  border-top: 1px solid #f2f2f2;
+}
+.listNav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 66rpx;
+}
+.oImg {
+  width: 52rpx;
+  height: 38rpx;
+}
+.oImg image {
+  width: 52rpx;
+  height: 38rpx;
+}
+.oInfo {
+  width: 150rpx;
+  margin-left: 30rpx;
+  font-size: 28rpx;
+  color: #000;
+  font-weight: 400;
+}
+.oMoney {
+  color: #ff4930;
+}
+.boxContent {
+  position: absolute;
+  right: 50rpx;
+  color: #a9a9a9;
+  font-size: 28rpx;
+}
+.makeMoney {
+  position: absolute;
+  right: 10rpx;
+  font-size: 24rpx;
+  width: 110rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+  text-align: center;
+  background: linear-gradient(to top right, #ff8b49, #ff8754, #ff6153, #ff5053);
+  color: #fff;
+  border-radius: 10rpx;
+}
+.otherList:nth-child(1) .oImg image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.otherList:nth-child(2) .oImg image {
+  width: 40rpx;
+  height: 36rpx;
+}
+.otherList:nth-child(3) .oImg image {
+  width: 20px;
+  height: 18px;
+}
+.otherList:nth-child(4) .oImg image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.otherList:nth-child(5) .oImg image {
+  width: 18px;
+  height: 18px;
+}
+.otherList:nth-child(7) .oImg image {
+  width: 42rpx;
+  height: 42rpx;
+}
+.otherList:nth-child(7) .oImg image {
+  width: 40rpx;
+  height: 40rpx;
+}
+/* 轮播图 */
+.u-wrp-bnr {
+  width: 100%;
+  height: 190px;
+  display: block;
+  margin: 0 auto;
+  z-index: -1;
+}
+.u-img-slide {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+.card {
+  position: relative;
+}
+.myCard {
+  position: absolute;
+  right: 10px;
+  top: 17px;
+  width: 90px;
+  height: 30px;
+  background: #ffffff;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 30px;
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 600;
+  color: #000000;
+}
+.vipBox {
+  font-family: PingFangSC-Regular, PingFang SC;
+  box-sizing: border-box;
+  width: 100%;
+  height: 438rpx;
+  background: #FFFFFF;
+  margin: 10rpx 0;
+  border-radius: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20rpx;
+}
+.vipBox .vipinfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.vipBox .vipinfo .vipinfo_title {
+  font-size: 36rpx;
+  color: #161616;
+}
+.vipBox .vipinfo .vipinfo_date {
+  font-size: 28rpx;
+  color: #FF0000;
+}
+.vipBox .vipPK {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 32rpx;
+  color: #161616;
+}
+.vipBox .vipPK .vipPKleft {
+  background: url('https://firsthouse.oss-cn-shanghai.aliyuncs.com/jdIcon/e9bc458207091f9b73ebd9d42d04b80.png') no-repeat 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 402rpx ;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+  background-size: cover;
+}
+.vipBox .vipPK .vipPKright {
+  margin-top: 42rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 230rpx;
+  height: 100rpx;
+  background: url('https://firsthouse.oss-cn-shanghai.aliyuncs.com/jdIcon/49bdcc8239e90bd3bf246ce41be194e.png') no-repeat 100% 100%;
+  background-size: cover;
+}
+.vipBox .vipInvite {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #161616;
+}
+.vipBox .vipInvite .vipInvite_tips .vipInvite_num {
+  margin: 0 10rpx;
+  font-size: 40rpx;
+}
+.vipBox .vipInvite .vipInvite_toInvite {
+  font-size: 28rpx;
+  color: #FF7054;
+  margin: 0 !important;
+  background-color: #fff !important;
+}
+/* 打赏人数 */
+.people {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top:20px; */
+}
+.people .left {
+  font-size: 12px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #484848;
+  text-align: center;
+}
+.browseImgItem {
+  display: flex;
+  margin-left: 20rpx;
+}
+.browseImg {
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.browseImgView {
+  border-radius: 50%;
+  width: 76rpx;
+  height: 76rpx;
+  margin-left: -10rpx;
+  /* background: #abcdef; */
+}

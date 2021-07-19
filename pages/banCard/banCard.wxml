@@ -1,0 +1,88 @@
+<!--pages/banCard/banCard.wxml-->
+<!-- 导航菜单 -->
+<block wx:if="{{type==1}}">
+<scroll-view class="tab" scroll-x scroll-left="{{left}}" scroll-with-animation="true">
+<block wx:for="{{cardList}}" wx:key="index">
+  <view class="tab-item {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenu' id="{{item.id}}">
+    {{item.activity_name}}
+  </view>
+</block>
+</scroll-view>
+<block wx:for="{{cardList}}" wx:key="index" wx:if="{{currentTab==index}}">
+<!-- 卡图 -->
+<view class="list">
+  <image src="{{item.cover_image}}"></image>
+  <view class="time">有效期：{{item.effective_start_time}}至{{item.effective_end_time}}</view>
+</view>
+<!-- 权益 -->
+<view class="main">
+  <view class="title">黑卡权益</view>
+  <view class="shopList">
+    <view class="shop" wx:for="{{item.merchantBlackCardList}}" wx:key="index" bindtap="cardDetail" id="1" data-imgs="{{item.merchantBlackCardImageList}}" data-instructions="{{item.use_instructions}}" data-rights="{{item.use_rights}}" data-title="{{item.store_name}}">
+      <image src="{{item.store_logo}}" style="width:90px;height:90px;display:block;margin:0 auto;"></image>
+      <view class="shopname">{{item.store_name}}</view>
+    </view>
+  </view>
+</view>
+<!-- 须知 -->
+<view class="main">
+  <view class="title">购买须知</view>
+  <view class="contain">{{item.purchase_instructions}}</view>
+</view>
+<!-- 指南 -->
+<view class="main">
+  <view class="title">使用指南</view>
+  <view class="contain">{{item.use_guide}}</view>
+</view>
+<!-- 常见问题 -->
+<view class="main">
+  <view class="title">常见问题</view>
+  <view class="contain">{{item.common_problem}}</view>
+</view>
+<!-- 购买 -->
+<view class="foot">
+  <view class="left">
+    <view class="sum">总价：</view>
+    <view class="low">¥ {{item.present_price}}</view>
+    <view class="first">¥ {{item.first_price}}</view>
+  </view>
+  <view class="buy" bindtap="cardorder" id="{{item.id}}" data-name="{{item.activity_name}}" data-img="{{item.cover_image}}" data-first="{{item.first_price}}" data-present="{{item.present_price}}">立即购买 </view>
+</view>
+</block>
+</block>
+<!-- 我的黑卡详情 -->
+<block wx:if="{{type==2}}">
+  <!-- 卡图 -->
+  <view class="list">
+    <image src="{{myCard.card.cover_image}}"></image>
+    <view class="time">有效期：{{myCard.card.effective_start_time}}至{{myCard.card.effective_end_time}}</view>
+  </view>
+  <!-- 权益 -->
+  <view class="main">
+    <view class="title">黑卡权益</view>
+    <view class="shopList">
+      <view class="shop" wx:for="{{myCard.merchantBlackCardList}}" bindtap="cardDetail" id="2" data-imgs="{{item.merchantBlackCardImageList}}" data-instructions="{{item.use_instructions}}" data-rights="{{item.use_rights}}" data-checkStatus="{{item.checkStatus}}" data-title="{{item.store_name}}">
+        <image src="{{item.store_logo}}" style="width:90px;height:90px;display:block;margin:0 auto;"></image>
+        <block wx:if="{{item.checkStatus==1}}">
+          <view class="box"></view>
+        </block>
+        <view class="shopname">{{item.store_name}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 须知 -->
+  <view class="main">
+    <view class="title">购买须知</view>
+    <view class="contain">{{myCard.card.purchase_instructions}}</view>
+  </view>
+  <!-- 指南 -->
+  <view class="main">
+    <view class="title">使用指南</view>
+    <view class="contain">{{myCard.card.use_guide}}</view>
+  </view>
+  <!-- 常见问题 -->
+  <view class="main">
+    <view class="title">常见问题</view>
+    <view class="contain">{{myCard.card.common_problem}}</view>
+  </view>
+</block>

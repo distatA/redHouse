@@ -1,0 +1,192 @@
+swiper{
+       width: 750rpx;
+        height: 750rpx;      
+}
+.swiper_item{
+    width: 750rpx;
+    height: 750rpx;
+   color: #c1c1c1; 
+   color: #ff6666;
+}
+swiper .wx-swiper-dot {
+    border-radius: 25%;
+    margin-bottom: 30rpx;
+  }
+.productInfoBox {
+    padding: 0 35rpx;
+    box-sizing: border-box;
+    z-index: 2;
+    // margin: -20rpx 0 0 0;
+    transform: translateY(-30rpx);
+    width: 750rpx;
+    height: 460rpx;
+    background: #FFFFFF;
+    border-radius: 40rpx 40rpx 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    .productInfo {
+        margin-top: 24rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 22rpx;
+       
+      .productMoney {
+        font-size: 28rpx;
+        color: #FF5053;
+      }
+  
+      .buyNum {
+        font-size: 26rpx;
+        line-height: 20rpx;
+        color: #686868;
+      }
+    }
+ 
+    .product_commission {
+      padding: 0 18rpx;
+      z-index: -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 27rpx;
+        color: #FF7054;
+        width: 660rpx;
+        height: 70rpx;
+        background: url('https://firsthouse.oss-cn-shanghai.aliyuncs.com/jdIcon/70c693315409e4663abb671f264db4c.png') 100% 100% no-repeat;
+        background-size: cover;
+        .commonCommission{
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+          width: 270rpx;
+          height: 100%;
+        }
+        .vipCommission{
+          margin-left: 30rpx;
+          color: #FFFFFF;
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: space-around;
+        }
+    }
+  
+    .product_title {
+        font-size: 32rpx;
+        color: #000000;
+        -webkit-text-stroke: 1rpx #000000;
+        letter-spacing: 4rpx;
+    }
+  
+    .product_merchant {
+        font-size: 24rpx;
+        color: #727272;
+    }
+  
+    .product_toCommission {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 28rpx;
+        color: #686868;
+  .product_toCommissionImg{
+    width: 20rpx;
+    height: 20rpx;
+  }
+     
+    }
+  }
+  .product_DetailTitle{
+    width: 100%;
+    height: 66rpx;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+background: #F9F9F9;
+    font-size: 20rpx;
+    color: #686868;
+    text-align: center;
+        }
+        .bottomTabBar {
+          box-sizing: border-box;
+          padding: 0 30rpx;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            height: 120rpx;
+            background: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            .collect {
+              .collectImg {
+                vertical-align: top;
+                  width: 50rpx;
+                  height: 70rpx;
+              }
+          
+              .collectFont {
+                  line-height: 0;
+                  color: #ff9254;
+                  font-size: 24rpx;
+              }
+            }
+          
+            .shareBox {
+                background-color: #ff9254;
+               width: 280rpx;
+                height: 80rpx; 
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-radius: 15rpx;
+                position: relative;
+                padding: 0 40rpx;
+                box-sizing: border-box;
+                .shareImg {
+                    width: 30rpx;
+                    height: 36rpx;
+              }
+              .shareFont {
+                font-size: 28rpx;
+                color: #FFFFFF;
+              line-height: 0;
+              border-radius: 20rpx;
+               
+              }
+              .shareBtn{
+                opacity: 0;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+              }
+            }
+          
+            .buyNow {
+                border-radius: 15rpx;
+                width: 280rpx;
+                height: 80rpx;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                font-size: 24rpx;
+                color: #ffffff;
+                color: #FFFFFF;
+                background: linear-gradient( to right, #ff8d54 0% , #ff5053 100%);
+              .buyNowFont{
+                font-size: 28rpx;
+              }
+            }
+          }
+          .my_img{
+              width: 100vw !important;
+               vertical-align: top;
+
+            }

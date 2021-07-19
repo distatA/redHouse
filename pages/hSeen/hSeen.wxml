@@ -1,0 +1,14 @@
+<!--pages/hSeen/hSeen.wxml-->
+<view class="list" wx:for="{{listLook}}">
+  <view class="headUrl"><image src="{{item.headUrl}}"></image></view>
+  <view class="right">
+    <view class="top">
+      <view style="display: flex;align-items: center;">
+        <view class="name" >{{item.nickName}}</view>
+        <image src="/img/icon/vip.png"style="width:10px;height:9px;margin-left:3px;"></image>
+      </view>
+      <view class="time">{{item.create_time}}</view>
+    </view>
+    <view class="sign">{{item.city}} | {{item.sign}}</view>
+  </view>
+</view>

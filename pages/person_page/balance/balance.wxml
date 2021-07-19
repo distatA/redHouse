@@ -1,0 +1,46 @@
+<!--pages/person_page/balance/balance.wxml-->
+<view class="balance">
+  <view class="top">
+    <view class="topTitle">账户余额（元）</view>
+    <view class="mybalance">
+      <view class="money">{{balance}}</view>
+      <view class="cash" bindtap="tiXian">提现</view>
+    </view>
+  </view>
+
+  <view class="getMoney">
+    <view class="position">
+      <view class="li li1">
+        <view class="litop">本月收益</view>
+        <view class="litopNum">{{earnings}}</view>
+      </view>
+      <view class="li li2">
+        <view class="litop">剩余收益预估（元）</view>
+        <view class="litopNum">{{forecast}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="nav">
+    <navigator class="navLi" url="/pages/mingXi/mingXi">
+      <view class="navList">
+        <view class="navTxt">资金明细</view>
+        <view class="navArrow"></view>
+      </view>
+    </navigator>
+
+    <navigator class="navLi" url="/pages/sales/sales?type=1">
+      <view class="navList">
+        <view class="navTxt">预估收益</view>
+        <view class="navArrow"></view>
+      </view>
+    </navigator>
+
+    <navigator class="navLi" url="/pages/tiMing/tiMing">
+      <view class="navList">
+        <view class="navTxt">提现记录</view>
+        <view class="navArrow"></view>
+      </view>
+    </navigator>
+  </view>
+</view>

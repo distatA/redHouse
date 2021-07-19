@@ -1,0 +1,21 @@
+<!--pages/person_page/mymsg/mymsg.wxml-->
+<view class="mymessage">
+  <view class="ul">
+    <view class="tempLi" wx:for = "{{msg}}" wx:key = "index">
+      <navigator class="li kf">
+        <view class="leftImg">
+          <image src="{{item.imgUrl}}"></image>
+          <view class="{{ item.dot == 1 ? 'redDot':'' }}"></view>
+        </view>
+        <view class="txt">
+          <view class="Tname">{{item.name}}</view>
+          <view class="Tintro">{{item.intro}}</view>
+        </view>
+        <view class="arrow"></view>
+      </navigator>
+    </view>
+
+    
+  </view>
+</view>
+

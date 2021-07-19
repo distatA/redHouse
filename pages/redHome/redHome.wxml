@@ -1,0 +1,603 @@
+<!--pages/redHome/redHome.wxml-->
+<!-- 是否登陆 -->
+<block wx:if='{{getUserInfoFail}}'>
+<view class="user">
+  <image src="/img/icon/user.png" >
+    <button plain  class='btn-set'  open-type='getUserInfo' bindgetuserinfo='loginApp'> 
+    </button>
+  </image>
+</view>
+</block>
+<!-- 微信二维码 -->
+<view class="zz {{display == 1 ?'no':''}}" catchtouchmove="myCatchTouch" >
+  <!-- 复制微信 -->
+  <view class="zz-box" wx:if="{{wxId==1}}">
+  <view class="clos" bindtap="closeZz"><image src='/img/icon/guan.png' style="width:20px;height:20px;display:block;margin:0"></image></view>
+  <image src="{{redNews.expre12}}" mode="widthFix"></image>
+  <view class="clickBaocun" catchtap='save'>点击保存</view>
+  </view>
+  <!-- 打赏 -->
+  <view class="zz-box" wx:if="{{wxId==2}}" style="width:310px;">
+    <view class="clos" bindtap="closeZz"><image src='/img/icon/cha.png' style="width:20px;height:20px;display:block;margin:0"></image></view>
+    <view class="box-title">我要打赏</view>
+    <image src="{{redNews.headUrl}}" style="width:120rpx;height:120rpx;border-radius:50%;margin:10px auto;display:block"></image>
+    <view class="box-name">{{redNews.nickName}}</view>
+    <block wx:if="{{!otherTrue}}">
+    <view class="box-item">
+      <view class="box-list" wx:for="{{moneyist}}" wx:key="key" bindtap="pay" id="{{item}}" data-type="1">{{item}}元</view>
+    </view>
+    <view class="other" bindtap="other">其他金额</view>
+    </block>
+    <block wx:else>
+      <view class="custom"> 
+        <input type="digit" style="text-align:center" bindinput="getValue" value="{{moneyValue}}"></input>
+        <text style="color:#FF7054">元</text>
+      </view>
+      <view class="other" style="margin:20px 0;" bindtap="back">固定金额</view>
+      <view class="box-foot" bindtap="pay" data-type="2">确定</view>
+    </block>
+  </view>
+</view>
+<!-- 红人主页图 -->
+<view class="topImg" wx:if="{{redNews.redType!=0 &&redNews.imageUrl}}" style="height:{{imgHeight}}">
+  <image src="{{redNews.imageUrl}}" mode="widthFix"></image>
+  <view class="fans">{{redNews.fansNum}}人已关注</view>
+  <view class="dashang" bindtap="dashang">{{redNews.rewardCount}}人已打赏</view>
+</view>
+<view style="z-index: 3;">   
+<!-- 红人信息 -->
+<view class="tops" style="margin-top:{{redNews.redType==0?'0':redNews.imageUrl?imgHeight:'0'}}px">
+  <view class="head">
+    <view class="left">
+      <view class="headImg">
+        <image src="{{redNews.headUrl}}"></image>
+        <block wx:if="{{redNews.redType==1}}">
+          <image src="/img/icon/hong.png" style="width:12px;height:12px;position: absolute;right:0;bottom:0"></image> 
+        </block>
+        <block wx:if="{{redNews.redType==2}}">
+          <image src="/img/icon/qiYe.png" style="width:10px;height:12px;position: absolute;right:0;bottom:0"></image>
+        </block>
+      </view>
+      <view style="margin-left:10px;width:180px;">
+        <view style="display: flex;align-items: center;">
+          <view class="nickName {{redNews.nickName.length>15?'nickNames':''}}">{{redNews.nickName}}</view>
+          <block wx:if="{{redNews.redType==1 || redNews.redType==2}}">
+          <image src="/img/icon/vip.png" style="width:10px;height:9px;margin-left:3px;" role="img"></image>
+          </block>
+        </view>
+        <view class="sign">{{redNews.sign}}</view>
+      </view>
+    </view>
+    <view class="right" bindtap="guanZhu" wx:if="{{redNews.flag==0}}">关注</view>
+     <view class="actives" bindtap="guanZhu" wx:if="{{redNews.flag==1}}">已关注</view>
+  </view>
+<!-- 手机号 -->
+<view class="title" wx:if="{{redNews.redType!=0}}">
+  <view class="phone"><block wx:if="{{redNews.redType==2}}">手机：{{phones}}</block></view>
+  <view class="share">
+    <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+    <view style="position: relative;color:#E66F63;margin-left:10px">分享 <button class="btn-set" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+          </button></view>
+  </view>
+</view>
+<!-- 普通用户 -->
+<view class="putong" wx:if="{{redNews.redType==0}}">
+  <view class="left">
+  <view class="share" style="border:1px solid #FF7054;border-radius:5px;padding:0 15px;height:30px;">
+    <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+    <view style="position: relative;color: #E66F63;margin-left:10px">分享 <button class="btn-set" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+          </button></view>
+  </view>
+  <view class="share" style="border:1px solid #007AFF;border-radius:5px;margin-left:10px;padding:0 15px;height:30px;" bindtap="wxCodes" id="2">
+    <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-06-03/292637121b5644a4998c2a9d4254f3a4-tmp_e80659aed3d7456dd5ec7ef37d8ce469.jpg" style="width:28rpx;height:28rpx;"></image>
+    <view style="color:#007AFF;margin-left:10px">打赏 </view>
+  </view>
+  </view>
+  <view class="right">
+    <view style="margin-right:40rpx;"><view style="text-align:center;color:#0C0C0C;font-size:18px;">{{redNews.fansNum}}</view>
+      <view style="font-size:14px;color:#686868">关注</view></view>
+    <view><view style="text-align:center;color:#0C0C0C;font-size:18px;">{{redNews.fansNum}}</view>
+      <view style="font-size:14px;color:#686868">粉丝</view></view>
+  </view>
+</view>
+<!-- 围观人数 -->
+<view class="people">
+  <view class="left" style="display:{{redNews.redType==0?'flex':''}}">
+    <view class="browseImgItem">
+      <block class="houseIteam" wx:for="{{listLooks}}" wx:key="index">
+        <view class="browseImgView" hover-class="none" hover-stop-propagation="false">
+          <image src="{{item}}" class="browseImg" />
+        </view>
+      </block>
+    </view>
+    <view class="peopleNum" style="margin-left:{{redNews.redType==0?'16':'0'}}px">{{listLook.length*131}}人已围观</view>
+  </view>
+  <view class="right" wx:if="{{redNews.redType!=0}}">
+    <image src="/img/icon/red1.png" style="width:66rpx;height:120rpx;" bindtap="calling" wx:if="{{redNews.redType==2}}"></image>
+    <image src="/img/icon/red2.png" style="width:66rpx;height:120rpx;margin-left:20px" bindtap="wxCodes" id="1"></image>
+    <!-- <image src="/img/icon/red3.png" style="width:66rpx;height:120rpx;margin-left:20px" bindtap="wxCodes" id="2"></image> -->
+  </view>
+
+  <view class="right" wx:if="{{redNews.redType==0}}">
+    <view class="share">
+      <image src="/img/icon/redShare.png" style="width:24rpx;height:28rpx;"></image>
+      <view style="position: relative;color: #E66F63;margin-left:10px">分享 <button class="btn-set" form-type="submit" data-name="shareBtn" open-type="share" plain="{{true}}">
+            </button></view>
+    </view>
+  </view>
+</view>
+
+</view>
+<view style="width:100%;height:6px;background:rgba(242,242,242,1);margin-top:10px;" wx:if="{{redNews.redType==0}}"></view>
+<!-- 首页 -->
+<block wx:if="{{redNews.redType==1|| redNews.redType==2}}">
+
+
+<view class="main">
+<block >
+
+<view style="width:100%;height:6px;background:#F2F2F2"></view>
+
+  <!-- 爆款好物 -->
+  <view class="note" wx:if="{{totalGoods+totalHuose>0}}">
+    <view class="left">
+      <image src="../../img/icon/hot.png" style="width:18px;height:20px;margin-right:7px;"></image>
+      <text>爆款好物</text>
+      <view style="color:#FF0000;margin-left:5px">({{totalGoods+totalHuose}})</view>
+    </view>
+  </view>
+  <!-- 房产与居家Tab -->
+  <view class="tabSlide" wx:if="{{houseList.length>0 && lifeList.length>0}}">
+    <view class="tabs {{currentTabs ==0 ? 'active' : ''}}" bindtap='clickMenus' id="0">
+      <text>房产</text>
+    </view>
+    <view class="tabs {{currentTabs == 1 ? 'active' : ''}}" bindtap='clickMenus' id="1">
+      <text>生活</text>
+    </view>
+  </view>
+
+</block>
+<!-- 好物 -->
+<block>
+
+  <!-- 房产 -->
+  <block wx:if="{{currentTabs==0}}">
+    <!-- 房产列表 -->
+    <block>
+    <view class="houseItems">
+      <view class="houseLists" wx:for="{{houseList}}" wx:key="key" bindtap="goodDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="1">
+        <image src="{{item.spu_image}}" mode="widthFix"></image>
+        <view class="huoseName">
+          <view class="goodsName">{{item.goods_name}}</view>
+          
+          <view style="display: flex;align-items: center;">
+          <image src="/img/icon/quan.png" style="width:50rpx;height:50rpx;margin-right:11px" wx:if="{{item.ticketNum>0}}"></image>
+           <block wx:if="{{item.flag==0}}">
+            <image src="../../img/icon/cang1.png" catchtap="cang1" id="{{item.spu_no}}" style="width:20px;height:17px" data-flag="{{item.flag}}"></image>
+          </block>
+          <block wx:if="{{item.flag==1}}">
+            <image src="../../img/icon/cang.png" catchtap="cang1" id="{{item.spu_no}}" style="width:20px;height:17px"></image>
+          </block>
+           </view> 
+        </view>
+        <view class="jiage">
+          <view class="left">{{item.average_price==0?'待定':item.average_price+'元/㎡'}}</view>
+          <view class="nums">{{item.num * 107}}人已预约</view>
+        </view>
+        <view class="biaoQian">
+          <!-- <view class="sale">在售</view> -->
+          <view class="jieshao" wx:for="{{item.houseTagVoList}}" wx:key="key">{{item.core_tag}}</view>
+        </view>
+        <view class="place">{{item.address_province+item.address_city+item.address_area+item.address_supplement}}</view>
+      </view>
+    </view>
+    </block>
+  </block>
+  <!-- 生活 -->
+  <block wx:if="{{currentTabs==1}}">
+ 
+<!-- 生活列表 -->
+  <block wx:if="{{!isSearchs}}">
+    <view class="houseItem">
+      <view class="houseList" wx:for="{{lifeList}}" wx:key="key" bindtap="goodDetail" id="{{item.spu_no}}" data-goods_name="{{item.goods_name}}" data-type="{{item.category_choice}}">
+        <view class="goodPic">
+          <image src="{{item.spu_image}}"></image>
+        </view>
+        <view class="info" style="width:250px;padding:0 10px;box-sizing: border-box;">
+          <view class="goodsName">{{item.goods_name}}</view>
+          <view class="directLine">
+            <view class="directInline" style="width:{{((item.goods_stock-item.goods_rest_stock)/item.goods_stock)*100}}%"></view>
+          </view> 
+          
+          <view class="inPeople">{{item.goods_stock-item.goods_rest_stock}}人已参团</view>
+          
+          <view class="ins">
+          <view class="price">
+            <view class="newPrice prices"><view class="fuhao">￥</view>{{item.low_price}}</view>
+            <view class="oldPrice prices"><view class="fuhao">￥</view>{{item.first_price}}</view>
+          </view>
+          <view class="buyNow">立即抢购</view>
+          
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  </block>
+</block>
+<!-- 红人笔记 -->
+<block >
+<view style="margin:0 10px;">
+  <view class="note"  style="padding-left:0;padding-right:0">
+    <view class="left">
+      <image src="../../img/icon/note.png" style="width:16px;height:22px;margin-right:7px;"></image>
+      <text>红人笔记</text>
+      <view style="color:#FF0000;margin-left:5px">({{totalNot}})</view>
+    </view>
+    <!-- <view class="right">查看更多 <image src="../../img/icon/more.png" style="width:6px;height:6px;margin-left:5px;"></image></view> -->
+  </view>
+  <!-- 笔记内容 -->
+  <block wx:for="{{redNotes}}" wx:key="key" >
+  <block wx:if="{{item.type==1 || item.type==3}}">
+  <view style="margin:0 10px;">
+  <view class="titles" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" 
+  data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-title="{{item.title}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">{{item.type==3?item.subtitle:item.title}}</view>
+  <!-- 快讯内容 -->
+  <view class="kuaixun" wx:if="{{item.type==5||item.type==6}}" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-headUrl="{{item.headUrl}}" data-nickName="{{item.nickName}}" data-imgs="{{item.memberNoteArticleImageList}}" data-member="{{item.member_no}}" data-title="{{item.title}}" data-video="{{item.videoUrls}}"
+data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-spu="{{item.spu_no}}"  data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">{{item.memberNoteArticle.content}}</view>
+
+  <block wx:if="{{item.type==1}}">
+  <view class="noteImg" >
+    <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" style="width:210px;border-radius:5px;" mode="widthFix" bindtap="clickImg"  id="{{item.imageUrl}}"></image>
+    </block>
+    <block wx:if="{{item.memberNoteArticleImageList.length>2}}">
+    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" style="width:216rpx;height:216rpx;border-radius:10rpx;margin-bottom:12rpx;" bindtap="clickImg" id="{{item.imageUrl}}" mode="aspectFill"></image>
+    </block>
+  </view>
+  <view class="noteImg" style="justify-content:flex-start" wx:if="{{item.memberNoteArticleImageList.length==2}}">
+      <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" bindtap="clickImg" id="{{item.imageUrl}}" style="margin-left:6px;width:216rpx;height:216rpx;border-radius:10rpx;margin-bottom:12rpx;" mode="aspectFill"></image>                
+  </view>
+  </block>
+   <!-- 后台发布的文章 -->
+  <view class="img" style="position: relative;" wx:if="{{item.type==3}}">
+    <image  src="{{item.memberNoteArticleImageList[0].imageUrl}}" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}" data-title="{{item.title}}" data-member="{{item.member_no}}" mode="widthFix" style="width:100%;border-radius:0px 0px 10rpx 10rpx;display:block"></image>
+    <view class="boxFei" wx:if="{{item.isPay==1}}">付费</view>
+    <view class="boxSon">{{item.title}}</view>
+  </view>
+  <!-- 视频 -->
+    <block wx:if="{{item.videoUrls}}">
+      <video src="{{item.videoUrls}}"  id="houseVideo"  title="{{item.title}}" bindfullscreenchange="fullscreenchange" style="width:100%;border-radius:5px;">
+      </video>
+    </block>
+  </view>
+  <!-- 投票 -->
+  <view class="vote" wx:if="{{item.memberArtVote.title}}">
+    <view class="vote-top"> <text style="margin-right:4px;">|</text>投票</view>
+    <view class="vote-title">{{item.memberArtVote.title}}</view>
+    <!-- 文字 -->
+    <block wx:if="{{item.memberArtVote.type==1}}">
+    <!-- 未开始 -->
+    <block wx:if="{{item.isVote==0}}">
+    <view class="vote-list" wx:for="{{item.memberArtVote.list}}" wx:key="key" bindtap="onclicks1">
+      <view class="left">{{item.title}}</view>
+      <view class="right" wx:if="{{item.checked}}">{{item.num}}</view>
+    </view>
+    </block>
+    <!-- 进行中 -->
+    <block wx:if="{{item.isVote==1}}">
+    <view class="vote-list" wx:for="{{item.memberArtVote.list}}" wx:key="key" bindtap="onclicks" id="{{it.id}}" style="padding:0 {{it.checked==0?'15px':'0px'}}" data-target="{{it.target}}" data-chose="{{it.chose}}" data-item="{{item.memberArtVote.list}}" wx:for-item="it" data-pid="{{item.id}}">
+    <block wx:if="{{it.checked}}">
+      <view class="left" style="background:{{it.target==1?'#FFE8E5':'#E7E7E8'}};padding:0 5px">{{it.title}}</view>
+    </block>
+    <block wx:if="{{!it.checked}}">
+      <view class="left">{{it.title}}</view>
+    </block>
+      <view class="right" wx:if="{{it.checked}}" style="color:{{it.target==1?'#FF6D53':''}}">{{it.num}}</view>
+    </view>
+    
+    </block>
+    <!-- 已结束 -->
+    <block wx:if="{{item.isVote==2}}">
+    <view class="vote-list" wx:for="{{item.memberArtVote.list}}" wx:key="key" bindtap="onclickss"  style="padding:0;box-sizing:border-box;" data-target="{{item.target}}">
+      <view class="left" style="background:#E7E7E8;padding:0 5px;">{{item.title}}</view>
+      <view class="right">{{item.num}}</view>
+    </view>
+    </block>
+    </block>
+    <!-- 图片 -->
+    <block wx:if="{{item.memberArtVote.type==2}}">
+      <view class="voteImg">
+      <!-- 未开始 -->
+      <block wx:if="{{item.isVote==0}}">
+        <view class="img-item" wx:for="{{item.memberArtVote.list}}" wx:key="key">
+          <image src="{{item.image}}" class="img-items"><view class="voteBox">《{{item.title}}》</view></image>              
+          <view class="vote-piao" bindtap="onclicks1">投票</view>  
+        </view>
+      </block>
+        <!-- 进行中 -->
+        <block wx:if="{{item.isVote==1}}">
+          <view class="img-item" wx:for="{{item.memberArtVote.list}}" wx:key="key" wx:for-item="it">
+            <image src="{{it.image}}" class="img-items"><view class="voteBox">《{{it.title}}》</view></image>
+            <view class="vote-piao" bindtap="onclicks" id="{{it.id}}" data-target="{{it.target}}" data-chose="{{it.chose}}" data-item="{{item.memberArtVote.list}}" data-pid="{{item.id}}">投票</view>
+            </view>
+        </block>
+        <!-- 已结束 -->
+        <block wx:if="{{item.isVote==2}}">
+          <view class="img-item" wx:for="{{item.memberArtVote.list}}" wx:key="key">
+            <image src="{{item.image}}" class="img-items"><view class="voteBox">《{{item.title}}》</view></image>
+            <view class="vote-piao" bindtap="onclickss">投票</view>
+          </view>
+        </block>
+      </view>
+      <view class="vote-tiao" wx:if="{{item.memberArtVote.list[0].checked||item.memberArtVote.list[1].checked}}">
+        <view class="tiao-left" style="width:{{item.memberArtVote.list[0].num/(item.memberArtVote.list[0].num+item.memberArtVote.list[1].num)*100}}%" wx:if="{{item.memberArtVote.list[0].num!=0}}">{{item.memberArtVote.list[0].num}}</view>
+        <view class="tiao-right" style="width:{{item.memberArtVote.list[1].num/(item.memberArtVote.list[0].num+item.memberArtVote.list[1].num)*100}}%" wx:if="{{item.memberArtVote.list[1].num!=0}}">{{item.memberArtVote.list[1].num}}</view>
+      </view>
+    </block>
+    <view class="vote-time">{{item.voteNum}}人参与  <text style="margin-left:15px;">{{item.voteText}}</text></view>
+  </view>
+  <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+  <view class="bottom" >
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-title="{{item.title}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+  </block>
+  <!-- 外链文章内容 -->
+  <block wx:if="{{item.type == 4}}">
+  <view class="article" >
+  <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+    <view class="left" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" style="width:130px;height:80px;border-radius:5px;" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+  </block>
+   <block wx:if="{{item.memberNoteArticleImageList.length==0}}">
+    <view class="left" style="width:100%" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+   </block>
+  </view>
+    <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+   <view class="bottom">
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-title="{{item.title}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+</block>
+</block>
+</view>
+
+</block>
+<view class="mores" bindtap="moreNote">查看更多 >></view>
+</view>
+</block>
+<!-- 不是红人 -->
+<block wx:if="{{redNews.redType==0}}">
+  <!-- TA社区 -->
+   <view class="note">
+    <view class="left">
+      <image src="../../img/icon/note.png" style="width:16px;height:22px;margin-right:7px;"></image>
+      <text>他的笔记</text>
+    </view>
+  </view>
+  <!-- 外链文章内容 -->
+  <view style="margin:0 10px;">
+  <block wx:for="{{sheQu}}" wx:if="{{item.type==4}}">
+  <block wx:if="{{item.memberNoteArticleImageList.length>1}}">
+  <view>
+  <view class="titles" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">{{item.title}}</view>
+  <view class="noteImg">
+     <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" bindtap="clickImg" id="{{item.imageUrl}}" mode="widthFix" style="width:210px"></image>
+      </block>
+      <block wx:if="{{item.memberNoteArticleImageList.length>2}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" bindtap="clickImg" id="{{item.imageUrl}}" mode="aspectFill"></image>
+      </block>
+  </view>
+  <view class="noteImg" style="justify-content:flex-start" wx:if="{{item.memberNoteArticleImageList.length==2}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" bindtap="clickImg" id="{{item.imageUrl}}" style="margin-left:6px;" mode="aspectFill"></image>                
+    </view>
+  </view>
+  <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+  <view class="bottom" >
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+  </block>
+  <!-- 一张图 -->
+  <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+  <view class="article" >
+    <view class="left" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" style="width:130px;height:80px;border-radius:5px;" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+  </view>
+    <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;" mode="widthFix"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+   <view class="bottom" >
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+</block>
+  <!-- 没有图片 -->
+  <block wx:if="{{item.memberNoteArticleImageList.length==0}}">
+  <view class="article" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-video="{{item.videoUrls}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-member="{{item.member_no}}">
+    <view class="left" style="width:100%">{{item.title}}</view>
+    <block wx:if="{{item.videoUrls}}">
+      <video src="{{item.videoUrls}}"  id="houseVideo"  title="{{item.title}}" bindfullscreenchange="fullscreenchange" style="width:100%;height:175px;border-radius:5px;">
+      </video>
+    </block>
+  </view>
+    <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+   <view class="bottom" >
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+</block>
+</block>
+<!-- 笔记 -->
+ <block wx:for="{{sheQu}}" wx:key="key" wx:if="{{item.type==1|| item.type==3 }}">
+
+  <view class="articles">
+    <view class="left"  bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-video="{{item.videoUrls}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}">{{item.title}}</view>
+  <block wx:if="{{item.type==1}}">
+    <view class="imgs">
+    <block wx:if="{{item.memberNoteArticleImageList.length==1}}">
+    <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" style="width:210px;border-radius:5px;margin-top:10px;margin-bottom:10px" mode="widthFix" bindtap="clickImg" id="{{item.imageUrl}}"></image>
+    </block>
+    <block wx:if="{{item.memberNoteArticleImageList.length>2}}">
+    <image wx:for="{{item.memberNoteArticleImageList}}" src="{{item.imageUrl}}" style="width:216rpx;height:216rpx;border-radius:10rpx;margin-bottom:12rpx;" bindtap="clickImg" id="{{item.imageUrl}}" mode="aspectFill"></image>
+    </block>
+    </view>
+     <view class="imgs" style="justify-content:flex-start" wx:if="{{item.memberNoteArticleImageList.length==2}}">
+        <image wx:for="{{item.memberNoteArticleImageList}}" wx:key="key" src="{{item.imageUrl}}" bindtap="clickImg" id="{{item.imageUrl}}" style="margin-left:6px;width:108px;border-radius:5px;margin-top:10px;height:108px;" mode="aspectFill"></image>                
+    </view>
+    </block>
+    <!-- 后台发布的文章 -->
+    <view class="imgs" style="position: relative;" wx:if="{{item.type==3}}">
+      <image  src="{{item.memberNoteArticleImageList[0].imageUrl}}" bindtap="clickImg" id="{{item.memberNoteArticleImageList[0].imageUrl}}" data-title="{{item.title}}" mode="widthFix" style="width:100%;border-radius:0px 0px 10rpx 10rpx;"></image>
+      <view class="boxFei" wx:if="{{item.isPay==1}}">付费</view>
+      <view class="boxSon">{{item.subtitle}}</view>
+    </view> 
+  </view>
+  <block wx:if="{{item.videoUrls}}">
+    <video src="{{item.videoUrls}}"  id="houseVideo"  title="{{item.title}}" bindfullscreenchange="fullscreenchange" style="width:100%;border-radius:5px;margin-top:10px;">
+    </video>
+  </block>
+    <!-- 商品链接 -->
+  <block wx:if="{{item.spu_name}}">
+    <view class="link" bindtap="goodsDetails" id="{{item.spu_no}}" data-goods_name="{{item.spu_name}}" data-member_no="{{item.member_no}}" data-choice="{{item.category_choice}}">
+      <view class="lefts">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/lianPic.png" style="width:26rpx;height:26rpx;" mode="widthFix"></image>
+          <text class="place">{{item.spu_name}}</text>
+      </view>
+      <view class="rights">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/shequ/rightarrow.png" style="width:20rpx;height:32rpx;display:block"></image>
+      </view>     
+    </view>
+  </block>
+   <view class="bottom" >
+    <view class="time">{{item.create_time}}</view>
+    <view class="read">
+      <view class="li">
+        <image src="/img/icon/read.png" style="width:30rpx;height:28rpx;margin-right:8px;"></image>
+        <view>{{item.read_num}}</view>
+      </view>
+      <view class="li" bindtap="noteDetail" id="{{item.id}}" data-type="{{item.type}}" data-comment="{{item.comment_num}}" data-time="{{item.create_time}}" data-member="{{item.member_no}}"
+  data-like="{{item.like_num}}" data-read="{{item.read_num}}" data-flag="{{item.flag}}" data-video="{{item.videoUrls}}">
+        <image src="/img/icon/comment.png" style="width:30rpx;height:30rpx;margin-right:8px;"></image>
+        <view>{{item.comment_num}}</view>
+      </view>
+    </view>
+  </view>
+ </block>
+  </view>
+
+</block>
+</view>

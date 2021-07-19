@@ -1,0 +1,55 @@
+<!--pages/cityList/cityList.wxml-->
+<view class="search">
+  <input type="text" class="topsearch" placeholder="请输入城市名进行搜索" bindinput="getInputValue" bindconfirm='searchHandle' value="{{inputVal}}"></input>
+  <view class="searchPic" bindtap="toSearch"></view>
+  <view class="cancel" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+</view>
+<!-- 当前所在城市 -->
+<view class="title">当前所在城市</view>
+<!-- 城市名称 -->
+<view class="cityName">
+  <view class="left">
+    <image src="/img/icon/diwei.png"role="img"></image>
+    <view>{{city}}</view>
+  </view>
+  <view class="right" bindtap="getPlace">
+    <image src="../../img/icon/rate.png"></image>
+  </view>
+</view>
+
+<!-- 搜索结果 -->
+<view class="allCity" wx:if="{{searchResult}}">
+  <view class="provice">
+    <view class="recently">搜索结果</view>
+    <view class="cityList">
+      <view wx:for="{{selectData}}" catchtap='searchCity' data-index='{{index}}' data-val='{{item}}'>{{item}}</view>
+      </view>
+    </view>
+  </view>
+
+<view class="title">全部城市（按首字母顺序）</view>
+<!-- 城市列表 -->
+<view class='city_box' >
+  <view class='city_left'>
+    <scroll-view scroll-y style='width:100%;height:100%;' scroll-with-animation scroll-into-view='{{cityListId}}'>
+      <view class='national' data-types='national' >全国</view>
+      <view class='new_city'>
+        <view class='new_city_title'>热门城市</view>
+          <view class='new_city_box'>
+            <text class='new_city_text' wx:for='{{newcity}}' wx:key='this' data-types='new' catchtap='cityTap' data-val='{{item}}'>{{item}}</text>
+          </view>
+        </view>
+        <view class='city_list_box'>
+          <block wx:for='{{citylist}}' wx:key='this' wx:for-item='letterItem' wx:for-index='letterIndex'>
+            <view class='city_first_letter' id='{{letterItem.letter}}'>{{letterItem.letter}}</view>
+            <text class='city_name' wx:for='{{letterItem.data}}' wx:key='this' data-types='list' catchtap='cityTap' data-index='{{index}}' data-val='{{item}}'>{{item.cityName}}</text>
+          </block>
+        </view>
+    </scroll-view>
+  </view>
+  <view class='city_right'>
+    <text class='letter_item' wx:for='{{letter}}' wx:key='this' catchtap='letterTap' data-item='{{item}}'>{{item}}</text>
+  </view>
+</view>
+
+

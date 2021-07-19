@@ -1,0 +1,19 @@
+<!--pages/huoseOrder/huoseOrder.wxml-->
+<!-- 搜索 -->
+<view class="topSearch">
+  <view class="search">
+    <input type="text" class="topInput" placeholder="请输入关键字搜索订单" bindinput="getInputValue"></input>
+    <view class="searchPic" bindtap="toSearch"></view>
+  </view>
+</view>
+<!-- 菜单栏 -->
+<view class="tabSlide">
+  <scroll-view class="tab" scroll-x scroll-left="{{left}}" scroll-with-animation="true">
+    <block wx:for="{{menuList}}" wx:key="index">
+      <view class="tab-item {{currentTab == index ? 'active' : ''}}" data-current="{{index}}" bindtap='clickMenu' id="{{item.num}}">
+        <view class="star"></view>
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

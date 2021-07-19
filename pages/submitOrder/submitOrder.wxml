@@ -1,0 +1,59 @@
+<!--pages/submitOrder/submitOrder.wxml-->
+<view class="top">
+  <view class="img"><image src="../../img/icon/dan.png"></image></view>
+  <view class="succeed">订单提交成功</view>
+  <view class="time">请在{{hour}}:{{minute}}:{{second}}内完成支付</view>
+  <view class="price">支付金额：¥{{payment}}</view>
+</view>
+<!-- 支付方式 -->
+<view class="main">
+  <view class="title">支付方式</view>
+  <view class="list" bindtap="pay" wx:if="{{!isKill}}">
+    <view class="left">
+      <image src="../../img/icon/money.png"></image>
+      <view style="margin-left:5px">
+        <view class="balance">账户余额</view>
+        <view class="usable">可用余额 ¥ {{yuE}}</view>
+      </view>
+    </view>
+    <view class="right"><image src="../../img/icon/right.png"></image></view>
+  </view>
+  <view class="list" style="border:none" bindtap="weiPay">
+    <view class="left">
+      <image src="../../img/icon/weiXin.png" style="width:26px;height:21px;"></image>
+      <view>
+        <view class="balance">微信钱包</view>
+        <view class="usable">微信安全支付</view>
+      </view>
+    </view>
+    <view class="right"><image src="../../img/icon/right.png"></image></view>
+  </view>
+</view>
+<!-- 余额支付弹窗 -->
+<view class="pop-up" catchtouchmove='myCatchTouch' wx:if="{{current==1}}">
+  <view class="box">
+    <!-- 关闭按钮 -->
+    <view class="close" bindtap="close">
+      <image src="../../img/icon/close.png"></image>
+    </view>
+    <view class="box-top">余额支付</view>
+    <view class="box-title">请输入支付密码</view>
+    <!-- 密码 -->
+    <form>
+      <view class='content'>
+        <block wx:for="{{Length}}" wx:key="item">
+          <input class='iptbox' value="{{Value.length>=index+1?Value[index]:''}}" disabled password='{{ispassword}}' catchtap='Tap'></input>
+        </block>
+      </view>
+      <input name="password" password="{{true}}" class='ipt' maxlength="{{Length}}" focus="{{isFocus}}" bindinput="Focus"></input>
+      <view>
+       <!-- 忘记密码 -->
+        <view class="forget" bindtap="forget">忘记密码</view>
+      <!-- 支付金额 -->
+        <view class="box-price">支付金额：<text> ¥{{payment}} </text> </view>
+        <button class="btn-area" type='warn' disabled='{{disabled}}' formType="primary" bindtap="formSubmit">确认</button>
+      </view>
+    </form>
+   
+  </view>
+</view>

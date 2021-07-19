@@ -1,0 +1,109 @@
+<!--pages/floor/onLineChat/onLineChat.wxml-->
+
+<!-- main -->
+<view style="background:#FAFAFA">
+  <scroll-view scroll-y  id="j-page" class="chatMain" style="height:90vh" scroll-into-view="{{scrollToView}}" refresher-enabled="true" bindrefresherrefresh="onPulling"  refresher-triggered="{{triggered}}"  >
+    <!-- <view class="list"> -->
+    <!-- 历史记录 -->
+    <block wx:if="{{chatList.length>0}}" wx:for="{{chatList}}" wx:key='key'>
+      <view class="times">{{item.create_time}}</view>
+      <!-- 单个消息1 客服发出（左）发送者 -->
+      <view  id='msg_{{index}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;' 
+        wx:if="{{otherId==item.send_user_id}}">
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{otherHead}}'></image>
+        </view>
+        <view style='width: 4vw; height: 11vw; margin-left: 2.5vw; display: flex; align-items: center; z-index: 9;'>
+        </view>
+        <block wx:if="{{item.msgType==1}}"><view class='leftMsg'>{{item.msg}}</view></block>
+        <block wx:if="{{item.msgType==2}}"><view class='leftMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg" data-index="{{index}}" data-list="{{chatList}}" id="{{item.id}}"></image></view></block>
+      </view>
+      <!-- 单个消息2 用户发出（右）接收者 -->
+      <view  id='msg_{{index}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;' wx:if="{{otherId==item.accept_user_id}}">
+        <block wx:if="{{item.msgType==1}}"><view class='rightMsg'>{{item.msg}}</view></block>
+        <block wx:if="{{item.msgType==2}}">
+        <view class='rightMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg" data-index="{{index}}" data-list="{{chatList}}" id="{{item.id}}"></image></view>
+        </block>
+        <image src="/img/icon/chatRight.png" style="width:16rpx;height:26rpx;margin-top:13px"></image>
+        
+        <view style='width: 80rpx; height: 80rpx;margin-left:28rpx'>
+          <image style='width: 80rpx; height: 80rpx; border-radius: 10rpx;' src='{{userIcon}}'></image>
+        </view>
+      </view>
+    </block>
+    <!-- 新信息 -->
+    <!-- 客服 -->
+    <block wx:for="{{allContentList}}"  wx:for-index="index"  wx:key='key'>
+       <block wx:if="{{item.newTime}}"><view class="time">{{item.newTime}}</view></block>
+      <!-- 接收者（左） -->
+      <view  id='msg_{{index+chatList.length}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;' wx:if="{{userMember==item.accept_user_id}}">
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{otherHead}}'></image>
+        </view>
+        
+        <block wx:if="{{item.msgType==1}}">
+        <image src="/img/icon/chatLeft.png" style="width:16rpx;height:26rpx;margin-top:13px;margin-left:10px"></image>
+        <view class='leftMsg'>{{item.msg}}</view>
+        </block>
+        <block wx:if="{{item.msgType==2}}"><view class='leftMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg1" data-index="{{index}}" data-list="{{allContentList}}" id="{{item.extend_time}}"></image></view></block>
+      </view>
+      <!-- 发送者（右） -->
+      <view id='msg_{{index+chatList.length}}' wx:if='{{item.send_user_id==userMember}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <block wx:if="{{item.messageType==1}}"><view class='rightMsg'>{{item.msg}}</view>
+        <image src="/img/icon/chatRight.png" style="width:16rpx;height:26rpx;margin-top:13px"></image>
+        </block>
+        <block wx:if="{{item.messageType==2}}"><view class='rightMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg1"  data-index="{{index}}" data-list="{{allContentList}}" id="{{item.extend_time}}"></image></view></block>
+       
+        <view style='width: 80rpx; height: 80rpx;margin-left:28rpx'>
+          <image style='width: 80rpx; height: 80rpx; border-radius: 10rpx;' src='{{userIcon}}'></image>
+        </view>
+      </view>
+
+    </block>
+    <!-- 咨询者 -->
+      <!-- <block  wx:for='{{allContentList}}'  wx:for-index="index" wx:key='key'>
+       <block wx:if="{{item.newTime}}"><view class="time">{{item.newTime}}</view></block> -->
+      <!-- 接收者（左） -->
+      <!-- <view  id='msg_{{index+chatList.length}}' style='display: flex; padding: 2vw 11vw 2vw 2vw;' wx:if="{{userMember==item.accept_user_id}}">
+        <view style='width: 11vw; height: 11vw;'>
+          <image style='width: 11vw; height: 11vw; border-radius: 10rpx;' src='{{otherHead}}'></image>
+        </view>
+      
+         <block wx:if="{{item.msgType==1}}">
+         <image src="/img/icon/chatLeft.png" style="width:16rpx;height:26rpx;margin-top:13px;margin-left:10px"></image>
+         <view class='leftMsg'>{{item.msg}}</view>
+         </block>
+        <block wx:if="{{item.msgType==2}}"><view class='leftMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg1" data-index="{{index}}" data-list="{{allContentList}}" ></image></view></block>
+      </view> -->
+      <!-- 发送者（右） -->
+      <!-- <view  wx:if='{{item.send_user_id==userMember}}' id='msg_{{index+chatList.length}}' style='display: flex; justify-content: flex-end; padding: 2vw 2vw 2vw 11vw;'>
+        <block wx:if="{{item.messageType==1}}"><view class='rightMsg'>{{item.msg}}</view>
+         <image src="/img/icon/chatRight.png" style="width:16rpx;height:26rpx;margin-top:13px"></image>
+        </block>
+        <block wx:if="{{item.messageType==2}}"><view class='rightMsgs'>
+        <image src="{{item.msg}}" class="chatImg" mode='widthFix'  bindtap="bigImg1" data-index="{{index}}" data-list="{{allContentList}}"></image></view></block>
+       
+        <view style='width: 80rpx; height: 80rpx;margin-left:28rpx'>
+          <image style='width:80rpx;height:80rpx;border-radius:10rpx;' src='{{userIcon}}'></image>
+        </view>
+      </view>
+
+    </block> -->
+    <!-- </view> -->
+  </scroll-view>
+  
+</view>
+<form  report-submit="true">
+<view class='inputRoom' style='bottom: {{inputBottom}}px'>
+  <input bindinput='bindKeyInput' placeholder='发消息…' placeholder-style='font-size:28rpx;color:#9A9A9A;' value='{{inputValue}}' confirm-type='done' bindfocus='focus' bindblur='blur' bindconfirm="send"></input>
+  <image style='width: 60rpx;height:48rpx;margin-left:22rpx' src='https://firsthouse.oss-cn-shanghai.aliyuncs.com/blog/2020-05-19/8bfd9b99a49d42fc98d1bdedd18f5512-tmp_d90c0247c6182bb76a797509b697e600.jpg' bindtap="upimg"></image>
+  <view  class="send" bindtap="submitTo">
+    <image src="/img/icon/sent.png" style="width:50rpx;height:50rpx;"></image> 
+  </view> 
+</view>
+</form>

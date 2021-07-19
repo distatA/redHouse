@@ -1,0 +1,12 @@
+<!--pages/system/system.wxml-->
+<view class="list">
+  <view class='time'>2019年6月20日  14:10</view>
+  <view class="main">
+    <view class="title">秒杀专区暂时下线公告</view>
+    <view class="img"><image src=""></image></view>
+    <view class="contain">尊敬的用户，为了给您带来更好的体验，秒杀专区业务将于2019年4月26日22：00-2019年4月27日09:00期间进行</view>
+    <view class="seen"><view>点击查看详情</view>
+      <view style="font-size:28rpx;">></view>
+    </view>
+  </view>
+</view>

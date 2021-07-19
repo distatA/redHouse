@@ -1,0 +1,20 @@
+<!--pages/about/about.wxml-->
+<view class="icon"><image src="../../img/icon/icon.png"></image></view>
+<view class="list">
+  <view class="left">发行单位</view>
+  <view class="right">{{about.issuer}}</view>
+</view>
+<view class="list">
+  <view class="left">商务合作</view>
+  <view class="right">{{about.business}}</view>
+</view>
+<view class="list">
+  <view class="left">联系电话</view>
+  <view class="right">{{about.phone}}</view>
+</view>
+<view class="list">
+  <view class="left">公司地址</view>
+  <view class="right">{{about.address}}</view>
+</view>
+
+<view class="foot">小程序当前版本：{{about.version}}</view>

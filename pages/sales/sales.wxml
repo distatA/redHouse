@@ -1,0 +1,71 @@
+<!--pages/sales/sales.wxml-->
+<!-- 搜索 -->
+<view class="search">
+  <input type="text" value="{{searchValue}}" placeholder="请输入店铺名称、好物名称" bindinput="getInputValue" bindconfirm='searchHandle'></input>
+  <view class="searchPic" bindtap="toSearch"></view>
+  <!-- <text bindtap="cancel">取消</text> -->
+</view>
+<!-- 列表 -->
+<block wx:if="{{shareList.length>0}}">
+  <view class="list" wx:for="{{shareList}}" wx:key="key">
+    <view class="head">
+      <view class="left">
+        <image src="{{item.merchantShop.shopImage}}"></image>
+        <view class="shop_name">{{item.merchantShop.shop_name}}</view>
+      </view>
+      <block>
+        <view class="time">{{item.create_time}}</view>
+      </block>
+    </view>
+  <block>
+      <!-- 订单号 -->
+      <!-- <view class="member">订单编号：{{item.my_order_no}}</view> -->
+      <!-- 商品详情  wx:for="{{item.myShareVos}}" wx:key="key" -->
+      <block >
+        <view class="shop">
+          <image src="{{item.imageUrl}}"></image>
+          <view class="right">
+            <view class="top">
+              <view class="shopName">{{item.good_name}}</view>
+              <view class="price">
+                <view>¥ {{item.price}}</view>
+                <view class="num">×{{item.num}}</view>
+              </view>
+            </view>
+            <view class="size">{{item.specification}}</view>
+          </view>
+        </view>
+        <!-- 买家 -->
+        <view class="head" style="margin-top:20px">
+          <view class="left">
+            <image src="{{item.buyPeople.headUrl}}"></image>
+            <view>{{item.buyPeople.nickName}}</view>
+          </view>
+          <view class="right">
+            <image src="../../img/icon/buy.png"></image>
+          </view>
+        </view>
+        <!-- 来自分享人的收益 -->
+        <view class="head" wx:if="{{item.sharePeople}}" style="margin-top:20px">
+          <view class="left">
+            <image src="{{item.sharePeople.headUrl}}"></image>
+            <view>{{item.sharePeople.nickName}}</view>
+          </view>
+          <view class="right">
+            <image src="../../img/icon/share.png"></image>
+          </view>
+        </view>
+        <block wx:if="{{type==1}}">
+          <view class="money">预估收益 ¥{{item.money}}</view>
+        </block>
+        <block wx:else>
+          <view class="money">赚 ¥{{item.money}}</view>
+        </block>
+      </block>
+      <!-- <view style="background:#F2F2F2;width:100%;height:2px;margin-top:5px" ></view> -->
+    </block>
+  </view>
+</block>
+<block wx:else>
+  <view class="wu">暂无相关数据</view>
+</block>

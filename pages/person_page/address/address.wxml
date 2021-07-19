@@ -1,0 +1,37 @@
+<!--pages/home_page/address/address.wxml-->
+<view class="tip">邮管局提示：即日起，快递单上禁止出现*先生、*小姐等姓名，为防止您的快递无法正常寄送，请务必填写真实姓名。</view>
+<view class="address">
+  <view class="addressLi" wx:for="{{addressList}}" wx:key="{{num}}" wx:for-index = "num">
+    <view class="addressInfo" bindtap="backPage" data-num="{{num}}">
+      <view class="top">
+        <view class="realName">{{item.name}}</view>
+        <view class="tell">{{item.mobile}}</view>
+        <view class="moren" wx:if="{{item.isDefault}}">默认</view>
+        <view class="addressName">{{item.slogin}}</view>
+      </view>
+      <view class="particular">{{item.region}} {{item.address}}</view>
+    </view>
+
+    <view class="edit">
+      <view class="morenChoice" bindtap="setMoren" data-num="{{num}}">
+        <view class="choiceBtnimg {{ item.isDefault == 1 ? 'on':'' }}"></view>
+        <view class="morenTxt">默认地址</view>
+      </view>
+      <view class="bianji tempbtn" bindtap="editBtn" data-num="{{num}}">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help/bianji.png"></image>
+        <view class="bianjiTxt">编辑</view>
+      </view>
+      <view class="delete tempbtn" bindtap="deleteBtn" data-num="{{num}}">
+        <image src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/help/delete.png"></image>
+        <view class="deleteTxt">删除</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="foot">
+    <view class="addTxtBtn" bindtap="addAddress"> + 新增地址</view>
+    <view class="addTxtBtns" bindtap="add"> 
+      <image src="/img/icon/address.png"></image>
+    </view>
+  </view>
+</view>

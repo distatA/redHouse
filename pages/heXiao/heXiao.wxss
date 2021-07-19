@@ -1,0 +1,28 @@
+/* pages/heXiao/heXiao.wxss */
+.main{
+  padding:30px;
+}
+.code{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:rgba(255,146,84,1);
+  margin-bottom:20px;
+
+  text-align: center;
+}
+.num{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:#000;
+  text-align: center;
+  margin-top:20px;
+}
+.title{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:#000;
+  margin-top:20px;
+}

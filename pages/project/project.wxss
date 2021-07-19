@@ -1,0 +1,32 @@
+/* pages/project/project.wxss */
+page{
+  background: #F2F2F2;
+}
+.list{
+  padding:10px 20px;
+  margin-top:5px;
+  background: #fff;
+}
+.time{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(111,111,111,1);
+  line-height:23px;
+}
+.title{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:23px;
+  margin-top:8px;
+}
+.contain{
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(111,111,111,1);
+  line-height:23px;
+  margin-top:6px;
+}

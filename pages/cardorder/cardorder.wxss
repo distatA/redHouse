@@ -1,0 +1,117 @@
+/* pages/cardorder/cardorder.wxss */
+page{
+  background: #F2F2F2;
+}
+.top{
+  background: #fff;
+  padding:15px 20px;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(22,22,22,1);
+}
+.shop{
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+  padding:0 22px 16px 20px;
+  background: #fff;
+}
+.shop .left{
+  width:150px;
+  height:80px;
+}
+.shop .left image{
+  width:100%;
+  height:100%;
+  background: #abcdef;
+}
+.shop .right{
+  width:170px;
+}
+.name{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.names{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(119,119,119,1);
+}
+.price{
+  font-size:13px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:500;
+  color:rgba(12,12,12,1);
+}
+.num{
+  font-size:13px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#484848;
+  margin-top:10px;
+  text-align: right;
+}
+.heji{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding:10px 20px;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:550;
+  color:rgba(0,0,0,1);
+  background: #fff;
+  margin-top:3px;
+}
+
+.foot{
+  position: fixed;
+  width:100%;
+  bottom:0;
+  left:0;
+  padding:15px 20px;
+  box-sizing: border-box;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+}
+.foot .left{
+  display: flex;
+  align-items:flex-end ;
+}
+.sum{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(113,113,113,1);
+}
+.low{
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(255,80,83,1);
+  margin-left:5px;
+}
+.first{
+  font-size:10px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(130,127,127,1);
+  text-decoration: line-through;
+  margin-left:8px;
+}
+.buy{
+  width: 74px;
+  height:30px;
+  border-radius:5px;
+  text-align: center;
+  line-height: 30px;
+  background: linear-gradient(to right,#FF8A57,#FE5654);
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:#fff;
+}

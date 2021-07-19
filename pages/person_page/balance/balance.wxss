@@ -1,0 +1,23 @@
+/* pages/person_page/balance/balance.wxss */
+.balance{background: #fafafa;}
+.top{height: 260rpx;background: #FF7054;padding: 0 40rpx;color: #fff;}
+.topTitle{font-size: 28rpx;padding: 30rpx 0;}
+
+.mybalance{display: flex;align-items: center;justify-content: space-between}
+.money{font-size: 72rpx;}
+.cash{font-size: 32rpx;width: 140rpx;height: 50rpx;line-height: 50rpx;background: #fff;color: #FF7054;text-align: center;border-radius: 10rpx;}
+.getMoney{position: relative;}
+.position{position: absolute;width: 100%;top: -50rpx;display: flex;justify-content: space-around;}
+.li{width: 312rpx;height: 140rpx;text-align: center;padding-top: 20rpx;background: #fff;border-radius: 10rpx;}
+.litop{font-size: 28rpx;color: rgb(104, 104, 104);}
+.litopNum{font-size: 50rpx;color: #FF7054;}
+
+.nav{margin-top: 130rpx;background: #fff;padding: 0 40rpx;}
+.navLi~.navLi{border-top: 2rpx solid #f2f2f2;}
+.navList{height: 90rpx;line-height: 90rpx;display: flex;justify-content: space-between;align-items: center;}
+.navTxt{font-size: 28rpx;color: rgb(104, 104, 104);}
+.navArrow{border-bottom: 4rpx solid #D8D8D8;border-right: 4rpx solid #D8D8D8;width: 24rpx;height: 24rpx;transform: rotate(-45deg);}
+
+
+
+

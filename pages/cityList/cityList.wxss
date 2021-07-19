@@ -1,0 +1,159 @@
+/* pages/cityList/cityList.wxss */
+page{background: #F2F2F2;height:100%;}
+.search{
+  position: relative;
+  /* width:260px; */
+  margin:17px 50px 17px 50px;
+  display: flex;
+  align-items: center;
+  }
+.search input{width: 380rpx;height: 54rpx;background: #fff;line-height: 54rpx;border-radius: 54rpx;padding: 0 70rpx;font-size: 28rpx;}
+.searchPic{position: absolute;left: 24rpx;top: 12rpx;width: 32rpx;height: 32rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/home/search.png) center/32rpx 32rpx;}
+.cancel{
+   font-size:16px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:#000000;
+  width:40px;
+  margin-left:10px;
+}
+.title{
+  font-size:12px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(158,158,158,1);
+  line-height:17px;
+  margin-left:10px;
+}
+.cityName{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height:40px;
+  background:rgba(255,255,255,1);
+  margin:10px 10px;
+  padding:0 10px;
+}
+.cityName .left{
+  display: flex;
+  align-items: center;
+  font-size:14px;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+}
+.cityName .left image{
+  width:28rpx;
+  height:32rpx;
+  margin-right:9px;
+}
+.cityName .right image{
+  width:32rpx;
+  height:28rpx;
+}
+/* 列表 */
+.city_box{
+  height:100%;
+  background: #fff;
+  display: flex;
+}
+.city_left{
+  flex: 1;
+}
+.city_right{
+  width: 60rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.letter_item{
+  flex: 1;
+  display: block;
+  font-size: 24rpx;
+  color: #33B9FF;
+  text-align: center;
+}
+.city_locate,.national{
+  height: 80rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #efefef;
+  font-size: 28rpx;
+  color: #333;
+  padding-left: 25rpx;
+}
+.city_locate_title{
+  color: #999;
+  margin-right: 20rpx;
+}
+.new_city{
+  background: #efefef;
+  font-size: 28rpx;
+}
+.new_city_title{
+  line-height: 50rpx;
+  color: #999;
+  padding-left: 25rpx;
+  margin-bottom: 20rpx;
+}
+.new_city_box{
+  display: flex;
+  flex-wrap: wrap;
+}
+.new_city_text{
+  width: 200rpx;
+  text-align: center;
+  line-height: 70rpx;
+  background: #fff;
+  border-radius: 35rpx;
+  margin:0 0 22rpx 22rpx;
+}
+.city_first_letter{
+  line-height: 40rpx;
+  height: 40rpx;
+  padding-left: 25rpx;
+  font-size: 28rpx;
+  background: #eee;
+  color: #999;
+}
+.city_name{
+  display: block;
+  line-height: 80rpx;
+  height: 80rpx;
+  border-bottom: 1px solid #efefef;
+  font-size: 28rpx;
+  color: #333;
+  padding-left: 25rpx;
+}
+/* 城市搜索 */
+.allCity{
+    height: auto;
+    font-size: 28rpx;
+    color: #000;
+}
+ 
+.allCity .provice{
+    height: auto;
+}
+ 
+.allCity .provice .recently{
+    height: 90rpx;
+    line-height: 90rpx;
+    color: #999999;
+    padding-left: 30rpx;
+}
+.allCity .provice  .cityList{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.allCity .provice  .cityList view{
+    background: #fff;
+    height: 88rpx;
+    border-right: 1px solid #f4f4f4;
+    border-bottom: 1px solid #f4f4f4;
+    width: 25%;
+    overflow: hidden;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 88rpx;
+}

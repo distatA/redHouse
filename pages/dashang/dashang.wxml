@@ -1,0 +1,12 @@
+<!--pages/dashang/dashang.wxml-->
+<view class="title">总收入：<text style="color:#FF7054">¥ {{sum}}</text></view>
+<view class="list" wx:for="{{rewardList}}" wx:key="key">
+  <view class="left">
+    <view class="head"><image src="{{item.headUrl}}"></image></view>
+    <view style="margin-left:15px;">
+      <view class="name">{{type==1?'打赏':'付费阅读'}}-来自{{item.nickName}}</view>
+      <view class="time">{{item.createTime}}</view>
+    </view>
+  </view>
+  <view class="right">+{{item.price}}</view>
+</view>

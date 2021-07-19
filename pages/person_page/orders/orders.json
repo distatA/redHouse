@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-popup": "../../../dist/popup/index",
+    "van-dialog": "../../../dist/dialog/index"
+  },
+  "navigationBarTitleText": "我的订单",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

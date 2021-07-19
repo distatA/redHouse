@@ -1,0 +1,93 @@
+/* pages/paySucceed/paySucceed.wxss */
+.top{
+  width:100%;
+  height:204px;
+}
+.top .img{
+  width:80px;
+  height:80px;
+  margin:0 auto;
+  margin-top:36px;
+}
+.top .img image{
+  width:100%;
+  height:100%;
+}
+.top .title{
+  font-size:16px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:22px;
+  margin-top:25px;
+  text-align: center;
+}
+.list{
+  padding:17px 22px 8px 21px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FAFAFA;
+  font-size:14px;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+}
+.tips{
+  padding:0 20px;
+  margin-top:20px;
+}
+.tips .headTitle{
+  color: #FF9254;
+  font-size:10px;
+  font-weight:400;
+}
+.tips .text{
+  font-size:10px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:#AEAEAE;
+}
+/* 底部 */
+.foot{
+  display: flex;
+  justify-content: space-around;
+  margin-top:20px;
+}
+.foot .li{
+  width:100px;
+  height:30px;
+  background: linear-gradient(to right,#FF9254,#FF5053);
+  text-align: center;
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(255,255,255,1);
+  line-height:30px;
+  border-radius: 6px;
+}
+/* 房产 */
+.huose{
+  margin-top:30px;
+}
+.huose-title{
+  font-size:18px;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  text-align: center;
+}
+.huose-titles{
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFangSC;
+  font-weight:400;
+  color:rgba(127,127,127,1);
+  margin-top:10rpx;
+  text-align: center;
+}
+.huose image{
+  width:130px;
+  height:130px;
+  background: #abcdef;
+  display: block;
+  margin:20px auto;
+}

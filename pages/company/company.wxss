@@ -1,0 +1,82 @@
+/* pages/person_page/certificate/personal/personal.wxss */
+.personal{background: #fff;padding-bottom: 20px;}
+.tip{height: 70rpx;font-size: 24rpx;margin: 0 40rpx;color: #C5C5C5;border-top: 2rpx solid #f2f2f2;
+padding: 15rpx 0;
+}
+
+.form{border: 2rpx solid #f2f2f2;border-radius: 10rpx;background: #fff;}
+.formLi~.formLi{border-top: 2rpx solid #f2f2f2;}
+.formLi{display: flex;margin: 0 40rpx;height: 100rpx;align-items: center;}
+.formLi .image{
+  width:64px;
+  height:64px;
+  margin-left: 155px;
+}
+.redTag{color: #ff0000;margin-right: 15rpx;}
+.intro{font-size: 28rpx;width: 170rpx;}
+.intro.pic{width: 100%;}
+.picker{
+  font-size:14px;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+color:rgba(154,154,154,1);
+}
+.cityArrow{width: 20rpx;height: 20rpx;border-bottom: 4rpx solid #9a9a9a;border-right: 4rpx solid #9a9a9a;transform: rotate(-45deg);position: absolute;
+right: 60px;top: 40rpx;}
+.formLi.formPic{height: 326rpx;justify-content: space-between;}
+.txtIn>input{font-size: 28rpx;width: 450rpx;}
+.sendpic{width: 308rpx;height: 216rpx;}
+.sendpic>image{width: 308rpx;height: 216rpx;}
+.sendpic01{background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/front.png) no-repeat center/308rpx 216rpx;}
+.sendpic02{background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/back.png) no-repeat center/308rpx 216rpx;}
+.sendTxt{font-size: 24rpx;text-align: center;}
+.sendCheck{font-size: 24rpx;}
+.txtIn .checkNum{width: 300rpx;}
+.sendCheck{width: 140rpx;height: 45rpx;line-height: 45rpx;color: #ff9254;border: 2rpx solid #ff9254;border-radius: 10rpx;text-align: center;}
+
+.openShop{margin: 30rpx 40rpx;display: flex;align-items: center;}
+.shopTxt{font-size: 28rpx;margin-right: 40rpx;}
+.openBtn{width: 30rpx;height: 30rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/unfocus.png) no-repeat center/30rpx 30rpx;}
+.openBtn.on{width: 30rpx;height: 30rpx;background: url(https://firsthouse.oss-cn-shanghai.aliyuncs.com/images/personal/certificate/focus.png) no-repeat center/30rpx 30rpx;}
+
+.lastBtn{padding: 50rpx 0;}
+.sendAll{width: 200rpx;height: 60rpx;line-height: 60rpx;text-align: center;background: linear-gradient(to top right,#ff9254,#ff7253,#ff5053);margin: 0 auto;border-radius: 10rpx;font-size: 28rpx;color: #fff;}
+.title{
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(80,78,78,1);
+  padding:12px 21px;
+}
+.tab{
+  display: flex;
+  align-items: center;
+  padding:0 20px;
+}
+.list{
+  padding:0 22px;
+  font-size:12px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(80,78,78,1);
+  margin-right:10px;
+  border:1px solid #9A9A9A;
+
+  border-radius: 6px;
+}
+.list.active{
+  border:2px solid #FF9254;
+  color:#FF9254;
+  border-radius: 6px;
+}
+.foot{
+  width:700rpx;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color:#000000;
+  margin:10px auto;
+  padding-bottom:30px;
+  /* margin-top:30px; */
+}
+

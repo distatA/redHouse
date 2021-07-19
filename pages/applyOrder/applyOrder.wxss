@@ -1,0 +1,25 @@
+/* pages/applyOrder/applyOrder.wxss */
+image{
+  width:66px;
+  height:66px;
+  display: block;
+  margin:0 auto;
+  margin-top:29px;
+}
+.title{
+  font-size:16px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(0,0,0,1);
+  line-height:22px;
+  text-align: center;
+  margin-top:16px;
+}
+.text{
+  font-size:14px;
+  font-family:PingFangSC;
+  font-weight:400;
+  color:rgba(132,132,132,1);
+  margin-top:14px;
+  text-align: center;
+}

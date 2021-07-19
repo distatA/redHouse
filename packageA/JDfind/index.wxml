@@ -1,0 +1,9 @@
+<view style="font-family: PingFangSC-Regular, PingFang SC;background: #FFFFFF;">
+    <view class="search">
+        <view class="searchBox">
+            <input type="text" placeholder="请输入订单编号"placeholder-class="placeholder" bindinput="input" value="{{value}}"/>
+            <view class="toSearch" bindtap="toSearch" > 搜索</view>
+        </view>
+    </view>
+    <image class="img" src="https://firsthouse.oss-cn-shanghai.aliyuncs.com/jdIcon/1e38a030189fe5fa4ca29f77c7e927b.png"  />
+</view>

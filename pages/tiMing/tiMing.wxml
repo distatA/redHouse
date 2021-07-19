@@ -1,0 +1,10 @@
+<!--pages/tiMing/tiMing.wxml-->
+<view class="list" wx:for="{{list}}">
+  <view class="top">
+    <view class="status" wx:if="{{item.status==0}}">提现中...</view>
+    <view class="status" wx:if="{{item.status==1}}">提现成功</view>
+    <view class="status" wx:if="{{item.status==2}}">提现失败</view>
+    <view class="money">￥{{item.money}}</view>
+  </view>
+  <view class="time">{{item.create_time}}</view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-swipe-cell": "/dist/swipe-cell/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "navigationBarTitleText": "我的收藏"
+}
